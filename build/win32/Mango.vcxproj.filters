@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{91b73d86-b2e4-4062-af0f-ff067f7cac77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{e419a8a3-73bd-4713-b394-e42f19e5e76a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\base">
+      <UniqueIdentifier>{5b26d683-617f-45bd-a2a5-5c9576d8b86c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\platform">
+      <UniqueIdentifier>{d26234ea-9ebd-4c6f-a743-b522d893b434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\platform\win32">
+      <UniqueIdentifier>{0ec3b9be-2ec6-4c3f-bfb3-06cbe8cf9fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\imgui">
+      <UniqueIdentifier>{d76c7f25-80aa-4609-b85e-588b2aa52d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\win32">
+      <UniqueIdentifier>{f89e4c81-2feb-48f2-b8a3-b419a68e5f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\win32\gl3w">
+      <UniqueIdentifier>{f31ae972-71e0-4e17-92fd-a447731faba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\win32\glfw">
+      <UniqueIdentifier>{0e05e5f7-ff84-4d67-a162-bf9b297b68bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\win32\gl3w\GL">
+      <UniqueIdentifier>{afed4de6-3afc-46d4-8f92-029085bb9856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\platform\android">
+      <UniqueIdentifier>{32ce554e-5f89-4d96-8213-2b52a9d7072e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\platform\ios">
+      <UniqueIdentifier>{3f675155-72d2-4bb0-83ac-8bf252e18e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\renderer">
+      <UniqueIdentifier>{27600441-5f54-4caf-8805-207381487c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\image">
+      <UniqueIdentifier>{5cdc8c03-074b-443b-975c-014509ed7eb4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
+      <Filter>core\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui_internal.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\stb_rect_pack.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\stb_textedit.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\stb_truetype.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imconfig.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\win32\gl3w\GL\gl3w.h">
+      <Filter>libs\win32\gl3w\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\win32\gl3w\GL\glcorearb.h">
+      <Filter>libs\win32\gl3w\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3.h">
+      <Filter>libs\win32\glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3native.h">
+      <Filter>libs\win32\glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\platform\FileUtils.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h">
+      <Filter>core\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\App.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\File.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\Types.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\String.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\platform\Window.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui_tabs.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\ImGuiDock.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui_tab_demo.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui_dock_demo.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui_dock.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\imgui\imgui_user.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\Data.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\image\PngDecoder.h">
+      <Filter>core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\image\ImageDecoder.h">
+      <Filter>core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\image\ImageInfo.h">
+      <Filter>core\image</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\core\platform\win32\main.cpp">
+      <Filter>core\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.cpp">
+      <Filter>core\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\imgui\imgui.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\imgui\imgui_demo.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\win32\gl3w\GL\gl3w.c">
+      <Filter>libs\win32\gl3w\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\platform\FileUtils.cpp">
+      <Filter>core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\base\App.cpp">
+      <Filter>core\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp">
+      <Filter>core\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\imgui\ImGuiDock.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\imgui\imgui_tabs.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\base\Data.cpp">
+      <Filter>core\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\image\PngDecoder.cpp">
+      <Filter>core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\image\ImageDecoder.cpp">
+      <Filter>core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\image\ImageInfo.cpp">
+      <Filter>core\image</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\libs\imgui\imgui_dock.inl">
+      <Filter>libs\imgui</Filter>
+    </None>
+    <None Include="..\..\libs\imgui\imgui_user.inl">
+      <Filter>libs\imgui</Filter>
+    </None>
+  </ItemGroup>
+</Project>
