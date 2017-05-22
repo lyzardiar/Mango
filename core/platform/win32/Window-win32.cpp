@@ -9,7 +9,6 @@
 #include "../FileUtils.h"
 #include "base/String.h"
 #include "imgui/imgui_tab_demo.h"
-#include "../../../libs/imgui/ImGuiDock.h"
 
 using namespace RE;
 
@@ -64,11 +63,17 @@ bool Window::loop()
 	bool show_another_window = false;
 	ImVec4 clear_color = ImColor(114, 144, 154);
 
+	int display_w, display_h;
+
+	glfwGetFramebufferSize(window, &display_w, &display_h);
+
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
 		ImGui_ImplGlfwGL3_NewFrame();
+
+		ImGui::RootDock(ImVec2(0, 0), ImVec2(display_w, display_h));
 
 		{
 			static bool is_opened = true;
@@ -91,7 +96,7 @@ bool Window::loop()
 		}
 		{
 			static bool is_opened = true;
-			if (ImGui::BeginDock("Navigation2", &is_opened, ImGuiWindowFlags_NoScrollWithMouse))
+			if (ImGui::BeginDock("Navigation2", &is_opened, ImGuiWindowFlags_MenuBar))
 			{
 				{
 					static float f = 0.0f;
@@ -101,6 +106,26 @@ bool Window::loop()
 					if (ImGui::Button("Test Window")) show_test_window ^= 1;
 					if (ImGui::Button("Another Window")) show_another_window ^= 1;
 					ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+					static float color[4] = { 0, 0, 0, 0 };
+					ImGui::ColorPicker(color, true);
+				}
+			}
+			ImGui::EndDock();
+		}
+		{
+			static bool is_opened = true;
+			if (ImGui::BeginDock("Navigation3", &is_opened))
+			{
+				{
+					static float f = 0.0f;
+					ImGui::Text("Hello Mango");
+					ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+					ImGui::ColorEdit3("clear color", (float*)&clear_color);
+					if (ImGui::Button("Test Window")) show_test_window ^= 1;
+					if (ImGui::Button("Another Window")) show_another_window ^= 1;
+					ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+					static float color[4] = { 0, 0, 0, 0 };
+					ImGui::ColorPicker(color, true);
 				}
 			}
 			ImGui::EndDock();
@@ -137,7 +162,6 @@ bool Window::loop()
 		//ShowTabDemo();
 
 		// Rendering
-		int display_w, display_h;
 		glfwGetFramebufferSize(window, &display_w, &display_h);
 
 		glViewport(0, 0, display_w, display_h);

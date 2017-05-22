@@ -160,9 +160,7 @@
     <ClInclude Include="..\..\core\platform\Window.h" />
     <ClInclude Include="..\..\libs\imgui\imconfig.h" />
     <ClInclude Include="..\..\libs\imgui\imgui.h" />
-    <ClInclude Include="..\..\libs\imgui\ImGuiDock.h" />
     <ClInclude Include="..\..\libs\imgui\imgui_dock.h" />
-    <ClInclude Include="..\..\libs\imgui\imgui_dock_demo.h" />
     <ClInclude Include="..\..\libs\imgui\imgui_internal.h" />
     <ClInclude Include="..\..\libs\imgui\imgui_tabs.h" />
     <ClInclude Include="..\..\libs\imgui\imgui_tab_demo.h" />
@@ -186,7 +184,6 @@
     <ClCompile Include="..\..\core\platform\win32\main.cpp" />
     <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui.cpp" />
-    <ClCompile Include="..\..\libs\imgui\ImGuiDock.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_tabs.cpp" />
