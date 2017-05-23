@@ -1,9 +1,8 @@
 
-#include "platform/Window.h"
+#include "game/editor/GameStudio.h"
 
-int main(int, char**)
+int main(int args, char** argv)
 {
-	RE::Window window;
-	window.loop();
-    return 0;
+	RE::GameStudio studio;
+    return studio.Loop();
 }

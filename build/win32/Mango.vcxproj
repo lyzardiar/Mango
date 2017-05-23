@@ -91,7 +91,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../core/;$(SolutionDir)../../libs/;$(SolutionDir)../../libs/win32/gl3w;$(SolutionDir)../../libs/win32/glfw/include;$(SolutionDir)../../libs/jpeg/include/win32;$(SolutionDir)../../libs/zlib/include/win32;$(SolutionDir)../../libs/png/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../;$(SolutionDir)../../core/;$(SolutionDir)../../libs/;$(SolutionDir)../../libs/win32/gl3w;$(SolutionDir)../../libs/win32/glfw/include;$(SolutionDir)../../libs/jpeg/include/win32;$(SolutionDir)../../libs/zlib/include/win32;$(SolutionDir)../../libs/png/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +158,9 @@
     <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h" />
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="..\..\core\platform\Window.h" />
+    <ClInclude Include="..\..\game\editor\GameEditor.h" />
+    <ClInclude Include="..\..\game\editor\GameStudio.h" />
+    <ClInclude Include="..\..\game\editor\MainMenu.h" />
     <ClInclude Include="..\..\libs\imgui\imconfig.h" />
     <ClInclude Include="..\..\libs\imgui\imgui.h" />
     <ClInclude Include="..\..\libs\imgui\imgui_dock.h" />
@@ -183,6 +186,7 @@
     <ClCompile Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="..\..\core\platform\win32\main.cpp" />
     <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp" />
+    <ClCompile Include="..\..\game\editor\GameStudio.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp" />

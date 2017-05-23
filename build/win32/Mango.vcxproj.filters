@@ -47,6 +47,12 @@
     <Filter Include="core\image">
       <UniqueIdentifier>{5cdc8c03-074b-443b-975c-014509ed7eb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{87d0b16a-5181-4f23-9747-0ae61ba3581d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\editor">
+      <UniqueIdentifier>{1294439a-aac8-4299-a50e-5488ca163867}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
@@ -127,6 +133,15 @@
     <ClInclude Include="..\..\core\image\ImageInfo.h">
       <Filter>core\image</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\game\editor\MainMenu.h">
+      <Filter>game\editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\GameEditor.h">
+      <Filter>game\editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\GameStudio.h">
+      <Filter>game\editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\platform\win32\main.cpp">
@@ -170,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="..\..\core\image\ImageInfo.cpp">
       <Filter>core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\GameStudio.cpp">
+      <Filter>game\editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
