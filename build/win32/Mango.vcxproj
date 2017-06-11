@@ -91,7 +91,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../;$(SolutionDir)../../core/;$(SolutionDir)../../libs/;$(SolutionDir)../../libs/win32/gl3w;$(SolutionDir)../../libs/win32/glfw/include;$(SolutionDir)../../libs/jpeg/include/win32;$(SolutionDir)../../libs/zlib/include/win32;$(SolutionDir)../../libs/png/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../;$(SolutionDir)../../core/;$(SolutionDir)../../libs/;$(SolutionDir)../../libs/lua;$(SolutionDir)../../libs/win32/gl3w;$(SolutionDir)../../libs/win32/glfw/include;$(SolutionDir)../../libs/jpeg/include/win32;$(SolutionDir)../../libs/zlib/include/win32;$(SolutionDir)../../libs/png/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -161,6 +162,7 @@
     <ClInclude Include="..\..\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\game\editor\MainMenu.h" />
+    <ClInclude Include="..\..\game\test\test1.h" />
     <ClInclude Include="..\..\libs\imgui\imconfig.h" />
     <ClInclude Include="..\..\libs\imgui\imgui.h" />
     <ClInclude Include="..\..\libs\imgui\imgui_dock.h" />
@@ -171,6 +173,32 @@
     <ClInclude Include="..\..\libs\imgui\stb_rect_pack.h" />
     <ClInclude Include="..\..\libs\imgui\stb_textedit.h" />
     <ClInclude Include="..\..\libs\imgui\stb_truetype.h" />
+    <ClInclude Include="..\..\libs\lua\lapi.h" />
+    <ClInclude Include="..\..\libs\lua\lauxlib.h" />
+    <ClInclude Include="..\..\libs\lua\lcode.h" />
+    <ClInclude Include="..\..\libs\lua\lctype.h" />
+    <ClInclude Include="..\..\libs\lua\ldebug.h" />
+    <ClInclude Include="..\..\libs\lua\ldo.h" />
+    <ClInclude Include="..\..\libs\lua\lfunc.h" />
+    <ClInclude Include="..\..\libs\lua\lgc.h" />
+    <ClInclude Include="..\..\libs\lua\llex.h" />
+    <ClInclude Include="..\..\libs\lua\llimits.h" />
+    <ClInclude Include="..\..\libs\lua\lmem.h" />
+    <ClInclude Include="..\..\libs\lua\lobject.h" />
+    <ClInclude Include="..\..\libs\lua\lopcodes.h" />
+    <ClInclude Include="..\..\libs\lua\lparser.h" />
+    <ClInclude Include="..\..\libs\lua\lprefix.h" />
+    <ClInclude Include="..\..\libs\lua\lstate.h" />
+    <ClInclude Include="..\..\libs\lua\lstring.h" />
+    <ClInclude Include="..\..\libs\lua\ltable.h" />
+    <ClInclude Include="..\..\libs\lua\ltests.h" />
+    <ClInclude Include="..\..\libs\lua\ltm.h" />
+    <ClInclude Include="..\..\libs\lua\lua.h" />
+    <ClInclude Include="..\..\libs\lua\luaconf.h" />
+    <ClInclude Include="..\..\libs\lua\lualib.h" />
+    <ClInclude Include="..\..\libs\lua\lundump.h" />
+    <ClInclude Include="..\..\libs\lua\lvm.h" />
+    <ClInclude Include="..\..\libs\lua\lzio.h" />
     <ClInclude Include="..\..\libs\win32\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\..\libs\win32\gl3w\GL\glcorearb.h" />
     <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3.h" />
@@ -179,6 +207,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\core\base\App.cpp" />
     <ClCompile Include="..\..\core\base\Data.cpp" />
+    <ClCompile Include="..\..\core\base\File.cpp" />
     <ClCompile Include="..\..\core\image\ImageDecoder.cpp" />
     <ClCompile Include="..\..\core\image\ImageInfo.cpp" />
     <ClCompile Include="..\..\core\image\PngDecoder.cpp" />
@@ -191,6 +220,40 @@
     <ClCompile Include="..\..\libs\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_tabs.cpp" />
+    <ClCompile Include="..\..\libs\lua\lapi.c" />
+    <ClCompile Include="..\..\libs\lua\lauxlib.c" />
+    <ClCompile Include="..\..\libs\lua\lbaselib.c" />
+    <ClCompile Include="..\..\libs\lua\lbitlib.c" />
+    <ClCompile Include="..\..\libs\lua\lcode.c" />
+    <ClCompile Include="..\..\libs\lua\lcorolib.c" />
+    <ClCompile Include="..\..\libs\lua\lctype.c" />
+    <ClCompile Include="..\..\libs\lua\ldblib.c" />
+    <ClCompile Include="..\..\libs\lua\ldebug.c" />
+    <ClCompile Include="..\..\libs\lua\ldo.c" />
+    <ClCompile Include="..\..\libs\lua\ldump.c" />
+    <ClCompile Include="..\..\libs\lua\lfunc.c" />
+    <ClCompile Include="..\..\libs\lua\lgc.c" />
+    <ClCompile Include="..\..\libs\lua\linit.c" />
+    <ClCompile Include="..\..\libs\lua\liolib.c" />
+    <ClCompile Include="..\..\libs\lua\llex.c" />
+    <ClCompile Include="..\..\libs\lua\lmathlib.c" />
+    <ClCompile Include="..\..\libs\lua\lmem.c" />
+    <ClCompile Include="..\..\libs\lua\loadlib.c" />
+    <ClCompile Include="..\..\libs\lua\lobject.c" />
+    <ClCompile Include="..\..\libs\lua\lopcodes.c" />
+    <ClCompile Include="..\..\libs\lua\loslib.c" />
+    <ClCompile Include="..\..\libs\lua\lparser.c" />
+    <ClCompile Include="..\..\libs\lua\lstate.c" />
+    <ClCompile Include="..\..\libs\lua\lstring.c" />
+    <ClCompile Include="..\..\libs\lua\lstrlib.c" />
+    <ClCompile Include="..\..\libs\lua\ltable.c" />
+    <ClCompile Include="..\..\libs\lua\ltablib.c" />
+    <ClCompile Include="..\..\libs\lua\ltests.c" />
+    <ClCompile Include="..\..\libs\lua\ltm.c" />
+    <ClCompile Include="..\..\libs\lua\lundump.c" />
+    <ClCompile Include="..\..\libs\lua\lutf8lib.c" />
+    <ClCompile Include="..\..\libs\lua\lvm.c" />
+    <ClCompile Include="..\..\libs\lua\lzio.c" />
     <ClCompile Include="..\..\libs\win32\gl3w\GL\gl3w.c" />
   </ItemGroup>
   <ItemGroup>

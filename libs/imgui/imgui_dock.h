@@ -1,5 +1,9 @@
 #pragma once
 
+namespace RE { class FileStream; }
+
+struct lua_State;
+
 namespace ImGui
 {
 
@@ -10,5 +14,7 @@ IMGUI_API bool BeginDock(const char* label, bool* opened = nullptr, ImGuiWindowF
 IMGUI_API void EndDock();
 IMGUI_API void SetDockActive();
 
+IMGUI_API void SaveDock(RE::FileStream& file);
+IMGUI_API void LoadDock(lua_State* L);
 
 } // namespace ImGui

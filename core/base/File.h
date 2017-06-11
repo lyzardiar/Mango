@@ -60,14 +60,33 @@ namespace RE {
 		static bool Del(std::string& path) {
 			return remove(path.c_str()) == 0;
 		}
-
 	public:
-		File(const std::string& $filepath = "") {
+		enum class SeekMode {
+			BEGIN = 0,
+			END,
+			CURRENT,
+		};
+	public:
+		File() {
+		}
+
+		File(const std::string& $filepath) {
+			Init($filepath);
+		}
+
+		void Init(const std::string& $filepath = "") {
+			Close();
+
 			filePath = $filepath;
 
 			int pos = filePath.rfind("/");
-			dirPath = filePath.substr(0, pos);
-			baseName = filePath.substr(pos + 1);
+			if (pos != std::string::npos) {
+				dirPath = filePath.substr(0, pos);
+				baseName = filePath.substr(pos + 1);
+			}
+			else {
+				baseName = filePath;
+			}
 
 			size = FileState(filePath).size;
 		}
@@ -123,6 +142,33 @@ namespace RE {
 
 			} while (0);
 			return *this;
+		}
+
+		void Seek(I32 pos, SeekMode mode = SeekMode::BEGIN) {
+			if (filePtr == nullptr) {
+				return;
+			}
+			switch (mode)
+			{
+			case SeekMode::BEGIN:
+				fseek(filePtr, pos, SEEK_SET);
+				break;
+			case SeekMode::END:
+				fseek(filePtr, pos, SEEK_END);
+				break;
+			case SeekMode::CURRENT:
+				fseek(filePtr, pos, SEEK_CUR);
+				break;
+			default:
+				break;
+			}
+		}
+
+		UI32 SeekPos() {
+			if (filePtr == nullptr) {
+				return 0;
+			}
+			return offset > 0 ? offset : ftell(filePtr);
 		}
 
 		UI8* Read(int ts) {
@@ -229,6 +275,7 @@ namespace RE {
 
 			size = 0;
 			isRead = false;
+			offset = 0;
 
 			return *this;
 		}
@@ -284,5 +331,34 @@ namespace RE {
 		int size = 0;
 		int offset = 0;
 
+	};
+
+	class FileStream
+	{
+	public:
+		FileStream();
+		~FileStream();
+
+		bool open(const char* path, const char* mode);
+		void close();
+
+		bool write(const void* data, size_t size);
+		bool writeText(const char* text);
+		bool read(void* data, size_t size);
+
+		size_t size();
+		size_t pos();
+
+		bool seek(size_t pos, File::SeekMode mode);
+
+		FileStream& operator <<(const char* text);
+		FileStream& operator <<(char c) { write(&c, sizeof(c)); return *this; }
+		FileStream& operator <<(I32 value);
+		FileStream& operator <<(UI32 value);
+		FileStream& operator <<(UI64 value);
+		FileStream& operator <<(float value);
+
+	protected:
+		File _file;
 	};
 }

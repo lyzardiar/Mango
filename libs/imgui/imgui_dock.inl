@@ -2,6 +2,8 @@
 #define IMGUI_DEFINE_PLACEMENT_NEW
 #include "imgui_internal.h"
 
+#include "core/base/File.h"
+#include "lua.hpp"
 
 namespace ImGui
 {
@@ -1005,13 +1007,13 @@ struct DockContext
 	}
 
 
-	/*void save(Lumix::FS::OsFile& file)
+	void save(RE::FileStream& file)
 	{
 		file << "docks = {\n";
 		for (int i = 0; i < m_docks.size(); ++i)
 		{
 			Dock& dock = *m_docks[i];
-			file << "dock" << (Lumix::u64)&dock << " = {\n";
+			file << "dock" << (UI64)&dock << " = {\n";
 			file << "index = " << i << ",\n";
 			file << "label = \"" << dock.label << "\",\n";
 			file << "x = " << (int)dock.pos.x << ",\n";
@@ -1036,8 +1038,7 @@ struct DockContext
 	}
 
 
-	Dock* getDockByIndex(lua_Integer idx) { return idx < 0 ? nullptr : m_docks[(int)idx]; }
-
+	Dock* getDockByIndex(int idx) { return idx < 0 ? nullptr : m_docks[(int)idx]; }
 
 	void load(lua_State* L)
 	{
@@ -1128,7 +1129,7 @@ struct DockContext
 			}
 		}
 		lua_pop(L, 1);
-	}*/
+	}
 };
 
 
@@ -1169,5 +1170,14 @@ void EndDock()
 	g_dock.end();
 }
 
+void SaveDock(RE::FileStream& file)
+{
+	g_dock.save(file);
+}
+
+void LoadDock(lua_State* L)
+{
+	g_dock.load(L);
+}
 
 } // namespace ImGui
