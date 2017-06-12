@@ -61,12 +61,12 @@ unsigned char* Data::getBytes() const
 	return _bytes;
 }
 
-size_t Data::getSize() const
+UI32 Data::getSize() const
 {
 	return _size;
 }
 
-void Data::copy(const unsigned char* bytes, const size_t size)
+void Data::copy(const unsigned char* bytes, const UI32 size)
 {
 	clear();
 
@@ -79,7 +79,7 @@ void Data::copy(const unsigned char* bytes, const size_t size)
 	}
 }
 
-void Data::fastSet(unsigned char* bytes, const size_t size)
+void Data::fastSet(unsigned char* bytes, const UI32 size)
 {
 	_bytes = bytes;
 	_size = size;

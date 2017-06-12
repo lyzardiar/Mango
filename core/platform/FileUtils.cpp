@@ -1,7 +1,7 @@
 #include "FileUtils.h"
 
-#include "base/File.h"
-#include "base/App.h"
+#include "core/base/File.h"
+#include "core/base/App.h"
 
 using namespace RE;
 

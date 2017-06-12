@@ -337,6 +337,7 @@ namespace RE {
 	{
 	public:
 		FileStream();
+		FileStream(const char* path, const char* mod);
 		~FileStream();
 
 		bool open(const char* path, const char* mode);

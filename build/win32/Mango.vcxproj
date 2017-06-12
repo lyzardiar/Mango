@@ -108,10 +108,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\libs\jpeg\include\win32;$(SolutionDir)..\..\libs\png\include\win32;$(SolutionDir)..\..\libs\win32\glfw\include;$(SolutionDir)..\..\libs\win32\gl3w;$(SolutionDir)..\..\libs\lua;$(SolutionDir)..\..\libs;$(SolutionDir)..\..\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\libs\jpeg\prebuilt\win32;$(SolutionDir)..\..\libs\png\prebuilt\win32;$(SolutionDir)..\..\libs\zlib\prebuilt\win32;$(SolutionDir)..\..\libs\win32\glfw\lib-win-32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libjpeg-2015.lib;libpng-2015.lib;glfw3.lib;libzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -159,6 +161,7 @@
     <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h" />
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="..\..\core\platform\Window.h" />
+    <ClInclude Include="..\..\engine\Engine.h" />
     <ClInclude Include="..\..\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\game\editor\MainMenu.h" />
@@ -203,6 +206,7 @@
     <ClInclude Include="..\..\libs\win32\gl3w\GL\glcorearb.h" />
     <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3.h" />
     <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3native.h" />
+    <ClInclude Include="..\..\script\lua\LuaWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\base\App.cpp" />
@@ -215,6 +219,7 @@
     <ClCompile Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="..\..\core\platform\win32\main.cpp" />
     <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp" />
+    <ClCompile Include="..\..\engine\Engine.cpp" />
     <ClCompile Include="..\..\game\editor\GameStudio.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_demo.cpp" />

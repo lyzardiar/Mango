@@ -59,6 +59,15 @@
     <Filter Include="libs\lua">
       <UniqueIdentifier>{65a001f3-347d-4682-8a2e-dd5bde8204ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{bd040551-b8a1-4ecb-92cd-052c79da22d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{5c22f2b3-f8bf-4597-931b-942de5ea4a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\lua">
+      <UniqueIdentifier>{7f49362c-b869-40ff-b5fe-dbd134a6540d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
@@ -229,6 +238,12 @@
     <ClInclude Include="..\..\libs\lua\lctype.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\engine\Engine.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\script\lua\LuaWrapper.h">
+      <Filter>script\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\platform\win32\main.cpp">
@@ -380,6 +395,9 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\lua\ldebug.c">
       <Filter>libs\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\Engine.cpp">
+      <Filter>engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

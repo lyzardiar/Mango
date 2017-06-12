@@ -8,9 +8,14 @@ namespace RE
 
 	}
 
+	FileStream::FileStream(const char* path, const char* mode)
+	{
+		open(path, mode);
+	}
+
 	FileStream::~FileStream()
 	{
-
+		close();
 	}
 
 	bool FileStream::open(const char* path, const char* mode)

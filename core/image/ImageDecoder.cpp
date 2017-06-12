@@ -1,5 +1,5 @@
 #include "ImageDecoder.h"
-#include "platform/FileUtils.h"
+#include "core/platform/FileUtils.h"
 #include "PngDecoder.h"
 
 using namespace RE;

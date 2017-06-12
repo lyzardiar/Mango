@@ -1,7 +1,7 @@
 #pragma once
 
-#include "base/Types.h"
-#include "base/Data.h"
+#include "core/base/Types.h"
+#include "core/base/Data.h"
 #include <assert.h>
 
 namespace RE {

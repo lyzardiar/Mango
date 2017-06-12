@@ -1,6 +1,6 @@
 #pragma once
 
-#include "base/Types.h"
+#include "core/base/Types.h"
 #include "ImageInfo.h"
 
 namespace RE {
