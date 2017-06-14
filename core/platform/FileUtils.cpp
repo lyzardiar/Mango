@@ -66,3 +66,9 @@ RE::Data RE::FileUtils::getData(std::string& path)
 	file.DropBuff();
 	return data;
 }
+
+RE::Data RE::FileUtils::getData(const char* path)
+{
+	std::string filepath(path);
+	return getData(filepath);
+}

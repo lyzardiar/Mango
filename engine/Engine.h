@@ -1,6 +1,6 @@
 #pragma once
 
-struct lua_State;
+#include "script/lua/LuaWrapper.h"
 
 namespace RE {
 		
@@ -13,6 +13,7 @@ namespace RE {
 
 	public:
 		lua_State* L = nullptr;
+		kaguya::State* Lua = nullptr;
 	};
 
 }

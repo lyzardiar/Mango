@@ -1,5 +1,12 @@
 #pragma once
 #include "imgui/imgui.h"
+#include "../editor/view/WelcomeView.h"
+#include "../editor/view/MainMenuView.h"
+#include "../editor/view/HierarchyView.h"
+#include "../editor/view/SceneView.h"
+#include "../editor/view/PropertyView.h"
+
+using namespace RE;
 
 class Test1 {
 public:
@@ -8,61 +15,30 @@ public:
 		bool show_another_window = false;
 		ImVec4 clear_color = ImColor(114, 144, 154);
 
-		{
-			static bool is_opened = true;
-			if (ImGui::BeginDock("Navigation1", &is_opened, ImGuiWindowFlags_NoScrollWithMouse))
-			{
-				{
-					static float f = 0.0f;
-					ImGui::Text("Hello Mango");
-					ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-					ImGui::ColorEdit3("clear color", (float*)&clear_color);
-					if (ImGui::Button("Test Window")) show_test_window ^= 1;
-					if (ImGui::Button("Another Window")) show_another_window ^= 1;
-					ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-					ImGui::Text("Application elapse %.3f ms", dt);
-				}
+		static WelcomeView welcomView;
 
-				static float color[4] = { 0, 0, 0, 0 };
-				ImGui::ColorPicker(color, true);
-			}
-			ImGui::EndDock();
+		if (welcomView.isOpen) {
+			welcomView.OnGUI();
 		}
-		{
-			static bool is_opened = true;
-			if (ImGui::BeginDock("Navigation2", &is_opened, ImGuiWindowFlags_MenuBar))
+		else {
+			static MainMenuView mainView;
+			static HierarchyView hierarchyView;
+			static SceneView sceneView;
+			static PropertyView propertyView;
+
+			mainView.OnGUI();
+
+			if (ImGui::GetIO().DisplaySize.y > 0)
 			{
-				{
-					static float f = 0.0f;
-					ImGui::Text("Hello Mango");
-					ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-					ImGui::ColorEdit3("clear color", (float*)&clear_color);
-					if (ImGui::Button("Test Window")) show_test_window ^= 1;
-					if (ImGui::Button("Another Window")) show_another_window ^= 1;
-					ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-					static float color[4] = { 0, 0, 0, 0 };
-					ImGui::ColorPicker(color, true);
-				}
+				auto pos = ImVec2(0, mainView.height);
+				auto size = ImGui::GetIO().DisplaySize;
+				size.y -= pos.y;
+				ImGui::RootDock(pos, size);
 			}
-			ImGui::EndDock();
-		}
-		{
-			static bool is_opened = true;
-			if (ImGui::BeginDock("Navigation3", &is_opened))
-			{
-				{
-					static float f = 0.0f;
-					ImGui::Text("Hello Mango");
-					ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-					ImGui::ColorEdit3("clear color", (float*)&clear_color);
-					if (ImGui::Button("Test Window")) show_test_window ^= 1;
-					if (ImGui::Button("Another Window")) show_another_window ^= 1;
-					ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-					static float color[4] = { 0, 0, 0, 0 };
-					ImGui::ColorPicker(color, true);
-				}
-			}
-			ImGui::EndDock();
+
+			hierarchyView.OnGUI();
+			sceneView.OnGUI();
+			propertyView.OnGUI();
 		}
 	}
 };

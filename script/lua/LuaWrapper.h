@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __LUA_WRAPPER_H__
+#define __LUA_WRAPPER_H__
 
 #include "lua.hpp"
 #include "core/base/Types.h"
@@ -89,87 +90,75 @@ namespace RE {
 
 		///////////// Caller Begin
 		template <typename T, int index>
-		typename remove_cv_reference<T>::type convert(lua_State* L)
-		{
+		typename remove_cv_reference<T>::type convert(lua_State* L) {
 			return checkArg<typename remove_cv_reference<T>::type>(L, index);
 		}
 
 		template <typename T> struct Caller;
 		
 		template <int... indices>
-		struct Caller<Indices<indices...>>
-		{
+		struct Caller<Indices<indices...>> {
 			template <typename R, typename... Args>
-			static int callFunction(R(*f)(Args...), lua_State* L)
-			{
+			static int callFunction(R(*f)(Args...), lua_State* L) {
 				R v = f(convert<Args, indices>(L)...);
 				push(L, v);
 				return 1;
 			}
 			
 			template <typename... Args>
-			static int callFunction(void(*f)(Args...), lua_State* L)
-			{
+			static int callFunction(void(*f)(Args...), lua_State* L) {
 				f(convert<Args, indices>(L)...);
 				return 0;
 			}
 			
 			template <typename R, typename... Args>
-			static int callFunction(R(*f)(lua_State*, Args...), lua_State* L)
-			{
+			static int callFunction(R(*f)(lua_State*, Args...), lua_State* L) {
 				R v = f(L, convert<Args, indices>(L)...);
 				push(L, v);
 				return 1;
 			}
 			
 			template <typename... Args>
-			static int callFunction(void(*f)(lua_State*, Args...), lua_State* L)
-			{
+			static int callFunction(void(*f)(lua_State*, Args...), lua_State* L) {
 				f(L, convert<Args, indices>(L)...);
 				return 0;
 			}
 			
 			template <typename C, typename... Args>
-			static int callMethod(C* inst, void(C::*f)(lua_State*, Args...), lua_State* L)
-			{
+			static int callMethod(C* inst, void(C::*f)(lua_State*, Args...), lua_State* L) {
 				(inst->*f)(L, convert<Args, indices>(L)...);
 				return 0;
 			}
 
 			template <typename R, typename C, typename... Args>
-			static int callMethod(C* inst, R(C::*f)(lua_State*, Args...), lua_State* L)
-			{
+			static int callMethod(C* inst, R(C::*f)(lua_State*, Args...), lua_State* L) {
 				R v = (inst->*f)(L, convert<Args, indices>(L)...);
 				push(L, v);
 				return 1;
 			}
 			
 			template <typename R, typename C, typename... Args>
-			static int callMethod(C* inst, R(C::*f)(lua_State*, Args...) const, lua_State* L)
-			{
+			static int callMethod(C* inst, R(C::*f)(lua_State*, Args...) const, lua_State* L) {
 				R v = (inst->*f)(L, convert<Args, indices>(L)...);
 				push(L, v);
 				return 1;
 			}
 			
 			template <typename C, typename... Args>
-			static int callMethod(C* inst, void(C::*f)(Args...), lua_State* L)
-			{
+			static int callMethod(C* inst, void(C::*f)(Args...), lua_State* L) {
 				(inst->*f)(convert<Args, indices>(L)...);
 				return 0;
 			}
 			
 			template <typename R, typename C, typename... Args>
-			static int callMethod(C* inst, R(C::*f)(Args...), lua_State* L)
-			{
+			static int callMethod(C* inst, R(C::*f)(Args...), lua_State* L) {
 				R v = (inst->*f)(convert<Args, indices>(L)...);
 				push(L, v);
 				return 1;
 			}
 			
 			template <typename R, typename C, typename... Args>
-			static int callMethod(C* inst, R(C::*f)(Args...) const, lua_State* L)
-			{
+			static int callMethod(C* inst, R(C::*f)(Args...) const, lua_State* L) {
 				R v = (inst->*f)(convert<Args, indices>(L)...);
 				push(L, v);
 				return 1;
@@ -178,24 +167,21 @@ namespace RE {
 		
 		///////////// Caller End
 
-		inline const char* luaTypeToString(int type)
-		{
-			switch (type)
-			{
-			case LUA_TNUMBER: return "number";
-			case LUA_TBOOLEAN: return "boolean";
-			case LUA_TFUNCTION: return "function";
-			case LUA_TLIGHTUSERDATA: return "light userdata";
-			case LUA_TNIL: return "nil";
-			case LUA_TSTRING: return "string";
-			case LUA_TTABLE: return "table";
-			case LUA_TUSERDATA: return "userdata";
+		inline const char* luaTypeToString(int type) {
+			switch (type) {
+			case LUA_TNUMBER:		return "number";
+			case LUA_TBOOLEAN:		return "boolean";
+			case LUA_TFUNCTION:		return "function";
+			case LUA_TLIGHTUSERDATA:return "light userdata";
+			case LUA_TNIL:			return "nil";
+			case LUA_TSTRING:		return "string";
+			case LUA_TTABLE:		return "table";
+			case LUA_TUSERDATA:		return "userdata";
 			}
 			return "Unknown";
 		}
 		
-		inline void argError(lua_State* L, int index, const char* expected_type)
-		{
+		inline void argError(lua_State* L, int index, const char* expected_type) {
 			char buf[128];
 			strcpy(buf, "expected ");
 			strcat(buf, expected_type);
@@ -205,60 +191,49 @@ namespace RE {
 			luaL_argerror(L, index, buf);
 		}
 		
-		template <typename T> void argError(lua_State* L, int index)
-		{
+		template <typename T> void argError(lua_State* L, int index) {
 			argError(L, index, ValueName<T>());
 		}
 		
-		template <typename T> T checkArg(lua_State* L, int index)
-		{
-			if (!Is<T>(L, index))
-			{
+		template <typename T> T checkArg(lua_State* L, int index) {
+			if (!Is<T>(L, index)) {
 				argError<T>(L, index);
 			}
 			return Value<T>(L, index);
 		}
 		
-		inline void checkTableArg(lua_State* L, int index)
-		{
-			if (!lua_istable(L, index))
-			{
+		inline void checkTableArg(lua_State* L, int index) {
+			if (!lua_istable(L, index)) {
 				argError(L, index, "table");
 			}
 		}
 		
 		template <typename T>
-		inline void getOptionalField(lua_State* L, int idx, const char* field_name, T* out)
-		{
-			if (lua_getfield(L, idx, field_name) != LUA_TNIL && Is<T>(L, -1))
-			{
+		inline void getOptionalField(lua_State* L, int idx, const char* field_name, T* out) {
+			if (lua_getfield(L, idx, field_name) != LUA_TNIL && Is<T>(L, -1)) {
 				*out = Value<T>(L, -1);
 			}
 			lua_pop(L, 1);
 		}
 
 		// static function
-		template <typename T, T t> int wrap(lua_State* L)
-		{
+		template <typename T, T t> int wrap(lua_State* L) {
 			using indices = typename details::build_indices<0, details::arity(t)>::result;
 			return details::Caller<indices>::callFunction(t, L);
 		}
 		
 		// class function
-		template <typename C, typename T, T t> int wrapMethod(lua_State* L)
-		{
+		template <typename C, typename T, T t> int wrapMethod(lua_State* L) {
 			using indices = typename details::build_indices<1, details::arity(t)>::result;
 			auto* inst = checkArg<C*>(L, 1);
 			return details::Caller<indices>::callMethod(inst, t, L);
 		}
 
 		// for instance
-		template <typename C, typename T, T t> int wrapMethodClosure(lua_State* L)
-		{
+		template <typename C, typename T, T t> int wrapMethodClosure(lua_State* L) {
 			using indices = typename details::build_indices<0, details::arity(t)>::result;
 			int index = lua_upvalueindex(1);
-			if (!Is<T>(L, index))
-			{
+			if (!Is<T>(L, index)) {
 				luaL_error(L, "%s", "Invalid Lua closure.");
 				ASSERT(false);
 				return 0;
@@ -267,10 +242,8 @@ namespace RE {
 			return details::Caller<indices>::callMethod(inst, t, L);
 		}
 		
-		void getCls(lua_State* L, const char* cls)
-		{
-			if (lua_getglobal(L, cls) == LUA_TNIL)
-			{
+		inline void getCls(lua_State* L, const char* cls) {
+			if (lua_getglobal(L, cls) == LUA_TNIL) {
 				lua_pop(L, 1);
 				lua_newtable(L);
 				lua_setglobal(L, cls);
@@ -278,32 +251,32 @@ namespace RE {
 			}
 		}
 
-		inline void Reg(lua_State* L, const char* cls, const char* var_name, void* value)
-		{
+		// register object
+		inline void Reg(lua_State* L, const char* cls, const char* var_name, void* value) {
 			getCls(L, cls);
 			lua_pushlightuserdata(L, value);
 			lua_setfield(L, -2, var_name);
 			lua_pop(L, 1);
 		}
 		
-		inline void Reg(lua_State* L, const char* cls, const char* var_name, int value)
-		{
+		// register constans
+		inline void Reg(lua_State* L, const char* cls, const char* var_name, int value) {
 			getCls(L, cls);
 			lua_pushinteger(L, value);
 			lua_setfield(L, -2, var_name);
 			lua_pop(L, 1);
 		}
 		
-		inline void createSystemFunction(lua_State* L, const char* cls, const char* var_name, lua_CFunction fn)
-		{
+		// register method
+		inline void Reg(lua_State* L, const char* cls, const char* var_name, lua_CFunction fn) {
 			getCls(L, cls);
 			lua_pushcfunction(L, fn);
 			lua_setfield(L, -2, var_name);
 			lua_pop(L, 1);
 		}
 
-		inline void createSystemClosure(lua_State* L, const char* cls, void* system_ptr, const char* var_name, lua_CFunction fn)
-		{
+		// register instance 
+		inline void Reg(lua_State* L, const char* cls, const char* var_name, lua_CFunction fn, void* system_ptr) {
 			getCls(L, cls);
 			lua_pushlightuserdata(L, system_ptr);
 			lua_pushcclosure(L, fn, 1);
@@ -311,12 +284,16 @@ namespace RE {
 			lua_pop(L, 1);
 		}
 
-		int executeString(lua_State* L, const char* code) {
+		inline int executeString(lua_State* L, const char* code) {
 			return luaL_dostring(L, code);
 		}
 
-		int executeFile(lua_State* L, const char* path) {
+		inline int executeFile(lua_State* L, const char* path) {
 			return luaL_dofile(L, path);
 		}
 	}
 }
+
+#include "kaguya.hpp"
+
+#endif // __LUA_WRAPPER_H__

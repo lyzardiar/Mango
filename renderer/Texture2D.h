@@ -1,7 +1,8 @@
 #pragma once
 
 namespace RE {
-	class MainMenu {
+	class Texture2D {
+	public:
 
 	};
 }

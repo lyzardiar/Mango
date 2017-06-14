@@ -3,15 +3,13 @@
 #include "core/platform/Window.h"
 #include "core/base/File.h"
 #include "engine/Engine.h"
-#include "script/lua/LuaWrapper.h"
 
 #include "game/test/test1.h"
 
 RE::GameStudio::GameStudio()
 {
 	_engine = new Engine();
-
-	RE::LuaWrapper::executeFile(_engine->L, "studioGUIConfigs.lua");
+	_engine->Lua->dofile("studioGUIConfigs.lua");
 
 	ImGui::LoadDock(_engine->L);
 }

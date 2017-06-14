@@ -19,6 +19,7 @@ namespace RE {
 		void clearSearchDirs();
 
 		Data getData(std::string& path);
+		Data getData(const char* path);
 
 	public:
 		const std::string App;

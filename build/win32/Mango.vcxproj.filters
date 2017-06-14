@@ -68,6 +68,12 @@
     <Filter Include="script\lua">
       <UniqueIdentifier>{7f49362c-b869-40ff-b5fe-dbd134a6540d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\editor\view">
+      <UniqueIdentifier>{2bfc9d76-adfd-4a1c-9965-4073d6bbbbc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer">
+      <UniqueIdentifier>{d01b36f4-b694-470d-af21-2d88598de944}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
@@ -147,9 +153,6 @@
     </ClInclude>
     <ClInclude Include="..\..\core\image\ImageInfo.h">
       <Filter>core\image</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\game\editor\MainMenu.h">
-      <Filter>game\editor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\game\editor\GameEditor.h">
       <Filter>game\editor</Filter>
@@ -243,6 +246,54 @@
     </ClInclude>
     <ClInclude Include="..\..\script\lua\LuaWrapper.h">
       <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\script\lua\kaguya.hpp">
+      <Filter>script\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\SceneView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\IGUIView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\WelcomeView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\PropertyView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\ResourceView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\StatusView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\GameView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\HierarchyView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\editor\view\MainMenuView.h">
+      <Filter>game\editor\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\Material.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\Texture2D.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\PipeLine.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\Triangle.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\IRenderer.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\TriangleRenderer.h">
+      <Filter>renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +449,42 @@
     </ClCompile>
     <ClCompile Include="..\..\engine\Engine.cpp">
       <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\SceneView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\WelcomeView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\ResourceView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\StatusView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\GameView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\PropertyView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\HierarchyView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\MainMenuView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\editor\view\IGUIView.cpp">
+      <Filter>game\editor\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\PipeLine.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\TriangleRenderer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\Triangle.cpp">
+      <Filter>renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
