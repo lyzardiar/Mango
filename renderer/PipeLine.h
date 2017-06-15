@@ -1,5 +1,5 @@
 #pragma once
-#include "GL/gl3w.h"
+#include "GL/REGL.h"
 #include <string>
 
 namespace RE {

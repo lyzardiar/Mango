@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "core/platform/Platform.h"
 #include "core/base/Data.h"
 
 namespace RE {

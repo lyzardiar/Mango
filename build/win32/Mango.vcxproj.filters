@@ -74,6 +74,9 @@
     <Filter Include="renderer">
       <UniqueIdentifier>{d01b36f4-b694-470d-af21-2d88598de944}</UniqueIdentifier>
     </Filter>
+    <Filter Include="renderer\GL">
+      <UniqueIdentifier>{d321dd4f-adbb-4ca2-b98d-ab28ac51ae25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
@@ -295,6 +298,15 @@
     <ClInclude Include="..\..\renderer\TriangleRenderer.h">
       <Filter>renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\renderer\FrameBuffer.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\GL\REGL.h">
+      <Filter>renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\platform\Platform.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\platform\win32\main.cpp">
@@ -484,6 +496,12 @@
       <Filter>renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\renderer\Triangle.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\FrameBuffer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\Texture2D.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
   </ItemGroup>

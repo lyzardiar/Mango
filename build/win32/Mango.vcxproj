@@ -158,6 +158,7 @@
     <ClInclude Include="..\..\core\image\ImageInfo.h" />
     <ClInclude Include="..\..\core\image\PngDecoder.h" />
     <ClInclude Include="..\..\core\platform\FileUtils.h" />
+    <ClInclude Include="..\..\core\platform\Platform.h" />
     <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h" />
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="..\..\core\platform\Window.h" />
@@ -214,6 +215,8 @@
     <ClInclude Include="..\..\libs\win32\gl3w\GL\glcorearb.h" />
     <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3.h" />
     <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3native.h" />
+    <ClInclude Include="..\..\renderer\FrameBuffer.h" />
+    <ClInclude Include="..\..\renderer\GL\REGL.h" />
     <ClInclude Include="..\..\renderer\IRenderer.h" />
     <ClInclude Include="..\..\renderer\Material.h" />
     <ClInclude Include="..\..\renderer\PipeLine.h" />
@@ -284,7 +287,9 @@
     <ClCompile Include="..\..\libs\lua\lvm.c" />
     <ClCompile Include="..\..\libs\lua\lzio.c" />
     <ClCompile Include="..\..\libs\win32\gl3w\GL\gl3w.c" />
+    <ClCompile Include="..\..\renderer\FrameBuffer.cpp" />
     <ClCompile Include="..\..\renderer\PipeLine.cpp" />
+    <ClCompile Include="..\..\renderer\Texture2D.cpp" />
     <ClCompile Include="..\..\renderer\Triangle.cpp" />
     <ClCompile Include="..\..\renderer\TriangleRenderer.cpp" />
   </ItemGroup>

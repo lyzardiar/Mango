@@ -5,14 +5,6 @@
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
 
-#define CHECK_GL_ERROR_DEBUG() \
-    do { \
-        GLenum __error = glGetError(); \
-        if(__error) { \
-            printf("OpenGL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
-        } \
-    } while (false)
-
 const char* RE::PipeLine::ATTRIBUTE_NAME_COLOR = "a_color";
 const char* RE::PipeLine::ATTRIBUTE_NAME_POSITION = "a_position";
 const char* RE::PipeLine::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";

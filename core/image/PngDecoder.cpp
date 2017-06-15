@@ -186,3 +186,9 @@ ImageInfo Png::Decode(UI8* data, UI32 dataLen)
 	imageInfo.valid = ret;
 	return imageInfo;
 }
+
+RE::ImageInfo RE::Png::Decode(const char* path)
+{
+	std::string pathname = path;
+	return Decode(pathname);
+}
