@@ -1,7 +1,7 @@
 attribute vec4 a_position;
 attribute vec4 a_color;
 
-varying lowp vec4 v_fragmentColor;
+varying vec4 v_fragmentColor;
 
 void main()						
 {							

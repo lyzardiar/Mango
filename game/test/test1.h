@@ -16,7 +16,7 @@ public:
 		ImVec4 clear_color = ImColor(114, 144, 154);
 
 		static WelcomeView welcomView;
-
+		
 		if (welcomView.isOpen) {
 			welcomView.OnGUI();
 		}
