@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "core/base/Macros.h"
 #include "core/platform/Platform.h"
 #include "core/base/Data.h"
 

@@ -77,6 +77,12 @@
     <Filter Include="renderer\GL">
       <UniqueIdentifier>{d321dd4f-adbb-4ca2-b98d-ab28ac51ae25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\stream">
+      <UniqueIdentifier>{16c4564b-7bd1-4501-aaea-1637df42d886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine\object">
+      <UniqueIdentifier>{90497539-01d4-4dce-841e-5d2fd31d4d42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
@@ -307,6 +313,33 @@
     <ClInclude Include="..\..\core\platform\Platform.h">
       <Filter>core\platform</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\core\base\Macros.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\Utils.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\base\ByteSwap.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\object\Object.h">
+      <Filter>engine\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\object\GameObject.h">
+      <Filter>engine\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\streram\MemoryStream.h">
+      <Filter>core\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\streram\TCPStream.h">
+      <Filter>core\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\streram\UDPStream.h">
+      <Filter>core\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\core\streram\FileStream.h">
+      <Filter>core\stream</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\platform\win32\main.cpp">
@@ -503,6 +536,9 @@
     </ClCompile>
     <ClCompile Include="..\..\renderer\Texture2D.cpp">
       <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\core\base\ByteSwap.cpp">
+      <Filter>core\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

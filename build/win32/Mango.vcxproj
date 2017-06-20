@@ -150,10 +150,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\base\App.h" />
+    <ClInclude Include="..\..\core\base\ByteSwap.h" />
     <ClInclude Include="..\..\core\base\Data.h" />
     <ClInclude Include="..\..\core\base\File.h" />
+    <ClInclude Include="..\..\core\base\Macros.h" />
     <ClInclude Include="..\..\core\base\String.h" />
     <ClInclude Include="..\..\core\base\Types.h" />
+    <ClInclude Include="..\..\core\base\Utils.h" />
     <ClInclude Include="..\..\core\image\ImageDecoder.h" />
     <ClInclude Include="..\..\core\image\ImageInfo.h" />
     <ClInclude Include="..\..\core\image\PngDecoder.h" />
@@ -162,7 +165,13 @@
     <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h" />
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="..\..\core\platform\Window.h" />
+    <ClInclude Include="..\..\core\streram\FileStream.h" />
+    <ClInclude Include="..\..\core\streram\MemoryStream.h" />
+    <ClInclude Include="..\..\core\streram\TCPStream.h" />
+    <ClInclude Include="..\..\core\streram\UDPStream.h" />
     <ClInclude Include="..\..\engine\Engine.h" />
+    <ClInclude Include="..\..\engine\object\GameObject.h" />
+    <ClInclude Include="..\..\engine\object\Object.h" />
     <ClInclude Include="..\..\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\game\editor\view\GameView.h" />
@@ -228,6 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\base\App.cpp" />
+    <ClCompile Include="..\..\core\base\ByteSwap.cpp" />
     <ClCompile Include="..\..\core\base\Data.cpp" />
     <ClCompile Include="..\..\core\base\File.cpp" />
     <ClCompile Include="..\..\core\image\ImageDecoder.cpp" />

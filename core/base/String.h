@@ -66,6 +66,7 @@ namespace RE {
 		}
 
 		static std::string UTF8ToGBKWin32(const std::string& str) {
+#ifdef _WIN32
 			static char szBuf[1024 * 100];
 			static WCHAR wszBuf[1024 * 100] = { 0 };
 
@@ -76,6 +77,9 @@ namespace RE {
 			WideCharToMultiByte(CP_ACP, 0, wszBuf, sizeof(wszBuf), szBuf, sizeof(szBuf), nullptr, FALSE);
 
 			return szBuf;
+#else 
+			return str;
+#endif
 		}
 	};
 }

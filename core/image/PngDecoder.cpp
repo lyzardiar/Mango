@@ -5,39 +5,35 @@
 
 using namespace RE;
 
-typedef struct
-{
+typedef struct {
 	const unsigned char * data;
 	I32 size;
 	int offset;
 }tImageSource;
 
-static inline void pngReadCallback(png_structp png_ptr, png_bytep data, png_size_t length)
-{
+static inline void pngReadCallback(png_structp png_ptr, png_bytep data, png_size_t length) {
 	tImageSource* isource = (tImageSource*)png_get_io_ptr(png_ptr);
 
-	if ((int)(isource->offset + length) <= isource->size)
-	{
+	if ((int)(isource->offset + length) <= isource->size) {
 		memcpy(data, isource->data + isource->offset, length);
 		isource->offset += length;
-	}
-	else
-	{
+	} else {
 		png_error(png_ptr, "pngReaderCallback failed");
 	}
 }
 
+RE::ImageInfo RE::Png::Decode(const char* path) {
+	std::string pathname = path;
+	return Decode(pathname);
+}
 
-ImageInfo Png::Decode(std::string& path)
-{
+ImageInfo Png::Decode(std::string& path) {
 	Data data = FileUtils::getInstance()->getData(path);
 	return Decode(data.getBytes(), data.getSize());
 }
 
-ImageInfo Png::Decode(UI8* data, UI32 dataLen)
-{
+ImageInfo Png::Decode(UI8* data, UI32 dataLen) {
 #define PNGSIGSIZE  8
-#define BREAK_IF(cond) if (cond) break
 	bool ret = false;
 	png_byte        header[PNGSIGSIZE] = { 0 };
 	png_structp     png_ptr = 0;
@@ -187,8 +183,3 @@ ImageInfo Png::Decode(UI8* data, UI32 dataLen)
 	return imageInfo;
 }
 
-RE::ImageInfo RE::Png::Decode(const char* path)
-{
-	std::string pathname = path;
-	return Decode(pathname);
-}

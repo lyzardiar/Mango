@@ -20,6 +20,7 @@ namespace RE {
 
 	bool FrameBuffer::Init(UI32 width, UI32 height) {
 
+		return true;
 	}
 
 	GLuint RE::FrameBuffer::GetTextureHandle() {

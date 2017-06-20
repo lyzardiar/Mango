@@ -6,9 +6,6 @@ using namespace RE;
 static bool isInitAlphaMap = false;
 static unsigned char alphaMap[256][256];
 
-void ImageInfo::premultipliedAlpha() {
-	assert(format == ImageInfo::PixelFormat::RGBA8888, "The pixel format should be RGBA8888!");
-
 #define PREMULTIPLY_ALPHA(vr, vg, vb, va) \
     (unsigned)((unsigned)(alphaMap[vr][va]) | \
 				((unsigned)(alphaMap[vg][va]) << 8) | \
@@ -16,6 +13,12 @@ void ImageInfo::premultipliedAlpha() {
 				((unsigned)(va) << 24) \
 			  )
 
+void ImageInfo::premultipliedAlpha() {
+	if (format != ImageInfo::PixelFormat::RGBA8888) {
+		isPreMultipliedAlpha = false;
+		return;
+	}
+	
 	if (!isInitAlphaMap) {
 		for (int i = 0; i < 256; ++i) {
 			for (int j = 0; j < 256; ++j) {
