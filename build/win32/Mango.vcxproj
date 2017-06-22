@@ -92,7 +92,10 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../;$(SolutionDir)../../core/;$(SolutionDir)../../libs/;$(SolutionDir)../../libs/lua;$(SolutionDir)../../libs/win32/gl3w;$(SolutionDir)../../libs/win32/glfw/include;$(SolutionDir)../../libs/jpeg/include/win32;$(SolutionDir)../../libs/zlib/include/win32;$(SolutionDir)../../libs/png/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4049;4217;4996</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,24 +157,28 @@
     <ClInclude Include="..\..\core\base\Data.h" />
     <ClInclude Include="..\..\core\base\File.h" />
     <ClInclude Include="..\..\core\base\Macros.h" />
+    <ClInclude Include="..\..\core\base\Object.h" />
     <ClInclude Include="..\..\core\base\String.h" />
+    <ClInclude Include="..\..\core\base\Time.h" />
     <ClInclude Include="..\..\core\base\Types.h" />
     <ClInclude Include="..\..\core\base\Utils.h" />
     <ClInclude Include="..\..\core\image\ImageDecoder.h" />
     <ClInclude Include="..\..\core\image\ImageInfo.h" />
     <ClInclude Include="..\..\core\image\PngDecoder.h" />
+    <ClInclude Include="..\..\core\math\Affine.h" />
     <ClInclude Include="..\..\core\platform\FileUtils.h" />
     <ClInclude Include="..\..\core\platform\Platform.h" />
     <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h" />
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="..\..\core\platform\Window.h" />
-    <ClInclude Include="..\..\core\streram\FileStream.h" />
-    <ClInclude Include="..\..\core\streram\MemoryStream.h" />
-    <ClInclude Include="..\..\core\streram\TCPStream.h" />
-    <ClInclude Include="..\..\core\streram\UDPStream.h" />
+    <ClInclude Include="..\..\core\stream\FileStream.h" />
+    <ClInclude Include="..\..\core\stream\MemoryStream.h" />
+    <ClInclude Include="..\..\core\stream\TCPStream.h" />
+    <ClInclude Include="..\..\core\stream\UDPStream.h" />
+    <ClInclude Include="..\..\engine\component\IComponent.h" />
+    <ClInclude Include="..\..\engine\component\Transform.h" />
     <ClInclude Include="..\..\engine\Engine.h" />
     <ClInclude Include="..\..\engine\object\GameObject.h" />
-    <ClInclude Include="..\..\engine\object\Object.h" />
     <ClInclude Include="..\..\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\game\editor\view\GameView.h" />
@@ -240,14 +247,19 @@
     <ClCompile Include="..\..\core\base\ByteSwap.cpp" />
     <ClCompile Include="..\..\core\base\Data.cpp" />
     <ClCompile Include="..\..\core\base\File.cpp" />
+    <ClCompile Include="..\..\core\base\Time.cpp" />
+    <ClCompile Include="..\..\core\base\Types.cpp" />
     <ClCompile Include="..\..\core\image\ImageDecoder.cpp" />
     <ClCompile Include="..\..\core\image\ImageInfo.cpp" />
     <ClCompile Include="..\..\core\image\PngDecoder.cpp" />
+    <ClCompile Include="..\..\core\math\Affine.cpp" />
     <ClCompile Include="..\..\core\platform\FileUtils.cpp" />
+    <ClCompile Include="..\..\core\platform\PlatformWin32.cpp" />
     <ClCompile Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="..\..\core\platform\win32\main.cpp" />
     <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp" />
     <ClCompile Include="..\..\engine\Engine.cpp" />
+    <ClCompile Include="..\..\engine\object\GameObject.cpp" />
     <ClCompile Include="..\..\game\editor\GameStudio.cpp" />
     <ClCompile Include="..\..\game\editor\view\GameView.cpp" />
     <ClCompile Include="..\..\game\editor\view\HierarchyView.cpp" />

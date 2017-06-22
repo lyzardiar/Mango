@@ -28,15 +28,15 @@ namespace RE {
 			//ImGui::ShowTestWindow(&open);
 			auto size = ImGui::GetContentRegionAvail();
 
-			fbo.Begin({ 0, 0, (int)size.x, (int)size.y });
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+			fbo.Begin({ 0, (int)size.x, (int)size.y, 0 });
+
+			static TriangleRenderer* r = new TriangleRenderer();
+			r->draw();
+
 			fbo.End();
 
 			ImGui::Image((GLuint*)fbo.GetTextureHandle(), size, ImVec2(0, 1), ImVec2(1, 0));
 
-			//static TriangleRenderer* r = new TriangleRenderer();
-			//r->draw();
 		}
 		ImGui::EndDock();
 	}

@@ -15,8 +15,8 @@ RE::Texture2D::~Texture2D() {
 }
 
 bool RE::Texture2D::InitWithData(UI32 width, UI32 height, UI8* data, UI32 len) {
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	clear();
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	_width = width;
 	_height = height;

@@ -21,6 +21,7 @@ namespace RE {
 
 		bool Apply();
 
+		GLuint GetProgramHandle();
 	protected:
 		bool compile(GLuint& handle, GLenum type, const GLchar* code);
 		bool link();

@@ -7,11 +7,11 @@
 #include "game/test/test1.h"
 
 RE::GameStudio::GameStudio()
+	: _engine (Engine::instance)
 {
-	_engine = new Engine();
-	_engine->Lua->dofile("studioGUIConfigs.lua");
+	_engine.Lua.dofile("studioGUIConfigs.lua");
 
-	ImGui::LoadDock(_engine->L);
+	ImGui::LoadDock(_engine.L);
 }
 
 RE::GameStudio::~GameStudio()
@@ -22,6 +22,8 @@ RE::GameStudio::~GameStudio()
 
 bool RE::GameStudio::Update(float dt)
 {
+	_engine.Loop();
+
 	auto& imIO = ImGui::GetIO();
 	ImGui::RootDock(ImVec2(0, 0), ImVec2(imIO.DisplaySize.x, imIO.DisplaySize.y));
 

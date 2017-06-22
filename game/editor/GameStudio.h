@@ -14,6 +14,6 @@ namespace RE {
 		int Loop();
 
 	protected:
-		Engine* _engine = nullptr;
+		Engine& _engine;
 	};
 }

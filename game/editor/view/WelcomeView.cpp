@@ -8,7 +8,7 @@ namespace RE {
 
 		ImGuiWindowFlags flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
 			ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings;
-		int w = imIO.DisplaySize.x, h = imIO.DisplaySize.y;
+		float w = imIO.DisplaySize.x, h = imIO.DisplaySize.y;
 
 		ImVec2 size((float)w, (float)h);
 		if (ImGui::Begin("Welcome", nullptr, size, -1, flags))

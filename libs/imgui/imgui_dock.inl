@@ -1105,23 +1105,23 @@ struct DockContext
 
 					if (lua_getfield(L, -1, "prev") == LUA_TNUMBER)
 					{
-						dock.prev_tab = getDockByIndex(lua_tointeger(L, -1));
+						dock.prev_tab = getDockByIndex((int)lua_tointeger(L, -1));
 					}
 					if (lua_getfield(L, -2, "next") == LUA_TNUMBER)
 					{
-						dock.next_tab = getDockByIndex(lua_tointeger(L, -1));
+						dock.next_tab = getDockByIndex((int)lua_tointeger(L, -1));
 					}
 					if (lua_getfield(L, -3, "child0") == LUA_TNUMBER)
 					{
-						dock.children[0] = getDockByIndex(lua_tointeger(L, -1));
+						dock.children[0] = getDockByIndex((int)lua_tointeger(L, -1));
 					}
 					if (lua_getfield(L, -4, "child1") == LUA_TNUMBER)
 					{
-						dock.children[1] = getDockByIndex(lua_tointeger(L, -1));
+						dock.children[1] = getDockByIndex((int)lua_tointeger(L, -1));
 					}
 					if (lua_getfield(L, -5, "parent") == LUA_TNUMBER)
 					{
-						dock.parent = getDockByIndex(lua_tointeger(L, -1));
+						dock.parent = getDockByIndex((int)lua_tointeger(L, -1));
 					}
 					lua_pop(L, 5);
 				}

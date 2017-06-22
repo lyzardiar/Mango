@@ -1,6 +1,11 @@
 #include "FrameBuffer.h"
+#include "image/PngDecoder.h"
+#include "base/Macros.h"
 
 namespace RE {
+
+	UI32 FrameBuffer::CurWidth;
+	UI32 FrameBuffer::CurHeight;
 
 	FrameBuffer::FrameBuffer() {
 
@@ -32,8 +37,15 @@ namespace RE {
 			}
 		}
 
+		CurWidth = _width;
+		CurHeight = _height;
+		
 		glGetIntegerv(GL_FRAMEBUFFER_BINDING, (GLint*)&_oldFbo);
 		glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
+		glViewport(0, 0, _width, _height);
+		
+		glClearColor(0.15f, 0.15f, 0.15f, 0.f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		return true;
 	}
@@ -46,24 +58,19 @@ namespace RE {
 	}
 
 	bool FrameBuffer::Init(UI32 width, UI32 height) {
+		printf("Rebuild FBO: %d %d\n", width, height);
 		clear();
 		_width = width;
 		_height = height;
 
 		glGetIntegerv(GL_FRAMEBUFFER_BINDING, (GLint*)&_oldFbo);
-
-		glGenTextures(1, &_textureHandle);
-		glBindTexture(GL_TEXTURE_2D, _textureHandle);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		
+		_texture = new Texture2D(width, height, nullptr, 0);
 		
 		glGenFramebuffers(1, &_fbo);
 		glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
 
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _textureHandle, 0);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _texture->GetHandle(), 0);
 
 		GLuint uStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 		if (uStatus != GL_FRAMEBUFFER_COMPLETE)
@@ -83,13 +90,14 @@ namespace RE {
 			_fbo = 0;
 		}
 		_oldFbo = 0;
-		_textureHandle = 0;
 		_width = 0;
 		_height = 0;
+		SAFE_DELETE(_texture);
 	}
 
 	GLuint RE::FrameBuffer::GetTextureHandle() {
-		return _textureHandle;
+		if (_texture != nullptr) return _texture->GetHandle();
+		return 0;
 	}
 
 }

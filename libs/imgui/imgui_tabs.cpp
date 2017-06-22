@@ -176,7 +176,7 @@ void ImGui::TabBar::_drawTabBarTop(const char *label) {
     const float tab_height = CalcTextSize(tabTitles[0]).y + (frame_padding.y * 2);
 
     float selected_offset = 0;
-    _TabType selected_tab_type;
+    //_TabType selected_tab_type;
     ImVec2 selected_expands;
     _EdgeType selected_shadow_edges = EDGE_NONE;
     int selected_idx = 0;

@@ -7,6 +7,9 @@
 #include "imgui_impl_glfw_gl3.h"
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
+#include "renderer/PipeLine.h"
+#include "renderer/Texture2D.h"
+#include "image/PngDecoder.h"
 
 using namespace RE;
 
@@ -25,13 +28,10 @@ bool Window::initGL() {
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		return false;
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #if __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-	window = glfwCreateWindow(1280, 720, "Mango", NULL, NULL);
+	window = glfwCreateWindow(1334, 750, "Mango", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	gl3wInit();
 
@@ -41,8 +41,7 @@ bool Window::initGL() {
 	return true;
 }
 
-bool Window::close()
-{
+bool Window::close() {
 	if (window == nullptr) return true;
 
 	// Cleanup
@@ -58,25 +57,23 @@ bool Window::loop() {
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents();
 		ImGui_ImplGlfwGL3_NewFrame();
+		// Rendering
+		glViewport(0, 0, (GLsizei)ImGui::GetIO().DisplaySize.x, (GLsizei)ImGui::GetIO().DisplaySize.y);
+		glClearColor(_clearColor.x, _clearColor.y, _clearColor.z, _clearColor.w);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		if (RenderHandle != nullptr) RenderHandle(ImGui::GetIO().DeltaTime);
 
-		// Rendering
-		glViewport(0, 0, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y);
-		glClearColor(_clearColor.x, _clearColor.y, _clearColor.z, _clearColor.w);
-		glClear(GL_COLOR_BUFFER_BIT);
 		ImGui::Render();
 		glfwSwapBuffers(window);
 	}
 	return true;
 }
 
-Window::Window()
-{
+Window::Window() {
 	initGL();
 }
 
-Window::~Window()
-{
+Window::~Window() {
 	close();
 }

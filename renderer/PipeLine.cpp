@@ -4,6 +4,7 @@
 #include <malloc.h>
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
+#include "FrameBuffer.h"
 
 const char* RE::PipeLine::ATTRIBUTE_NAME_COLOR = "a_color";
 const char* RE::PipeLine::ATTRIBUTE_NAME_POSITION = "a_position";
@@ -23,11 +24,11 @@ bool RE::PipeLine::Init(const char* vert, const char* frag) {
 
 	reset();
 
-	_program = glCreateProgram();
 	if (!compile(_vertHandle, GL_VERTEX_SHADER, (const GLchar*)vertdata.getBytes()) ||
 		!compile(_fragHandle, GL_FRAGMENT_SHADER, (const GLchar*)fragdata.getBytes())) {
 		return false;
 	}
+	_program = glCreateProgram();
 	glAttachShader(_program, _vertHandle);
 	glAttachShader(_program, _fragHandle);
 	
@@ -38,7 +39,33 @@ bool RE::PipeLine::Apply()
 {
 	glUseProgram(_program);
 
+	float left = 0;
+	float right = (float)FrameBuffer::CurWidth;
+	float bottom = 0;
+	float top = (float)FrameBuffer::CurHeight;
+
+	float zNearPlane = -1000;
+	float zFarPlane = 1000;
+
+	GLfloat matp[16] = {0};
+	memset(matp, 0, sizeof(GLfloat) * 16);
+	matp[0] = 2 / (right - left);
+	matp[5] = 2 / (top - bottom);
+	matp[10] = 2 / (zNearPlane - zFarPlane);
+
+	matp[12] = (left + right) / (left - right);
+	matp[13] = (top + bottom) / (bottom - top);
+	matp[14] = (zNearPlane + zFarPlane) / (zNearPlane - zFarPlane);
+	matp[15] = 1;
+
+	auto matpHandle = glGetUniformLocation(_program, "MatP");
+	glUniformMatrix4fv(matpHandle, (GLsizei)1, GL_FALSE, matp);
+
 	return true;
+}
+
+GLuint RE::PipeLine::GetProgramHandle() {
+	return _program;
 }
 
 bool RE::PipeLine::compile(GLuint& handle, GLenum type, const GLchar* code) {
@@ -69,6 +96,7 @@ bool RE::PipeLine::link() {
 
 	if (status == GL_FALSE) {
 		clearProgram();
+		puts("PipeLine Link Error.");
 	}
 	else {
 		clearShader();

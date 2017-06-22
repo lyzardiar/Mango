@@ -25,6 +25,9 @@ namespace RE {
 		bool Begin(Viewport vp);
 		bool End();
 
+		static UI32 CurWidth;
+		static UI32 CurHeight;
+
 	protected:
 		bool Init(UI32 width, UI32 height);
 		void clear();
@@ -35,7 +38,7 @@ namespace RE {
 		UI32 _width		= 0;
 		UI32 _height	= 0;
 
-		GLuint _textureHandle = 0;
+		Texture2D* _texture = nullptr;
 		Viewport _viewPort;
 	};
 }
