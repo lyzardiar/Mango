@@ -36,6 +36,8 @@ public:
 	Vec2& operator -= (const Vec2& other) { x -= other.x; y -= other.y; return *this; }
 	Vec2& operator *= (float s) { x *= s; y *= s; return *this; }
 	Vec2& operator /= (float s) { x /= s; y /= s; return *this; }
+	bool operator != (const Vec2& rhv) { return x != rhv.x || y != rhv.y; }
+	bool operator == (const Vec2& rhv) { return x == rhv.x && y == rhv.y; }
 
 	void Set(float v1, float v2) { x = v1, y = v2; }
 

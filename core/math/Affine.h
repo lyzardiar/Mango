@@ -29,6 +29,8 @@ public:
 		b = m[1]; d = m[5]; y = m[13];
 	}
 
+	void Set(float va, float vb, float vc, float vd, float vx, float vy) { a = va, b = vb, c = vc, d = vd, x = vx, y = vy; }
+
 	Affine Invert() {
 		float det = 1 / (a * d - b * c);
 		return Affine(
