@@ -14,7 +14,10 @@ namespace RE {
 
 	public:
 		bool isFileExists(std::string& path);
+		bool isFileExists(const char* path);
+
 		bool isRealPath(std::string& path);
+
 		std::string realPath(std::string& path);
 
 		void addSearchDir(std::string& path);

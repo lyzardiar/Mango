@@ -291,6 +291,8 @@ namespace RE {
 		inline int executeFile(lua_State* L, const char* path) {
 			return luaL_dofile(L, path);
 		}
+
+		void registerLua();
 	}
 }
 

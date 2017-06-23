@@ -40,6 +40,13 @@ GLuint RE::Texture2D::GetHandle() {
 	return _handle;
 }
 
+void RE::Texture2D::Bind() {
+	if (_handle != 0) {
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, _handle);
+	}
+}
+
 void RE::Texture2D::clear() {
 	if (_handle != 0) {
 		glDeleteTextures(1, &_handle);

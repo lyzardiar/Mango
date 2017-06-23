@@ -40,6 +40,11 @@ bool RE::FileUtils::isFileExists(std::string& path) {
 	return FileState(path).size > 0;
 }
 
+bool RE::FileUtils::isFileExists(const char* path) {
+	std::string filename = path;
+	return isFileExists(filename);
+}
+
 bool RE::FileUtils::isRealPath(std::string& path)
 {
 #ifdef _WIN32 
@@ -55,8 +60,7 @@ void RE::FileUtils::clearSearchDirs() {
 	_searchDirs.clear();
 }
 
-RE::Data RE::FileUtils::getData(std::string& path)
-{
+RE::Data RE::FileUtils::getData(std::string& path) {
 	std::string fullpath = realPath(path);
 	File file(fullpath);
 
@@ -67,8 +71,7 @@ RE::Data RE::FileUtils::getData(std::string& path)
 	return data;
 }
 
-RE::Data RE::FileUtils::getData(const char* path)
-{
+RE::Data RE::FileUtils::getData(const char* path) {
 	std::string filepath(path);
 	return getData(filepath);
 }

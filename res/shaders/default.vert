@@ -11,7 +11,6 @@ varying vec2 v_texCoord;
 void main()						
 {							
 	gl_Position = MatP * MatM * a_position;
-	//gl_Position = a_position;	
 	gl_Position.w = 1.0;
 
 	v_fragmentColor	= a_color;

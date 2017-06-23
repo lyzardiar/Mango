@@ -51,6 +51,16 @@ public:
 	static Vec2 Center;
 };
 
+class Vec2i : public Vec2 {
+public:
+	union { int x; int u; int width; };
+	union { int y; int v; int height; };
+
+	Vec2i() { x = y = 0; }
+	Vec2i(int a, int b) : x(a), y(b) {}
+
+};
+
 class Tex2 : public Vec2 {};
 
 class Color {

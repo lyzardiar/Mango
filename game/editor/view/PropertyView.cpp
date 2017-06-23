@@ -2,15 +2,16 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
 #include "renderer/PipeLine.h"
-
+#include "engine/Engine.h"
 
 namespace RE {
 
 	void PropertyView::OnGUI() {
+
 		bool is_opened = true;
 		if (ImGui::BeginDock("Property", &is_opened, ImGuiWindowFlags_NoScrollWithMouse)) {
-			static float x = 0.0f, y = 0.0f, z = 0.0f;
-			ImGui::DragFloat3("Position", &x, 0.1f);
+
+			editorTransform.OnGUI(Engine::instance.root);
 
 			static float values[90] = { 0 };
 			static int values_offset = 0;

@@ -35,32 +35,14 @@ bool RE::PipeLine::Init(const char* vert, const char* frag) {
 	return link();
 }
 
-bool RE::PipeLine::Apply()
-{
+bool RE::PipeLine::Apply() {
 	glUseProgram(_program);
+	return true;
+}
 
-	float left = 0;
-	float right = (float)FrameBuffer::CurWidth;
-	float bottom = 0;
-	float top = (float)FrameBuffer::CurHeight;
-
-	float zNearPlane = -1000;
-	float zFarPlane = 1000;
-
-	GLfloat matp[16] = {0};
-	memset(matp, 0, sizeof(GLfloat) * 16);
-	matp[0] = 2 / (right - left);
-	matp[5] = 2 / (top - bottom);
-	matp[10] = 2 / (zNearPlane - zFarPlane);
-
-	matp[12] = (left + right) / (left - right);
-	matp[13] = (top + bottom) / (bottom - top);
-	matp[14] = (zNearPlane + zFarPlane) / (zNearPlane - zFarPlane);
-	matp[15] = 1;
-
-	auto matpHandle = glGetUniformLocation(_program, "MatP");
-	glUniformMatrix4fv(matpHandle, (GLsizei)1, GL_FALSE, matp);
-
+bool RE::PipeLine::Apply(float* matp) {
+	glUseProgram(_program);
+	glUniformMatrix4fv(_matPHandle, (GLsizei)1, GL_FALSE, matp);
 	return true;
 }
 
@@ -100,6 +82,8 @@ bool RE::PipeLine::link() {
 	}
 	else {
 		clearShader();
+
+		_matPHandle = glGetUniformLocation(_program, "MatP");
 	}
 
 	return (status == GL_TRUE);

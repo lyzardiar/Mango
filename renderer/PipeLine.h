@@ -20,6 +20,7 @@ namespace RE {
 		bool Init(const char* vert, const char* frag);
 
 		bool Apply();
+		bool Apply(float* matp);
 
 		GLuint GetProgramHandle();
 	protected:
@@ -35,5 +36,6 @@ namespace RE {
 		GLuint _program = 0;
 		GLuint _vertHandle = 0;
 		GLuint _fragHandle = 0;
+		GLint  _matPHandle = 0;
 	};
 }

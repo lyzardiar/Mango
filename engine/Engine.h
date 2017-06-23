@@ -19,19 +19,26 @@ namespace RE {
 		void Loop();
 
 		void SetFPS(int fps);
+		UI32 GetTextureHandle();
 
 	protected:
 		void initLuaEnginie();
 
 	public:
 		lua_State* L = nullptr;
+		class GameObject* root = nullptr;
+
 		kaguya::State Lua;
 		Time time;
+		class Camera& camera;
 
 	protected:
 		double _interval = 1 / 60.0f;
 		UI32 _fps = 60;
-		class GameObject* _root = nullptr;
+
+		bool _isInited = false;
+
+		class FrameBuffer* _fbo = nullptr;
 	};
 
 }

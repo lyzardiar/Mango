@@ -175,8 +175,15 @@
     <ClInclude Include="..\..\core\stream\MemoryStream.h" />
     <ClInclude Include="..\..\core\stream\TCPStream.h" />
     <ClInclude Include="..\..\core\stream\UDPStream.h" />
+    <ClInclude Include="..\..\engine\component\Camera.h" />
     <ClInclude Include="..\..\engine\component\IComponent.h" />
+    <ClInclude Include="..\..\engine\component\Image.h" />
+    <ClInclude Include="..\..\engine\component\IRenderer.h" />
+    <ClInclude Include="..\..\engine\component\ScriptComponent.h" />
     <ClInclude Include="..\..\engine\component\Transform.h" />
+    <ClInclude Include="..\..\engine\component\TriangleRenderer.h" />
+    <ClInclude Include="..\..\engine\editor\EditorTransform.h" />
+    <ClInclude Include="..\..\engine\editor\IEditor.h" />
     <ClInclude Include="..\..\engine\Engine.h" />
     <ClInclude Include="..\..\engine\object\GameObject.h" />
     <ClInclude Include="..\..\game\editor\GameEditor.h" />
@@ -233,12 +240,10 @@
     <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3native.h" />
     <ClInclude Include="..\..\renderer\FrameBuffer.h" />
     <ClInclude Include="..\..\renderer\GL\REGL.h" />
-    <ClInclude Include="..\..\renderer\IRenderer.h" />
     <ClInclude Include="..\..\renderer\Material.h" />
     <ClInclude Include="..\..\renderer\PipeLine.h" />
     <ClInclude Include="..\..\renderer\Texture2D.h" />
     <ClInclude Include="..\..\renderer\Triangle.h" />
-    <ClInclude Include="..\..\renderer\TriangleRenderer.h" />
     <ClInclude Include="..\..\script\lua\kaguya.hpp" />
     <ClInclude Include="..\..\script\lua\LuaWrapper.h" />
   </ItemGroup>
@@ -258,6 +263,10 @@
     <ClCompile Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="..\..\core\platform\win32\main.cpp" />
     <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp" />
+    <ClCompile Include="..\..\engine\component\Image.cpp" />
+    <ClCompile Include="..\..\engine\component\IRenderer.cpp" />
+    <ClCompile Include="..\..\engine\component\ScriptComponent.cpp" />
+    <ClCompile Include="..\..\engine\component\TriangleRenderer.cpp" />
     <ClCompile Include="..\..\engine\Engine.cpp" />
     <ClCompile Include="..\..\engine\object\GameObject.cpp" />
     <ClCompile Include="..\..\game\editor\GameStudio.cpp" />
@@ -313,7 +322,7 @@
     <ClCompile Include="..\..\renderer\PipeLine.cpp" />
     <ClCompile Include="..\..\renderer\Texture2D.cpp" />
     <ClCompile Include="..\..\renderer\Triangle.cpp" />
-    <ClCompile Include="..\..\renderer\TriangleRenderer.cpp" />
+    <ClCompile Include="..\..\script\lua\LuaWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\libs\imgui\imgui_dock.inl" />

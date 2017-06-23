@@ -6,6 +6,7 @@
 namespace RE {
 	class Material {
 	public:
-
+		PipeLine*  pipeLine = nullptr;
+		Texture2D* texture = nullptr;
 	};
 }

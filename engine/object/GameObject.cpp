@@ -1,5 +1,7 @@
 #include "GameObject.h"
 #include "base/Macros.h"
+#include "engine/component/IRenderer.h"
+#include "engine/Engine.h"
 
 
 
@@ -23,24 +25,8 @@ RE::GameObject::~GameObject() {
 }
 
 void RE::GameObject::init() {
+	$transform = &transform;
 	_components.push_back(&transform);
-}
-
-template<typename T>
-T& RE::GameObject::AddComponent() {
-	static_assert(std::is_convertible<T*, IComponent*>::value, "Invalid Type for GameObject::AddComponent!");
-
-	auto Ttype = typeid(T);
-	for (auto& comp : _components) {
-		if (Ttype == typeid(*comp)) {
-			return *comp;
-		}
-	}
-
-	T* ret = new T();
-	ret->Awake();
-
-	return *ret;
 }
 
 void RE::GameObject::Update(float dt) {
@@ -48,5 +34,10 @@ void RE::GameObject::Update(float dt) {
 }
 
 void RE::GameObject::Render() {
-
+	for (auto& comp : _components) {
+		auto renderer = dynamic_cast<IRenderer*>(comp);
+		if (renderer != nullptr) {
+			renderer->draw();
+		}
+	}
 }

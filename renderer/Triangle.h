@@ -10,8 +10,8 @@ struct Triangle {
 		float tex[2];
 	};
 
-	std::vector<Vertex> verts;
-	std::vector<UI16> indices;
+	std::vector<Vertex> verts = std::vector<Vertex>(4);
+	std::vector<UI16> indices = std::vector<UI16>(4);
 
 	static Triangle Default;
 };

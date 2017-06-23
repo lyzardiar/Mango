@@ -13,6 +13,8 @@ namespace RE {
 		bool InitWithData(UI32 width, UI32 height, UI8* data, UI32 len);
 		GLuint GetHandle();
 
+		void Bind();
+
 	protected:
 		void clear();
 

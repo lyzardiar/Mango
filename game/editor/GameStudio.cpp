@@ -14,14 +14,12 @@ RE::GameStudio::GameStudio()
 	ImGui::LoadDock(_engine.L);
 }
 
-RE::GameStudio::~GameStudio()
-{
+RE::GameStudio::~GameStudio() {
 	RE::FileStream fs("studioGUIConfigs.lua", "wb+");
 	ImGui::SaveDock(fs);
 }
 
-bool RE::GameStudio::Update(float dt)
-{
+bool RE::GameStudio::Update(float dt) {
 	_engine.Loop();
 
 	auto& imIO = ImGui::GetIO();

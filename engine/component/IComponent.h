@@ -2,6 +2,11 @@
 
 #include "core/base/Types.h"
 
+#define ComponentTypeName(name) \
+	virtual const char* TypeName() override { \
+		return "\"" #name "\""; \
+	}
+
 namespace RE {
 
 	class GameObject;
@@ -17,12 +22,13 @@ namespace RE {
 		virtual void OnEnable() {}
 		virtual void OnDisable() {}
 
-		virtual std::string TypeName() {
-			return typeid(*this).name();
+		virtual const char* TypeName() {
+			return "IComponent";
 		}
 
 	public:
 		GameObject* gameObject = nullptr;
+		bool canRemove = true;
 
 	protected:
 		bool _isStart = false;
