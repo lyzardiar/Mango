@@ -1,9 +1,12 @@
 #include "Texture2D.h"
-
-
+#include "image/PngDecoder.h"
 
 RE::Texture2D::Texture2D() {
 
+}
+
+RE::Texture2D::Texture2D(const char* filepath) {
+	InitWithFile(filepath);
 }
 
 RE::Texture2D::Texture2D(UI32 width, UI32 height, UI8* data, UI32 len) {
@@ -34,6 +37,20 @@ bool RE::Texture2D::InitWithData(UI32 width, UI32 height, UI8* data, UI32 len) {
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
 	return true;
+}
+
+bool RE::Texture2D::InitWithFile(const char* filepath) {
+	clear();
+
+	path = filepath;
+	auto imgInfo = RE::Png::Decode(filepath);
+	if (imgInfo.valid)
+		return InitWithData(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
+
+	_handle = 0;
+	_width = 1;
+	_height = 1;
+	return false;
 }
 
 GLuint RE::Texture2D::GetHandle() {

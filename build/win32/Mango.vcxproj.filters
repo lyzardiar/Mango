@@ -352,23 +352,20 @@
     <ClInclude Include="..\..\engine\component\Camera.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\Image.h">
-      <Filter>engine\component</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\engine\component\TriangleRenderer.h">
       <Filter>engine\component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\component\IRenderer.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\editor\EditorTransform.h">
-      <Filter>engine\editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\engine\editor\IEditor.h">
       <Filter>engine\editor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\component\ScriptComponent.h">
       <Filter>engine\component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\object\Image.h">
+      <Filter>engine\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -582,9 +579,6 @@
     <ClCompile Include="..\..\core\base\Types.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\component\Image.cpp">
-      <Filter>engine\component</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\engine\component\TriangleRenderer.cpp">
       <Filter>engine\component</Filter>
     </ClCompile>
@@ -596,6 +590,18 @@
     </ClCompile>
     <ClCompile Include="..\..\engine\component\ScriptComponent.cpp">
       <Filter>engine\component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\object\Image.cpp">
+      <Filter>engine\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\IEditor.cpp">
+      <Filter>engine\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\EditorGameObject.cpp">
+      <Filter>engine\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\EditorImage.cpp">
+      <Filter>engine\editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

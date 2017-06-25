@@ -3,6 +3,7 @@
 #include "imgui/imgui_internal.h"
 #include "renderer/PipeLine.h"
 #include "engine/Engine.h"
+#include "engine/object/GameObject.h"
 
 namespace RE {
 
@@ -10,8 +11,7 @@ namespace RE {
 
 		bool is_opened = true;
 		if (ImGui::BeginDock("Property", &is_opened, ImGuiWindowFlags_NoScrollWithMouse)) {
-
-			editorTransform.OnGUI(Engine::instance.root);
+			Engine::instance.root->children[0]->OnGUI();
 
 			static float values[90] = { 0 };
 			static int values_offset = 0;

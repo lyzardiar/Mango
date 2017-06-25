@@ -69,20 +69,24 @@ namespace RE {
 			return nullptr;
 		}
 
-		void Update(float dt);
-		void Render();
+		virtual void AddChild(GameObject* child);
 
+		virtual void Update(float dt);
+		virtual void Render();
+
+		virtual void OnGUI();
 	public:
 		Transform& transform;
+		// export for Lua
 		Transform* $transform;
 
 		std::string name;
+		std::vector<GameObject*> children;
 
 	protected:
 		void init();
 
 	protected:
 		std::vector<IComponent*> _components;
-
 	};
 }

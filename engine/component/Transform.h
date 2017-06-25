@@ -18,8 +18,9 @@ namespace RE {
 		}
 
 		void GetMat(float* mat) {
-			float cf = cosf(rotation);
-			float sf = sinf(rotation);
+			float rad = rotation / 180.0f * 3.14159565358f;
+			float cf = cosf(rad);
+			float sf = sinf(rad);
 			float tx = x;
 			float ty = y;
 			if (anchor != Vec2::Zero) {

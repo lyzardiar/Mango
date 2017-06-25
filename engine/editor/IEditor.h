@@ -3,6 +3,7 @@
 namespace RE {
 	class IEditor {
 	public:
-		virtual void OnGUI(class GameObject*) {}
+		static void DrawTransformUI(class GameObject*);
+		static void DrawTriangleRenderUI(class GameObject*);
 	};
 }

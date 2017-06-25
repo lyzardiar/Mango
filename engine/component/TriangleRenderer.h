@@ -1,5 +1,6 @@
 #pragma once
 #include "IRenderer.h"
+#include "renderer/Triangle.h"
 
 namespace RE {
 	class TriangleRenderer : public IRenderer {
@@ -9,5 +10,8 @@ namespace RE {
 		TriangleRenderer();
 
 		void draw() override;
+
+	public:
+		Triangle triangles;
 	};
 }

@@ -2,7 +2,7 @@
 #include "object/GameObject.h"
 #include "platform/Platform.h"
 #include "component/Camera.h"
-#include "component/Image.h"
+#include "object/Image.h"
 #include "renderer/FrameBuffer.h"
 
 RE::Engine RE::Engine::instance;
@@ -29,6 +29,9 @@ bool RE::Engine::Init() {
 	
 	root->transform.x = 0;
 
+	auto img = new Image();
+	root->AddChild(img);
+
 	_isInited = true;
 	return true;
 }
@@ -43,7 +46,6 @@ void RE::Engine::Update(float dt) {
 void RE::Engine::Render() {
 	_fbo->Begin({ 0, camera.size.width, camera.size.height, 0 });
 
-	root->AddComponent<Image>();
 	root->Render();
 
 	_fbo->End();

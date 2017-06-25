@@ -1,7 +1,4 @@
 #include "TriangleRenderer.h"
-#include "renderer/Triangle.h"
-#include "renderer/Texture2D.h"
-#include "renderer/PipeLine.h"
 #include "core/image/PngDecoder.h"
 #include "engine/object/GameObject.h"
 #include "engine/Engine.h"
@@ -12,23 +9,15 @@
 
 RE::Texture2D* testTexture() {
 	static RE::Texture2D* tex = nullptr;
-	if (tex == nullptr) {
-		auto imgInfo = RE::Png::Decode("images/1.png");
-
-		tex = new RE::Texture2D(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
-	}
+	tex = tex ? tex : new RE::Texture2D("images/1.png");
 	return tex;
 }
 
 RE::TriangleRenderer::TriangleRenderer() {
 	material.texture = testTexture();
 	material.pipeLine = new PipeLine();
-}
 
-void RE::TriangleRenderer::draw() {
-	IRenderer::draw();
-	
-	Triangle Default = {
+	triangles = {
 		{
 			{ 0, 0,	0,		1, 1, 1, 1,		0, 0 },
 			{ 100, 0, 0,	1, 1, 1, 1,		1, 0 },
@@ -37,8 +26,11 @@ void RE::TriangleRenderer::draw() {
 		},
 		{ 0, 1, 2, 3 }
 	};
-	auto& triangles = Default;
+}
 
+void RE::TriangleRenderer::draw() {
+	IRenderer::draw();
+	
 	long offset = (long)&(triangles.verts[0]);
 	// vertex
 	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_POSITION);
