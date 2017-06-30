@@ -6,6 +6,8 @@ namespace RE {
 	class Image : public GameObject {
 	public:
 		Image();
+		Image(const char* name);
+		virtual const char* ClassName() override { return "Image"; }
 
 	public:
 		virtual void Render() override;

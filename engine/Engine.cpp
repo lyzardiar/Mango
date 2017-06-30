@@ -29,7 +29,7 @@ bool RE::Engine::Init() {
 	
 	root->transform.x = 0;
 
-	auto img = new Image();
+	auto img = new Image("image");
 	root->AddChild(img);
 
 	_isInited = true;

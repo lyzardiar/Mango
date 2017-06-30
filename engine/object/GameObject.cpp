@@ -2,11 +2,13 @@
 #include "base/Macros.h"
 #include "engine/component/IRenderer.h"
 #include "engine/Engine.h"
+#include "base/Utils.h"
 
 
 
 RE::GameObject::GameObject() 
 	: transform(*(new Transform()))
+	, uuid(Utils::GenUUID().data)
 {
 	init();
 }

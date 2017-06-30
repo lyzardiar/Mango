@@ -111,6 +111,9 @@ namespace RE {
 		StaticString(const char* buff, int len) {
 			memcpy(data, buff, len);
 		}
+		StaticString(std::string& rhs) {
+			memcpy(data, rhs.c_str(), rhs.size());
+		}
 
 		bool operator == (const StaticString& rhs) {
 			return strcmp(data, rhs.data) == 0;
@@ -118,12 +121,18 @@ namespace RE {
 		bool operator == (const char* buff) {
 			return strcmp(data, buff) == 0;
 		}
+		bool operator == (std::string& rhs) {
+			return strcmp(data, rhs.c_str()) == 0;
+		}
 
 		bool operator != (const StaticString& rhs) {
 			return strcmp(data, rhs.data) != 0;
 		}
 		bool operator != (const char* buff) {
 			return strcmp(data, buff) != 0;
+		}
+		bool operator != (std::string& rhs) {
+			return strcmp(data, rhs.c_str()) != 0;
 		}
 	public:
 		char data[N] = {0};

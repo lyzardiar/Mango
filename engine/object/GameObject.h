@@ -11,6 +11,7 @@ namespace RE {
 		GameObject();
 		GameObject(const char* name);
 		virtual ~GameObject();
+		virtual const char* ClassName() { return "GameObject"; }
 
 	public:
 		template<typename T>
@@ -81,6 +82,7 @@ namespace RE {
 		Transform* $transform;
 
 		std::string name;
+		std::string uuid;
 		std::vector<GameObject*> children;
 
 	protected:
