@@ -10,9 +10,13 @@ namespace RE {
 		virtual const char* ClassName() override { return "Image"; }
 
 	public:
-		virtual void Render() override;
+		virtual void OnDraw(const Affine& viewMat) override;
 
 		virtual void OnGUI() override;
+
+	protected:
+		bool init();
+
 	public:
 		TriangleRenderer* renderer = nullptr;
 		Color color = Color::White;

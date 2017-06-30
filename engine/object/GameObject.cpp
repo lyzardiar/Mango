@@ -9,6 +9,7 @@
 RE::GameObject::GameObject() 
 	: transform(*(new Transform()))
 	, uuid(Utils::GenUUID().data)
+	, self(this)
 {
 	init();
 }
@@ -16,7 +17,7 @@ RE::GameObject::GameObject()
 RE::GameObject::GameObject(const char* name)
 	: GameObject()
 {
-	this->name.assign(name);
+	self->name.assign(name);
 }
 
 RE::GameObject::~GameObject() {
@@ -39,8 +40,14 @@ void RE::GameObject::Update(float dt) {
 
 }
 
-void RE::GameObject::Render() {
+void RE::GameObject::Render(const Affine& viewMat) {
+	Affine mv = viewMat * transform.affine;
+	OnDraw(mv);
 	for (auto child : children) {
-		child->Render();
+		child->Render(mv);
 	}
+}
+
+void RE::GameObject::OnDraw(const Affine& viewMat) {
+
 }

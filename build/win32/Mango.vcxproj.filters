@@ -86,6 +86,9 @@
     <Filter Include="engine\editor">
       <UniqueIdentifier>{da73edf9-ab40-41e7-9f79-63b5d01ac3bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="engine\system">
+      <UniqueIdentifier>{00e1f26e-6ebd-4912-88c8-4a466e772ef6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
@@ -367,6 +370,9 @@
     <ClInclude Include="..\..\engine\object\Image.h">
       <Filter>engine\object</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\engine\system\InputSystem.h">
+      <Filter>engine\system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\platform\win32\main.cpp">
@@ -602,6 +608,9 @@
     </ClCompile>
     <ClCompile Include="..\..\engine\editor\EditorImage.cpp">
       <Filter>engine\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\system\InputSystem.cpp">
+      <Filter>engine\system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

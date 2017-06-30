@@ -4,6 +4,7 @@
 #include "component/Camera.h"
 #include "object/Image.h"
 #include "renderer/FrameBuffer.h"
+#include "system/InputSystem.h"
 
 RE::Engine RE::Engine::instance;
 
@@ -11,6 +12,7 @@ RE::Engine::Engine()
 	: L (luaL_newstate())
 	, Lua(L)
 	, camera(*((new GameObject("Root"))->AddComponent<Camera>()))
+	, input(*(new InputSystem()))
 {
 }
 
@@ -26,8 +28,9 @@ bool RE::Engine::Init() {
 
 	Lua.openlibs();
 	initLuaEnginie();
-	
-	root->transform.x = 0;
+
+	root->transform.ax = 0.5;
+	root->transform.ay = 0.5;
 
 	auto img = new Image("image");
 	root->AddChild(img);
@@ -44,9 +47,14 @@ void RE::Engine::Update(float dt) {
 }
 
 void RE::Engine::Render() {
+	root->transform.w = camera.size.width;
+	root->transform.h = camera.size.height;
+
+	root->transform.GetMat(nullptr);
+
 	_fbo->Begin({ 0, camera.size.width, camera.size.height, 0 });
 
-	root->Render();
+	root->Render(Affine::Identity);
 
 	_fbo->End();
 }

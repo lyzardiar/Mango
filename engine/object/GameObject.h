@@ -73,10 +73,13 @@ namespace RE {
 		virtual void AddChild(GameObject* child);
 
 		virtual void Update(float dt);
-		virtual void Render();
+		virtual void Render(const Affine& viewMat);
+		virtual void OnDraw(const Affine& viewMat);
 
 		virtual void OnGUI();
 	public:
+		GameObject* self;
+
 		Transform& transform;
 		// export for Lua
 		Transform* $transform;

@@ -20,30 +20,41 @@ void RE::Image::OnGUI() {
 			len = 120;
 
 			lastPath = path;
-		} else {
-			static char c[1] = {0};
-			path = c;
 		}
-
-		ImGui::Spacing(); ImGui::SameLine();
-		if (ImGui::InputText("", path, len,
-			ImGuiInputTextFlags_CharsNoBlank | ImGuiInputTextFlags_EnterReturnsTrue)) {
-			Log("==> %s", path);
+		else {
+			static char c[1] = { 0 };
+			path = c;
 		}
 
 		ImVec2 canvas_size = ImGui::GetContentRegionAvail();
 		ImVec2 canvas_pos = ImGui::GetCursorScreenPos();
+		ImGui::Spacing(); ImGui::SameLine();
+
+		ImGui::PushItemWidth(canvas_size.x*0.68f);
+		if (ImGui::InputText("", path, len,
+			ImGuiInputTextFlags_CharsNoBlank | ImGuiInputTextFlags_EnterReturnsTrue)) {
+			Log("==> %s", path);
+		}
+		ImGui::PopItemWidth();
 
 		ImGui::SameLine(0.0f, 10.0f);
 		if (ImGui::Button("...")) {
 
 		}
-		
+
 		if (renderer->material.texture != nullptr) {
 			if (lastPath != path)
 				renderer->material.texture->InitWithFile(path);
 		}
 
-		ImGui::Spacing(); ImGui::SameLine(); ImGui::ColorEdit4("Color", &color.r);
+		ImGui::Spacing(); ImGui::SameLine();
+		ImGui::ColorEdit4("Color", &color.r);
+		if (ImGui::BeginPopupContextItem("color context menu##TriangleRenderer")) {
+			ImGui::Text("Edit color");
+			ImGui::ColorPicker(&color.r, true);
+			if (ImGui::Button("Close"))
+				ImGui::CloseCurrentPopup();
+			ImGui::EndPopup();
+		}
 	}
 }

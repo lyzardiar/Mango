@@ -44,3 +44,20 @@ void RE::TriangleRenderer::draw() {
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
+
+void RE::TriangleRenderer::draw(const Affine& viewMat) {
+	IRenderer::draw(viewMat);
+
+	long offset = (long)&(triangles.verts[0]);
+	// vertex
+	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_POSITION);
+	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));
+	// color
+	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_COLOR);
+	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, color) + offset));
+	// texcood
+	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_TEX_COORD);
+	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, tex) + offset));
+
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}

@@ -5,6 +5,8 @@
 #include "renderer/FrameBuffer.h"
 #include "engine/Engine.h"
 #include "engine/component/Camera.h"
+#include "engine/editor/IEditor.h"
+#include "engine/system/InputSystem.h"
 
 
 namespace RE {
@@ -14,26 +16,44 @@ namespace RE {
 			bool open = true;
 			ImGui::ShowTestWindow(&open);
 
-			ImDrawList* draw_list = ImGui::GetWindowDrawList();
-			ImVec2 real_size = ImGui::GetContentRegionAvail();
-			ImVec2 canvas_pos = ImGui::GetCursorScreenPos();
-			ImVec2 canvas_size = real_size;
-			canvas_pos.x -= 1.0f;
-			canvas_pos.y -= 1.0f;
+			IEditor::DrawWindowBorad(4.0f, 1.0f);
 
-			canvas_size.x += 2.0f;
-			canvas_size.y += 2.0f;
+			scenePos = ImGui::GetCursorScreenPos();
+			sceneSize = ImGui::GetContentRegionAvail();
+			Engine::instance.camera.Set2D((int)sceneSize.x, (int)sceneSize.y);
 
-			ImColor bg(0xC0, 0xC0, 0xC0, 0x00);
-			draw_list->AddRectFilledMultiColor(canvas_pos, ImVec2(canvas_pos.x + canvas_size.x, canvas_pos.y + canvas_size.y), bg, bg, bg, bg);
-			draw_list->AddRect(canvas_pos, ImVec2(canvas_pos.x + canvas_size.x, canvas_pos.y + canvas_size.y), ImColor(0xF3, 0x33, 0xA3));
-
-			Engine::instance.camera.Set2D((int)real_size.x, (int)real_size.y);
-
-			ImGui::Image((GLuint*)Engine::instance.GetTextureHandle(), real_size, ImVec2(0, 1), ImVec2(1, 0));
+			ImGui::Image((GLuint*)Engine::instance.GetTextureHandle(), sceneSize, ImVec2(0, 1), ImVec2(1, 0));
 			
+			inScene = ImGui::IsItemHovered();
+
+			updateEngineInput();
 		}
 		ImGui::EndDock();
+	}
+
+	void SceneView::updateEngineInput() {
+		auto& io = ImGui::GetIO();
+
+		auto rel_mp = ImGui::GetMousePos();
+		rel_mp.x -= scenePos.x;
+		rel_mp.y -= scenePos.y;
+		rel_mp.y = sceneSize.y - rel_mp.y;
+		for (int i = 0; i < 3; ++i) {
+			if (ImGui::IsMouseReleased(i)) {
+				Engine::instance.input.OnMouseUp(rel_mp.x, rel_mp.y);
+			}
+			else if (ImGui::IsMouseClicked(i)) {
+				Engine::instance.input.OnMouseDown(rel_mp.x, rel_mp.y);
+			}
+			else if (ImGui::IsMouseDown(i) && (io.MouseDelta.x != 0 || io.MouseDelta.y != 0)) {
+				Engine::instance.input.OnMouseMove(rel_mp.x, rel_mp.y, io.MouseDelta.x, io.MouseDelta.y);
+			}
+		}
+
+	}
+
+	void SceneView::drawGizmo() 	{
+
 	}
 
 }

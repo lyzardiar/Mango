@@ -1,6 +1,7 @@
 #pragma once
 #include <cstring>
 #include "core/base/Types.h"
+#include "renderer/GL/REGL.h"
 
 namespace RE {
 	class Affine {
@@ -13,8 +14,15 @@ namespace RE {
 	public:
 		Affine() { *this = Identity; }
 		Affine(float va, float vb, float vc, float vd, float vx, float vy) { a = va, b = vb, c = vc, d = vd, x = vx, y = vy; }
+		Affine(float* mat) { Set(mat); }
 
-		void Get(float* mat) {
+		void BindToGL(int handle) const {
+			float mat[16];
+			Get(mat);
+			glUniformMatrix4fv(handle, (GLsizei)1, GL_FALSE, mat);
+		}
+
+		void Get(float* mat) const {
 			mat[2] = mat[3] = mat[6] = mat[7] = mat[8] = mat[9] = mat[11] = mat[14] = 0.0f;
 			mat[10] = mat[15] = 1.0f;
 			mat[0] = a; mat[4] = c; mat[12] = x;
@@ -85,7 +93,7 @@ namespace RE {
 			return *this;
 		}
 
-		Affine operator * (Affine& af) {
+		Affine operator * (const Affine& af) {
 			return Affine(
 				a * af.a + b * af.c, a * af.b + b * af.d, //a,b
 				c * af.a + d * af.c, c * af.b + d * af.d, //c,d
@@ -94,7 +102,16 @@ namespace RE {
 			);
 		}
 
-		Affine& operator *= (Affine& af) {
+		Affine operator * (const Affine& af) const {
+			return Affine(
+				a * af.a + b * af.c, a * af.b + b * af.d, //a,b
+				c * af.a + d * af.c, c * af.b + d * af.d, //c,d
+				x * af.a + y * af.c + af.x,               //x
+				x * af.b + y * af.d + af.y				  //y
+			);
+		}
+
+		Affine& operator *= (const Affine& af) {
 			a = a * af.a + b * af.c;
 			b = a * af.b + b * af.d;
 			c = c * af.a + d * af.c;

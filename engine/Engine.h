@@ -31,6 +31,7 @@ namespace RE {
 		kaguya::State Lua;
 		Time time;
 		class Camera& camera;
+		class InputSystem& input;
 
 	protected:
 		double _interval = 1 / 60.0f;

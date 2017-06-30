@@ -4,6 +4,7 @@
 #include "renderer/PipeLine.h"
 #include "engine/Engine.h"
 #include "engine/object/GameObject.h"
+#include "engine/editor/IEditor.h"
 
 namespace RE {
 
@@ -11,7 +12,10 @@ namespace RE {
 
 		bool is_opened = true;
 		if (ImGui::BeginDock("Property", &is_opened, ImGuiWindowFlags_NoScrollWithMouse)) {
-			Engine::instance.root->children[0]->OnGUI();
+			IEditor::DrawWindowBorad(4.0f, 1.0f);
+
+			Engine::instance.root->OnGUI();
+			//Engine::instance.root->children[0]->OnGUI();
 
 			static float values[90] = { 0 };
 			static int values_offset = 0;
@@ -27,6 +31,10 @@ namespace RE {
 				pl.Init("shaders/default.vert", "shaders/default.frag");
 			}
 
+			auto ce = ImGui::BeginCurveEditor("Curve");
+			static ImVec2 p[4];
+			ImGui::CurveSegment(p, ce);
+			ImGui::EndCurveEditor(ce);
 		}
 		ImGui::EndDock();
 	}

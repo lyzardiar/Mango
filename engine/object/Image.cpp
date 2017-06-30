@@ -1,24 +1,29 @@
 #include "Image.h"
 
 RE::Image::Image() {
-	renderer = new TriangleRenderer();
-	renderer->gameObject = this;
+	init();
 }
 
 RE::Image::Image(const char* name) 
-	: GameObject(name)
+	: Image()
 {
-	renderer = new TriangleRenderer();
-	renderer->gameObject = this;
+	self->name.assign(name);
 }
 
-void RE::Image::Render() {
+void RE::Image::OnDraw(const Affine& viewMat) {
 	auto& verts = renderer->triangles.verts;
 	for (auto& tri : verts) {
 		memcpy(tri.color, &color.r, sizeof(float) * 4);
 	}
 
-	renderer->draw();
+	renderer->draw(viewMat);
+}
 
-	GameObject::Render();
+bool RE::Image::init() {
+	renderer = new TriangleRenderer();
+	renderer->gameObject = self;
+
+	transform.ax = transform.ay = 0.5f;
+
+	return true;
 }

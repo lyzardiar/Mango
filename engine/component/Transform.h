@@ -28,14 +28,18 @@ namespace RE {
 				ty += sf * -ax * w * sx + cf  * -ay * h * sy;
 			}
 
-			_affine.Set(cf * sx, sf * sx, -sf * sy, cf * sy, tx, ty);
-			_affine.Get(mat);
+			affine.Set(cf * sx, sf * sx, -sf * sy, cf * sy, tx, ty);
+			mat ? affine.Get(mat) : void();
 		}
 
 		void BindToGL(int handle) {
 			float matm[16];
 			GetMat(matm);
 			glUniformMatrix4fv(handle, (GLsizei)1, GL_FALSE, matm);
+		}
+
+		Affine operator * (const Affine& rhs) {
+			return affine * rhs;
 		}
 
 	public:
@@ -58,7 +62,6 @@ namespace RE {
 
 		float rotation = 0.0f;
 
-	protected:
-		Affine _affine;
+		Affine affine;
 	};
 }

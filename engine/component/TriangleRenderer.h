@@ -10,6 +10,7 @@ namespace RE {
 		TriangleRenderer();
 
 		void draw() override;
+		void draw(const Affine& viewMat) override;
 
 	public:
 		Triangle triangles;

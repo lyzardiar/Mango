@@ -185,6 +185,7 @@
     <ClInclude Include="..\..\engine\Engine.h" />
     <ClInclude Include="..\..\engine\object\GameObject.h" />
     <ClInclude Include="..\..\engine\object\Image.h" />
+    <ClInclude Include="..\..\engine\system\InputSystem.h" />
     <ClInclude Include="..\..\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\game\editor\view\GameView.h" />
@@ -271,6 +272,7 @@
     <ClCompile Include="..\..\engine\Engine.cpp" />
     <ClCompile Include="..\..\engine\object\GameObject.cpp" />
     <ClCompile Include="..\..\engine\object\Image.cpp" />
+    <ClCompile Include="..\..\engine\system\InputSystem.cpp" />
     <ClCompile Include="..\..\game\editor\GameStudio.cpp" />
     <ClCompile Include="..\..\game\editor\view\GameView.cpp" />
     <ClCompile Include="..\..\game\editor\view\HierarchyView.cpp" />
