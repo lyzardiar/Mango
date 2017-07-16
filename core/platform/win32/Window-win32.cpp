@@ -10,6 +10,7 @@
 #include "renderer/PipeLine.h"
 #include "renderer/Texture2D.h"
 #include "image/PngDecoder.h"
+#include "base/Time.h"
 
 using namespace RE;
 
@@ -53,19 +54,32 @@ bool Window::close() {
 }
 
 bool Window::loop() {
+	double lastTime = Time::Clock();
+	double interval = 0.0166;
+
 	// Main loop
 	while (!glfwWindowShouldClose(window)) {
-		glfwPollEvents();
-		ImGui_ImplGlfwGL3_NewFrame();
-		// Rendering
-		glViewport(0, 0, (GLsizei)ImGui::GetIO().DisplaySize.x, (GLsizei)ImGui::GetIO().DisplaySize.y);
-		glClearColor(_clearColor.x, _clearColor.y, _clearColor.z, _clearColor.w);
-		glClear(GL_COLOR_BUFFER_BIT);
+		double curTime = Time::Clock();
+		if (curTime - lastTime >= interval) {
+			glfwPollEvents();
+			ImGui_ImplGlfwGL3_NewFrame();
+			// Rendering
+			glViewport(0, 0, (GLsizei)ImGui::GetIO().DisplaySize.x, (GLsizei)ImGui::GetIO().DisplaySize.y);
+			glClearColor(_clearColor.x, _clearColor.y, _clearColor.z, _clearColor.w);
+			glClear(GL_COLOR_BUFFER_BIT);
 
-		if (RenderHandle != nullptr) RenderHandle(ImGui::GetIO().DeltaTime);
+			if (RenderHandle != nullptr) {
+				RenderHandle(ImGui::GetIO().DeltaTime);
+			}
 
-		ImGui::Render();
-		glfwSwapBuffers(window);
+			ImGui::Render();
+			glfwSwapBuffers(window);
+
+			lastTime = curTime;
+		}
+		else {
+			Sleep((interval - (curTime - lastTime)) * 1000);
+		}
 	}
 	return true;
 }

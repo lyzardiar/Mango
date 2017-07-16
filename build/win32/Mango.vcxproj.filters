@@ -87,7 +87,7 @@
       <UniqueIdentifier>{da73edf9-ab40-41e7-9f79-63b5d01ac3bd}</UniqueIdentifier>
     </Filter>
     <Filter Include="engine\system">
-      <UniqueIdentifier>{00e1f26e-6ebd-4912-88c8-4a466e772ef6}</UniqueIdentifier>
+      <UniqueIdentifier>{4126cb6b-565e-4943-b3f6-68c250ba2ffe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +373,9 @@
     <ClInclude Include="..\..\engine\system\InputSystem.h">
       <Filter>engine\system</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\core\base\Array.h">
+      <Filter>core\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\core\platform\win32\main.cpp">
@@ -611,6 +614,9 @@
     </ClCompile>
     <ClCompile Include="..\..\engine\system\InputSystem.cpp">
       <Filter>engine\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\Material.cpp">
+      <Filter>renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

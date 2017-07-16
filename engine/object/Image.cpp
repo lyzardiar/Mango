@@ -1,19 +1,17 @@
 #include "Image.h"
 
-RE::Image::Image() {
-	init();
-}
-
-RE::Image::Image(const char* name) 
-	: Image()
+RE::Image::Image(const char* name/* = "" */) 
+	: GameObject(name)
 {
-	self->name.assign(name);
+	init();
 }
 
 void RE::Image::OnDraw(const Affine& viewMat) {
 	auto& verts = renderer->triangles.verts;
-	for (auto& tri : verts) {
-		memcpy(tri.color, &color.r, sizeof(float) * 4);
+	auto size = verts.size;
+	auto data = verts.data;
+	for (decltype(size) i = 0; i < size; ++i) {
+		memcpy(data[i].color, &color.r, sizeof(float) * 4);
 	}
 
 	renderer->draw(viewMat);

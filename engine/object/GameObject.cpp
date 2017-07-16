@@ -27,13 +27,14 @@ RE::GameObject::~GameObject() {
 	_components.clear();
 }
 
-void RE::GameObject::init() {
+bool RE::GameObject::init() {
 	$transform = &transform;
 	_components.push_back(&transform);
+	return true;
 }
 
 void RE::GameObject::AddChild(GameObject* child) {
-	children.push_back(child);
+	children.Push(child);
 }
 
 void RE::GameObject::Update(float dt) {
@@ -43,8 +44,11 @@ void RE::GameObject::Update(float dt) {
 void RE::GameObject::Render(const Affine& viewMat) {
 	Affine mv = viewMat * transform.affine;
 	OnDraw(mv);
-	for (auto child : children) {
-		child->Render(mv);
+
+	auto size = children.size;
+	auto data = children.data;
+	for (decltype(size) i = 0; i < size; ++i) {
+		data[i]->Render(mv);
 	}
 }
 

@@ -1,17 +1,31 @@
 #pragma once
 
-#include "base/Types.h"
+#include "core/base/Types.h"
+#include "core/base/Array.h"
 #include <vector>
 
-struct Triangle {
-	struct Vertex {
-		float position[3];
-		float color[4];
-		float tex[2];
+namespace RE {
+	struct Triangle {
+		struct Vertex {
+			float position[3];
+			float color[4];
+			float tex[2];
+		};
+
+		Array<Vertex> verts = Array<Vertex>(4);
+		Array<UI16> indices = Array<UI16>(4);
+
+		static Triangle Default;
 	};
 
-	std::vector<Vertex> verts = std::vector<Vertex>(4);
-	std::vector<UI16> indices = std::vector<UI16>(4);
+	struct Quad {
+		struct Vertex {
+			float position[3];
+			float color[4];
+			float tex[2];
+		};
 
-	static Triangle Default;
-};
+		Array<Vertex> verts = Array<Vertex>(4);
+		Array<UI16> indices = Array<UI16>(4);
+	};
+}

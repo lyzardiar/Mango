@@ -1,6 +1,8 @@
 #include "Texture2D.h"
 #include "image/PngDecoder.h"
 
+GLuint RE::Texture2D::CurHandle = 0;
+
 RE::Texture2D::Texture2D() {
 
 }
@@ -58,9 +60,10 @@ GLuint RE::Texture2D::GetHandle() {
 }
 
 void RE::Texture2D::Bind() {
-	if (_handle != 0) {
-		glActiveTexture(GL_TEXTURE0);
+	if (_handle != 0 && CurHandle != _handle) {
+		//glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, _handle);
+		CurHandle = _handle;
 	}
 }
 

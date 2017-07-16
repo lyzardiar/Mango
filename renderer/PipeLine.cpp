@@ -6,6 +6,8 @@
 #include "core/platform/FileUtils.h"
 #include "FrameBuffer.h"
 
+GLuint RE::PipeLine::CurProgram = 0;
+
 const char* RE::PipeLine::ATTRIBUTE_NAME_COLOR = "a_color";
 const char* RE::PipeLine::ATTRIBUTE_NAME_POSITION = "a_position";
 const char* RE::PipeLine::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
@@ -41,13 +43,24 @@ bool RE::PipeLine::Apply() {
 }
 
 bool RE::PipeLine::Apply(float* matp) {
-	glUseProgram(_program);
-	glUniformMatrix4fv(_matPHandle, (GLsizei)1, GL_FALSE, matp);
+	if (CurProgram != _program) {
+		CurProgram = _program;
+		glUseProgram(_program);
+		glUniformMatrix4fv(_matPHandle, (GLsizei)1, GL_FALSE, matp);
+	}
 	return true;
 }
 
 GLuint RE::PipeLine::GetProgramHandle() {
 	return _program;
+}
+
+GLuint RE::PipeLine::GetMatPHandle() {
+	return _matPHandle;
+}
+
+GLuint RE::PipeLine::GetMatMHandle() {
+	return _matMHandle;
 }
 
 bool RE::PipeLine::compile(GLuint& handle, GLenum type, const GLchar* code) {
@@ -84,6 +97,7 @@ bool RE::PipeLine::link() {
 		clearShader();
 
 		_matPHandle = glGetUniformLocation(_program, "MatP");
+		_matMHandle = glGetUniformLocation(_program, "MatM");
 	}
 
 	return (status == GL_TRUE);

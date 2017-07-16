@@ -14,24 +14,16 @@ RE::Texture2D* testTexture() {
 }
 
 RE::TriangleRenderer::TriangleRenderer() {
-	material.texture = testTexture();
-	material.pipeLine = new PipeLine();
+	static PipeLine *pl = new PipeLine();
 
-	triangles = {
-		{
-			{ 0, 0,	0,		1, 1, 1, 1,		0, 0 },
-			{ 100, 0, 0,	1, 1, 1, 1,		1, 0 },
-			{ 0, 100, 0,	1, 1, 1, 1,		0, 1 },
-			{ 100, 100, 0,	1, 1, 1, 1,		1, 1 },
-		},
-		{ 0, 1, 2, 3 }
-	};
+	material.texture = testTexture();
+	material.pipeLine = pl;
 }
 
 void RE::TriangleRenderer::draw() {
 	IRenderer::draw();
 	
-	long offset = (long)&(triangles.verts[0]);
+	long offset = (long)(triangles.verts.data);
 	// vertex
 	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_POSITION);
 	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));
@@ -48,7 +40,7 @@ void RE::TriangleRenderer::draw() {
 void RE::TriangleRenderer::draw(const Affine& viewMat) {
 	IRenderer::draw(viewMat);
 
-	long offset = (long)&(triangles.verts[0]);
+	long offset = (long)(triangles.verts.data);
 	// vertex
 	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_POSITION);
 	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));

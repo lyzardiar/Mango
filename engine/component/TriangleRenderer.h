@@ -13,6 +13,6 @@ namespace RE {
 		void draw(const Affine& viewMat) override;
 
 	public:
-		Triangle triangles;
+		Triangle triangles = Triangle::Default;
 	};
 }

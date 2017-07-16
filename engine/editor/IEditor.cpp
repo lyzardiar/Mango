@@ -14,8 +14,8 @@ void RE::IEditor::DrawClassUI(class GameObject* go) {
 			}
 		}
 
-		StaticString<128> uuid = go->uuid;
-		ImGui::Spacing(); ImGui::SameLine(); ImGui::InputText("UUID", uuid.data, 128, ImGuiInputTextFlags_ReadOnly);
+		StaticString<65> uuid = go->uuid;
+		ImGui::Spacing(); ImGui::SameLine(); ImGui::InputText("UUID", uuid.data, 65, ImGuiInputTextFlags_ReadOnly);
 	}
 }
 

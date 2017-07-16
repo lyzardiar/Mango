@@ -5,6 +5,8 @@
 namespace RE {
 	class PipeLine {
 	public:
+		static GLuint CurProgram;
+	public:
 		enum {
 			VERTEX_ATTRIB_POSITION,
 			VERTEX_ATTRIB_COLOR,
@@ -23,6 +25,8 @@ namespace RE {
 		bool Apply(float* matp);
 
 		GLuint GetProgramHandle();
+		GLuint GetMatPHandle();
+		GLuint GetMatMHandle();
 	protected:
 		bool compile(GLuint& handle, GLenum type, const GLchar* code);
 		bool link();
@@ -37,5 +41,6 @@ namespace RE {
 		GLuint _vertHandle = 0;
 		GLuint _fragHandle = 0;
 		GLint  _matPHandle = 0;
+		GLint  _matMHandle = 0;
 	};
 }

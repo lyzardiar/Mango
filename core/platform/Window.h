@@ -13,7 +13,7 @@ namespace RE {
 		bool loop();
 		
 	public:
-		std::function<void(float dt)> RenderHandle = nullptr;
+		std::function<bool(float dt)> RenderHandle = nullptr;
 
 	protected:
 		bool initGL();

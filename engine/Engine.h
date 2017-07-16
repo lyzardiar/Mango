@@ -16,7 +16,7 @@ namespace RE {
 		bool Init();
 		void Update(float dt);
 		void Render();
-		void Loop();
+		bool Loop(float dt);
 
 		void SetFPS(int fps);
 		UI32 GetTextureHandle();

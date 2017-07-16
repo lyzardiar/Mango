@@ -5,8 +5,7 @@
 namespace RE {
 	class Image : public GameObject {
 	public:
-		Image();
-		Image(const char* name);
+		Image(const char* name = "");
 		virtual const char* ClassName() override { return "Image"; }
 
 	public:
@@ -15,7 +14,7 @@ namespace RE {
 		virtual void OnGUI() override;
 
 	protected:
-		bool init();
+		virtual  bool init() override;
 
 	public:
 		TriangleRenderer* renderer = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/base/Types.h"
+#include "core/base/Array.h"
 #include "platform/FileUtils.h"
 #include "engine/component/Transform.h"
 #include "engine/component/ScriptComponent.h"
@@ -78,18 +79,18 @@ namespace RE {
 
 		virtual void OnGUI();
 	public:
-		GameObject* self;
-
 		Transform& transform;
 		// export for Lua
 		Transform* $transform;
+		GameObject* self;
 
+		
 		std::string name;
-		std::string uuid;
-		std::vector<GameObject*> children;
+		StaticString<65> uuid;
+		Array<GameObject*> children;
 
 	protected:
-		void init();
+		virtual bool init();
 
 	protected:
 		std::vector<IComponent*> _components;

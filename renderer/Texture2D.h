@@ -6,6 +6,8 @@
 namespace RE {
 	class Texture2D {
 	public:
+		static GLuint CurHandle;
+	public:
 		Texture2D();
 		Texture2D(const char* filepath);
 		Texture2D(UI32 width, UI32 height, UI8* data, UI32 len);

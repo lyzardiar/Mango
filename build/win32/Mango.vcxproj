@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core\base\App.h" />
+    <ClInclude Include="..\..\core\base\Array.h" />
     <ClInclude Include="..\..\core\base\ByteSwap.h" />
     <ClInclude Include="..\..\core\base\Data.h" />
     <ClInclude Include="..\..\core\base\File.h" />
@@ -323,6 +324,7 @@
     <ClCompile Include="..\..\libs\lua\lzio.c" />
     <ClCompile Include="..\..\libs\win32\gl3w\GL\gl3w.c" />
     <ClCompile Include="..\..\renderer\FrameBuffer.cpp" />
+    <ClCompile Include="..\..\renderer\Material.cpp" />
     <ClCompile Include="..\..\renderer\PipeLine.cpp" />
     <ClCompile Include="..\..\renderer\Texture2D.cpp" />
     <ClCompile Include="..\..\renderer\Triangle.cpp" />

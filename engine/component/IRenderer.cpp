@@ -9,11 +9,5 @@ void RE::IRenderer::draw() {
 }
 
 void RE::IRenderer::draw(const Affine& viewMat) {
-	if (material.texture != nullptr) {
-		material.texture->Bind();
-	}
-	if (material.pipeLine != nullptr) {
-		material.pipeLine->Apply(Engine::instance.camera.matp);
-		viewMat.BindToGL(glGetUniformLocation(material.pipeLine->GetProgramHandle(), "MatM"));
-	}
+	material.Apply(viewMat);
 }
