@@ -34,8 +34,8 @@ namespace RE {
 		}
 
 		void Set(float* mat) {
-			a = m[0]; c = m[4]; x = m[12];
-			b = m[1]; d = m[5]; y = m[13];
+			a = mat[0]; c = mat[4]; x = mat[12];
+			b = mat[1]; d = mat[5]; y = mat[13];
 		}
 
 		void Set(float va, float vb, float vc, float vd, float vx, float vy) { a = va, b = vb, c = vc, d = vd, x = vx, y = vy; }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/base/Types.h"
+#include "core/base/String.h"
 #include "renderer/GL/REGL.h"
 
 namespace RE {

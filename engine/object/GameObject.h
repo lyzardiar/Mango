@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/base/Types.h"
+#include "core/base/String.h"
 #include "core/base/Array.h"
 #include "platform/FileUtils.h"
 #include "engine/component/Transform.h"

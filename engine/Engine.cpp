@@ -81,7 +81,6 @@ bool RE::Engine::Loop(float dt)
 {
 	Init();
 	time.Update();
-	Log("FPS: %.3f / %.3f", 1 / dt, dt);
 
 	static int speed = 2;
 	if (root->transform.x > 500) speed = -2;
@@ -89,11 +88,9 @@ bool RE::Engine::Loop(float dt)
 
 	root->transform.x += speed;
 
-	auto b = Time::Clock();
 	Update(dt);
 	Render();
 	time.ResetElapse();
-	Log("Engine: %.3f", Time::Clock() - b);
 
 	return true;
 }

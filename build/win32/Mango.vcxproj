@@ -159,6 +159,7 @@
     <ClInclude Include="..\..\core\base\File.h" />
     <ClInclude Include="..\..\core\base\Macros.h" />
     <ClInclude Include="..\..\core\base\Object.h" />
+    <ClInclude Include="..\..\core\base\Path.h" />
     <ClInclude Include="..\..\core\base\String.h" />
     <ClInclude Include="..\..\core\base\Time.h" />
     <ClInclude Include="..\..\core\base\Types.h" />
@@ -253,6 +254,7 @@
     <ClCompile Include="..\..\core\base\ByteSwap.cpp" />
     <ClCompile Include="..\..\core\base\Data.cpp" />
     <ClCompile Include="..\..\core\base\File.cpp" />
+    <ClCompile Include="..\..\core\base\Path.cpp" />
     <ClCompile Include="..\..\core\base\Time.cpp" />
     <ClCompile Include="..\..\core\base\Types.cpp" />
     <ClCompile Include="..\..\core\image\ImageDecoder.cpp" />

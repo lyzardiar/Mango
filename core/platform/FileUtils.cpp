@@ -6,15 +6,19 @@
 using namespace RE;
 
 FileUtils* FileUtils::getInstance() {
-	static FileUtils instance;
+	static FileUtils* instance = nullptr;
+	if (instance == nullptr) {
+		instance = new FileUtils();
 
-	App::instance.init();
+		App::instance.init();
 
-	instance.addSearchDir(App::AppPath + "../../../../game/res");
-	instance.addSearchDir(App::AppPath);
+		instance->addSearchDir(App::AppPath + "../../../../game/res");
+		instance->addSearchDir(App::AppPath);
+	}
 
-	return &instance;
+	return instance;
 }
+
 
 std::string FileUtils::realPath(std::string& path) {
 	if (isRealPath(path)) return path;

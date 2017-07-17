@@ -100,41 +100,7 @@ namespace RE {
 		static Rect Zero;
 
 	};
-
-	template<int N>
-	class StaticString {
-	public:
-		StaticString() {  }
-		StaticString(const char* buff) {
-			memcpy(data, buff, strlen(buff));
-		}
-		StaticString(const char* buff, int len) {
-			memcpy(data, buff, len);
-		}
-		StaticString(std::string& rhs) {
-			memcpy(data, rhs.c_str(), rhs.size());
-		}
-
-		bool operator == (const StaticString& rhs) {
-			return strcmp(data, rhs.data) == 0;
-		}
-		bool operator == (const char* buff) {
-			return strcmp(data, buff) == 0;
-		}
-		bool operator == (std::string& rhs) {
-			return strcmp(data, rhs.c_str()) == 0;
-		}
-
-		bool operator != (const StaticString& rhs) {
-			return strcmp(data, rhs.data) != 0;
-		}
-		bool operator != (const char* buff) {
-			return strcmp(data, buff) != 0;
-		}
-		bool operator != (std::string& rhs) {
-			return strcmp(data, rhs.c_str()) != 0;
-		}
-	public:
-		char data[N] = {0};
-	};
 }
+
+#define Min(a, b) (a) > (b) ? (b) : (a)
+#define Max(a, b) (a) > (b) ? (a) : (b)

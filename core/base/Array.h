@@ -42,10 +42,18 @@ namespace RE {
 
 			return *this;
 		}
+		
+		T& operator [] (int idx) {
+			return data[idx];
+		}
 
 		~Array() {
 			free(data);
 			data = nullptr;
+		}
+
+		T& Get(int idx) {
+			return data[idx];
 		}
 
 		const T& Push(const T& val) {
@@ -90,9 +98,48 @@ namespace RE {
 			other.size = 0;
 		}
 
+		void Clear() {
+			size = 0;
+		}
+
 	public:
 		T* data = nullptr;
 		int size = 0;
 		int capacity = 0;
+	};
+
+
+	template<typename T, int N>
+	class StaticArray {
+	public:
+		StaticArray() {  }
+		StaticArray(const std::initializer_list<T> &v) {
+			int idx = 0;
+			for (const T& item : v) {
+				data[idx++] = item;
+			}
+			size = idx;
+		}
+
+		const T& Push(const T& val) {
+			assert(size < capacity);
+			data[size++] = val;
+			return val;
+		}
+
+		void Remove(int idx) {
+			if (idx < 0 || idx >= size) return;
+			--size;
+			memmove(data + idx, data + idx + 1, sizeof(T) * (size - idx));
+		}
+
+		T& Get(int idx) {
+			return data[idx];
+		}
+
+	public:
+		T data[N];
+		int size = 0;
+		const int capacity = N;
 	};
 }
