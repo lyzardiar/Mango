@@ -6,7 +6,7 @@ public:
 
 	void doMenuItem(const char* label, bool enabled);
 
-	bool drawDot(class ImVec2 pos, float size);
+	bool drawDot(struct ImVec2 pos, float size);
 
 	bool isOpen = true;
 };

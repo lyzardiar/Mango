@@ -57,7 +57,7 @@ namespace RE {
 
 	void SceneView::drawGizmo() {
 		auto& input = Engine::instance.input;
-		if (ImGui::IsMouseClicked(0)) {
+		if (ImGui::IsMouseClicked(0) && ImGui::IsItemHovered()) {
 			auto obj = input.PickUp(Engine::instance.root, input.curMousePos.x, input.curMousePos.y);
 
 			if (obj) {
