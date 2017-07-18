@@ -5,6 +5,7 @@
 
 
 void RE::Material::Apply(const Affine& viewMat) {
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	if (texture != nullptr) {
 		texture->Bind();
 	}

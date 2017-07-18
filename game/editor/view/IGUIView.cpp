@@ -10,3 +10,8 @@ void IGUIView::doMenuItem(const char* label, bool enabled)
 
 	}
 }
+
+bool IGUIView::drawDot(ImVec2 pos, float size) {
+
+	return true;
+}

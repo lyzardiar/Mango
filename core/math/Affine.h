@@ -40,6 +40,11 @@ namespace RE {
 
 		void Set(float va, float vb, float vc, float vd, float vx, float vy) { a = va, b = vb, c = vc, d = vd, x = vx, y = vy; }
 
+		Vec2 Apply(const Vec2& pos) {
+			return Vec2(a * pos.x + c * pos.y + x, 
+						b * pos.x + d * pos.y + y);
+		}
+
 		Affine Invert() {
 			float det = 1 / (a * d - b * c);
 			return Affine(

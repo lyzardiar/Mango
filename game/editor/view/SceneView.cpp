@@ -7,6 +7,7 @@
 #include "engine/component/Camera.h"
 #include "engine/editor/IEditor.h"
 #include "engine/system/InputSystem.h"
+#include "engine/object/GameObject.h"
 
 
 namespace RE {
@@ -27,6 +28,8 @@ namespace RE {
 			inScene = ImGui::IsItemHovered();
 
 			updateEngineInput();
+
+			drawGizmo();
 		}
 		ImGui::EndDock();
 	}
@@ -52,8 +55,66 @@ namespace RE {
 
 	}
 
-	void SceneView::drawGizmo() 	{
+	void SceneView::drawGizmo() {
+		auto& input = Engine::instance.input;
+		if (ImGui::IsMouseClicked(0)) {
+			auto obj = input.PickUp(Engine::instance.root, input.curMousePos.x, input.curMousePos.y);
 
+			if (obj) {
+				Engine::instance.SelectObjects(&obj, 1);
+			}
+			else {
+				Engine::instance.SelectObjects(nullptr, 0);
+			}
+		}
+
+		if (Engine::instance.selectedObjs.size <= 0) return;
+		ImDrawList* draw_list = ImGui::GetWindowDrawList();
+
+		auto go = Engine::instance.selectedObjs[0];
+		auto& trans = go->transform;
+
+		Vec2 a;
+		Vec2 b = a + Vec2(trans.w, 0);
+		Vec2 c = a + trans.size;
+		Vec2 d = a + Vec2(0, trans.h);
+
+		a = trans.LocalToWorld(a);
+		b = trans.LocalToWorld(b);
+		c = trans.LocalToWorld(c);;
+		d = trans.LocalToWorld(d);
+
+		auto toImVec2 = [this](Vec2& pos) -> ImVec2 {
+			ImVec2 ret = scenePos;
+			ret.x += pos.x;
+			ret.y += sceneSize.y - pos.y;
+			return ret;
+		};
+
+		ImVec2 canvas_a = toImVec2(a);
+		ImVec2 canvas_b = toImVec2(b);
+		ImVec2 canvas_c = toImVec2(c);
+		ImVec2 canvas_d = toImVec2(d);
+
+		draw_list->AddQuad(canvas_a, canvas_b, canvas_c, canvas_d, ImColor(0xFF, 0x33, 0x33));
+	
+		if (ImGui::IsMouseClicked(0)) {
+			Vec2 localPos = trans.WorldToLocal(Vec2(input.curMousePos.x, input.curMousePos.y));
+			if (Rect(0, 0, trans.w, trans.h).Contains(localPos)) {
+				_startDragObject = true;
+			}
+		}
+
+		if (ImGui::IsMouseReleased(0)) {
+			_startDragObject = false;
+		}
+
+		if (_startDragObject) {
+			trans.x += ImGui::GetMouseDragDelta(0).x;
+			trans.y -= ImGui::GetMouseDragDelta(0).y;
+
+			ImGui::ResetMouseDragDelta(0);
+		}
 	}
 
 }

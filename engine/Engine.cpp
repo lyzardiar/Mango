@@ -35,6 +35,8 @@ bool RE::Engine::Init() {
 		Log("=> %d", arr.data[i]);
 	}
 
+	glEnable(GL_BLEND);
+
 	_fbo = new FrameBuffer();
 
 	Lua.openlibs();
@@ -42,12 +44,12 @@ bool RE::Engine::Init() {
 
 	int count = 1;
 
-	root->transform.ax = 0.5;
-	root->transform.ay = 0.5;
 	root->children.Resize(count);
 	for (int i = 0; i < count; ++i) {
 		auto img = new Image("image");
 		root->AddChild(img);
+		auto img2 = new Image("image");
+		img->AddChild(img2);
 	}
 
 	_isInited = true;
@@ -58,14 +60,21 @@ void RE::Engine::Update(float dt) {
 	if (!Lua["Engine"]["Update"].isNilref()) {
 		Lua["Engine"]["Update"](dt);
 	}
-	root->Update(dt);
+	root->TransferUpdate(dt);
 }
 
 void RE::Engine::Render() {
 	root->transform.w = (float)camera.size.width;
 	root->transform.h = (float)camera.size.height;
+	root->transform.x = -root->transform.w / 2.0f;
+	root->transform.y = -root->transform.h / 2.0f;
+	root->transform.ax = 0;
+	root->transform.ay = 0;
 
-	root->transform.GetMat(nullptr);
+	Vec2::SceneSize.width = camera.size.width;
+	Vec2::SceneSize.height = camera.size.height;
+	Vec2::HalfSceneSize = Vec2::SceneSize / 2.0f;
+
 
 	Texture2D::CurHandle = 0;
 	PipeLine::CurProgram = 0;
@@ -86,7 +95,7 @@ bool RE::Engine::Loop(float dt)
 	if (root->transform.x > 500) speed = -2;
 	if (root->transform.x < 0) speed = 2;
 
-	root->transform.x += speed;
+	//root->transform.x += speed;
 
 	Update(dt);
 	Render();
@@ -102,6 +111,13 @@ void RE::Engine::SetFPS(int fps) {
 
 GLuint RE::Engine::GetTextureHandle() {
 	return _fbo->GetTextureHandle();
+}
+
+void RE::Engine::SelectObjects(class GameObject** objs, int count) {
+	selectedObjs.Clear();
+	for (int idx = 0; objs != nullptr && idx < count; ++idx) {
+		selectedObjs.Push(objs[idx]);
+	}
 }
 
 void RE::Engine::initLuaEnginie() {

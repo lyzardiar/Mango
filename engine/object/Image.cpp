@@ -19,7 +19,7 @@ void RE::Image::OnDraw(const Affine& viewMat) {
 
 bool RE::Image::init() {
 	renderer = new TriangleRenderer();
-	renderer->gameObject = self;
+	renderer->gameObject = this;
 
 	transform.ax = transform.ay = 0.5f;
 

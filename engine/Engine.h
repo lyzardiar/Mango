@@ -2,6 +2,7 @@
 
 #include "script/lua/LuaWrapper.h"
 #include "base/Time.h"
+#include "base/Array.h"
 
 namespace RE {
 		
@@ -21,6 +22,8 @@ namespace RE {
 		void SetFPS(int fps);
 		UI32 GetTextureHandle();
 
+		void SelectObjects(class GameObject** objs, int count);
+
 	protected:
 		void initLuaEnginie();
 
@@ -32,6 +35,8 @@ namespace RE {
 		Time time;
 		class Camera& camera;
 		class InputSystem& input;
+
+		Array<class GameObject*> selectedObjs;
 
 	protected:
 		double _interval = 1 / 60.0f;

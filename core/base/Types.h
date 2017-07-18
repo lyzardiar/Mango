@@ -7,6 +7,7 @@
 #include <list>
 #include <queue>
 #include <stack>
+#include <algorithm>
 
 typedef char I8;
 typedef short I16;
@@ -25,8 +26,8 @@ namespace RE {
 
 	class Vec2 {
 	public:
-		union { float x; float u; float width; };
-		union { float y; float v; float height; };
+		union { float x; float u; float width; float w; };
+		union { float y; float v; float height; float h; };
 
 		Vec2() { x = y = 0.0f; }
 		Vec2(float a, float b) : x(a), y(b) {}
@@ -41,6 +42,8 @@ namespace RE {
 		bool operator != (const Vec2& rhv) { return x != rhv.x || y != rhv.y; }
 		bool operator == (const Vec2& rhv) { return x == rhv.x && y == rhv.y; }
 
+		Vec2& operator = (const Vec2& rhs) { x = rhs.x; y = rhs.y; return *this; }
+
 		void Set(float v1, float v2) { x = v1, y = v2; }
 
 	public:
@@ -51,12 +54,14 @@ namespace RE {
 		static Vec2 Right;
 		static Vec2 Bottom;
 		static Vec2 Center;
+		static Vec2 SceneSize;
+		static Vec2 HalfSceneSize;
 	};
 
 	class Vec2i : public Vec2 {
 	public:
-		union { int x; int u; int width; };
-		union { int y; int v; int height; };
+		union { int x; int u; int width; int w; };
+		union { int y; int v; int height; int h; };
 
 		Vec2i() { x = y = 0; }
 		Vec2i(int a, int b) : x(a), y(b) {}
@@ -96,6 +101,17 @@ namespace RE {
 
 		Rect(float vx, float vy, float vw, float vh) : x(vx), y(vy), width(vw), height(vh) { }
 
+		bool Contains(const Vec2& pos) {
+			float minx = x;
+			float maxx = x + width;
+			float miny = y;
+			float maxy = y + height;
+
+			if (minx > maxx) std::swap(minx, maxx);
+			if (miny > maxy) std::swap(miny, maxy);
+
+			return pos.x >= minx && pos.x <= maxx && pos.y >= miny && pos.y <= maxy;
+		}
 	public:
 		static Rect Zero;
 

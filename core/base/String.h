@@ -258,4 +258,11 @@ namespace RE {
 		char data[N] = { 0 };
 		int size = 0;
 	};
+
+	class PtrString : public StaticString<65> {
+	public:
+		PtrString(void* ptr) {
+			size = sprintf(data, "##%p", ptr);
+		}
+	};
 }

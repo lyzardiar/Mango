@@ -1,4 +1,5 @@
 #pragma once
+#include <initializer_list>
 
 namespace RE {
 	template<typename T>
@@ -54,6 +55,20 @@ namespace RE {
 
 		T& Get(int idx) {
 			return data[idx];
+		}
+
+		int Find(T& obj) {
+			for (int idx = 0; idx < size; ++idx) {
+				if (data[idx] == obj) return idx;
+			}
+			return -1;
+		}
+
+		int Find(T& obj) const {
+			for (int idx = 0; idx < size; ++idx) {
+				if (data[idx] == obj) return idx;
+			}
+			return -1;
 		}
 
 		const T& Push(const T& val) {

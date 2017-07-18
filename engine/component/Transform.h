@@ -18,14 +18,23 @@ namespace RE {
 		}
 
 		void GetMat(float* mat) {
-			float rad = rotation / 180.0f * 3.14159565358f;
-			float cf = cosf(rad);
-			float sf = sinf(rad);
 			float tx = x;
 			float ty = y;
+
+			float cf = 1.0f, sf = 0.0f;
+			if (rotation != 0) {
+				float rad = rotation / 180.0f * 3.14159565358f;
+				cf = cosf(rad);
+				sf = sinf(rad);
+			}
 			if (anchor != Vec2::Zero) {
 				tx += cf * -ax * w * sx + -sf * -ay * h * sy;
 				ty += sf * -ax * w * sx + cf  * -ay * h * sy;
+			}
+
+			if (parent != nullptr && parent->anchor != Vec2::Zero) {
+				tx += parent->ax * parent->w;
+				ty += parent->ay * parent->h;
 			}
 
 			affine.Set(cf * sx, sf * sx, -sf * sy, cf * sy, tx, ty);
@@ -36,6 +45,15 @@ namespace RE {
 			float matm[16];
 			GetMat(matm);
 			glUniformMatrix4fv(handle, (GLsizei)1, GL_FALSE, matm);
+		}
+
+		Vec2 LocalToWorld(Vec2 pos) {
+			return affineMV.Apply(pos) + Vec2::HalfSceneSize;
+		}
+
+		Vec2 WorldToLocal(Vec2 pos) {
+			auto inv = affineMV.Invert();
+			return inv.Apply(pos - Vec2::HalfSceneSize);
 		}
 
 		Affine operator * (const Affine& rhs) {
@@ -63,5 +81,8 @@ namespace RE {
 		float rotation = 0.0f;
 
 		Affine affine;
+		Affine affineMV;
+
+		Transform* parent = nullptr;
 	};
 }

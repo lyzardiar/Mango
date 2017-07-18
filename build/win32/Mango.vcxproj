@@ -92,10 +92,11 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../;$(SolutionDir)../../core/;$(SolutionDir)../../libs/;$(SolutionDir)../../libs/lua;$(SolutionDir)../../libs/win32/gl3w;$(SolutionDir)../../libs/win32/glfw/include;$(SolutionDir)../../libs/jpeg/include/win32;$(SolutionDir)../../libs/zlib/include/win32;$(SolutionDir)../../libs/png/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4049;4217;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4049;4217;4996;4530;4577</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,6 +129,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4049;4217;4996;4530;4577</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

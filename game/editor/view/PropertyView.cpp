@@ -14,7 +14,9 @@ namespace RE {
 		if (ImGui::BeginDock("Property", &is_opened, ImGuiWindowFlags_NoScrollWithMouse)) {
 			IEditor::DrawWindowBorad(4.0f, 1.0f);
 
-			Engine::instance.root->OnGUI();
+			if (Engine::instance.selectedObjs.size > 0) {
+				Engine::instance.selectedObjs[0]->OnGUI();
+			}
 			//Engine::instance.root->children[0]->OnGUI();
 
 			//static float values[90] = { 0 };

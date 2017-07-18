@@ -9,7 +9,6 @@
 RE::GameObject::GameObject() 
 	: transform(*(new Transform()))
 	, uuid(Utils::GenUUID().data)
-	, self(this)
 {
 	init();
 }
@@ -17,7 +16,7 @@ RE::GameObject::GameObject()
 RE::GameObject::GameObject(const char* name)
 	: GameObject()
 {
-	self->name.assign(name);
+	this->name.assign(name);
 }
 
 RE::GameObject::~GameObject() {
@@ -35,6 +34,7 @@ bool RE::GameObject::init() {
 
 void RE::GameObject::AddChild(GameObject* child) {
 	children.Push(child);
+	child->transform.parent = &transform;
 }
 
 void RE::GameObject::Update(float dt) {
@@ -42,16 +42,25 @@ void RE::GameObject::Update(float dt) {
 }
 
 void RE::GameObject::Render(const Affine& viewMat) {
-	Affine mv = viewMat * transform.affine;
-	OnDraw(mv);
+	transform.GetMat(nullptr);
+	transform.affineMV = transform.affine * viewMat;
+	OnDraw(transform.affineMV);
 
 	auto size = children.size;
 	auto data = children.data;
 	for (decltype(size) i = 0; i < size; ++i) {
-		data[i]->Render(mv);
+		data[i]->Render(transform.affineMV);
 	}
 }
 
 void RE::GameObject::OnDraw(const Affine& viewMat) {
 
+}
+
+void RE::GameObject::TransferUpdate(float dt) {
+	Update(dt);
+
+	for (int idx = 0; idx < children.size; ++idx) {
+		children[idx]->TransferUpdate(dt);
+	}
 }

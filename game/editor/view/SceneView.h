@@ -16,6 +16,8 @@ namespace RE {
 		ImVec2 scenePos;
 		ImVec2 sceneSize;
 		bool inScene = false;
+
+		bool _startDragObject = false;
 	};
 }
 

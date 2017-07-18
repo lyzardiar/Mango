@@ -78,11 +78,12 @@ namespace RE {
 		virtual void OnDraw(const Affine& viewMat);
 
 		virtual void OnGUI();
+
+		void TransferUpdate(float dt);
 	public:
 		Transform& transform;
 		// export for Lua
 		Transform* $transform;
-		GameObject* self;
 
 		
 		std::string name;
