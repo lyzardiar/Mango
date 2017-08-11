@@ -19,16 +19,15 @@ namespace RE {
 
 		void Bind();
 
+		void OnGUI();
 	public:
 		StaticString<128> path;
+		Vec2 size;
 
 	protected:
 		void clear();
 
 	protected:
 		GLuint _handle = 0;
-		UI32 _width = 0;
-		UI32 _height = 0;
-
 	};
 }

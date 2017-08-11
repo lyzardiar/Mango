@@ -23,8 +23,8 @@ bool RE::Texture2D::InitWithData(UI32 width, UI32 height, UI8* data, UI32 len) {
 	clear();
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	_width = width;
-	_height = height;
+	size.width = width;
+	size.height = height;
 
 	glGenTextures(1, &_handle);
 	glActiveTexture(GL_TEXTURE0);
@@ -50,8 +50,8 @@ bool RE::Texture2D::InitWithFile(const char* filepath) {
 		return InitWithData(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
 
 	_handle = 0;
-	_width = 1;
-	_height = 1;
+	size.width = 1;
+	size.height = 1;
 	return false;
 }
 
@@ -60,7 +60,7 @@ GLuint RE::Texture2D::GetHandle() {
 }
 
 void RE::Texture2D::Bind() {
-	if (_handle != 0 && CurHandle != _handle) {
+	if (CurHandle != _handle) {
 		//glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, _handle);
 		CurHandle = _handle;

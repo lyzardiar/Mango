@@ -246,7 +246,7 @@
     <ClInclude Include="..\..\renderer\FrameBuffer.h" />
     <ClInclude Include="..\..\renderer\GL\REGL.h" />
     <ClInclude Include="..\..\renderer\Material.h" />
-    <ClInclude Include="..\..\renderer\PipeLine.h" />
+    <ClInclude Include="..\..\renderer\Shader.h" />
     <ClInclude Include="..\..\renderer\Texture2D.h" />
     <ClInclude Include="..\..\renderer\Triangle.h" />
     <ClInclude Include="..\..\script\lua\kaguya.hpp" />
@@ -274,6 +274,10 @@
     <ClCompile Include="..\..\engine\component\TriangleRenderer.cpp" />
     <ClCompile Include="..\..\engine\editor\EditorGameObject.cpp" />
     <ClCompile Include="..\..\engine\editor\EditorImage.cpp" />
+    <ClCompile Include="..\..\engine\editor\EditorMaterial.cpp" />
+    <ClCompile Include="..\..\engine\editor\EditorScriptComponent.cpp" />
+    <ClCompile Include="..\..\engine\editor\EditorTransform.cpp" />
+    <ClCompile Include="..\..\engine\editor\EditorTriangleRenderer.cpp" />
     <ClCompile Include="..\..\engine\editor\IEditor.cpp" />
     <ClCompile Include="..\..\engine\Engine.cpp" />
     <ClCompile Include="..\..\engine\object\GameObject.cpp" />
@@ -330,7 +334,7 @@
     <ClCompile Include="..\..\libs\win32\gl3w\GL\gl3w.c" />
     <ClCompile Include="..\..\renderer\FrameBuffer.cpp" />
     <ClCompile Include="..\..\renderer\Material.cpp" />
-    <ClCompile Include="..\..\renderer\PipeLine.cpp" />
+    <ClCompile Include="..\..\renderer\Shader.cpp" />
     <ClCompile Include="..\..\renderer\Texture2D.cpp" />
     <ClCompile Include="..\..\renderer\Triangle.cpp" />
     <ClCompile Include="..\..\script\lua\LuaWrapper.cpp" />

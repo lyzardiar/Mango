@@ -11,7 +11,7 @@ namespace RE {
 		Transform()
 			: position(Vec2::Zero)
 			, scale(Vec2::One)
-			, size(100.0f, 100.0f)
+			, size(0.0f, 0.0f)
 			, anchor(Vec2::Zero)
 		{
 			canRemove = false;
@@ -60,6 +60,7 @@ namespace RE {
 			return affine * rhs;
 		}
 
+		virtual void OnGUI() override;
 	public:
 		union {
 			struct { float x; float y; };

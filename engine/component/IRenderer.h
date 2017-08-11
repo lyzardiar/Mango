@@ -6,7 +6,6 @@
 namespace RE {
 	class IRenderer : public IComponent {
 	public:
-		virtual void draw();
 		virtual void draw(const Affine& viewMat);
 
 	public:

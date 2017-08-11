@@ -5,12 +5,15 @@
 
 
 void RE::Material::Apply(const Affine& viewMat) {
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFunc(blend.src, blend.dst);
 	if (texture != nullptr) {
 		texture->Bind();
 	}
-	if (pipeLine != nullptr) {
-		pipeLine->Apply(Engine::instance.camera.matp);
-		viewMat.BindToGL(pipeLine->GetMatMHandle());
+	else {
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+	if (shader != nullptr) {
+		shader->Apply(Engine::instance.camera.matp);
+		viewMat.BindToGL(shader->GetMatMHandle());
 	}
 }

@@ -1,7 +1,7 @@
 #include "PropertyView.h"
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
-#include "renderer/PipeLine.h"
+#include "renderer/Shader.h"
 #include "engine/Engine.h"
 #include "engine/object/GameObject.h"
 #include "engine/editor/IEditor.h"

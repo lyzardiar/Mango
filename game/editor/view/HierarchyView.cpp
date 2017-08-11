@@ -5,6 +5,7 @@
 #include "imgui/imgui_internal.h"
 #include "engine/Engine.h"
 #include "engine/object/GameObject.h"
+#include "engine/editor/IEditor.h"
 
 namespace RE {
 
@@ -13,6 +14,7 @@ namespace RE {
 		if (ImGui::BeginDock("Hierarchy", &is_opened, ImGuiWindowFlags_NoScrollWithMouse)) {
 			auto& root = Engine::instance.root;
 
+			IEditor::DrawWindowBorad(4.0f, 1.0f);
 			showObject(root, Engine::instance.selectedObjs);
 		}
 		ImGui::EndDock();

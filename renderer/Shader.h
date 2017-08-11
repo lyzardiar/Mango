@@ -3,7 +3,7 @@
 #include <string>
 
 namespace RE {
-	class PipeLine {
+	class Shader {
 	public:
 		static GLuint CurProgram;
 	public:
@@ -16,10 +16,12 @@ namespace RE {
 		static const char* ATTRIBUTE_NAME_POSITION;
 		static const char* ATTRIBUTE_NAME_TEX_COORD;
 	public:
-		PipeLine();
-		~PipeLine();
+		Shader();
+		~Shader();
 
 		bool Init(const char* vert, const char* frag);
+
+		void OnGUI();
 
 		bool Apply();
 		bool Apply(float* matp);

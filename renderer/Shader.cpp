@@ -1,26 +1,26 @@
 
 
-#include "PipeLine.h"
+#include "Shader.h"
 #include <malloc.h>
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
 #include "FrameBuffer.h"
 
-GLuint RE::PipeLine::CurProgram = 0;
+GLuint RE::Shader::CurProgram = 0;
 
-const char* RE::PipeLine::ATTRIBUTE_NAME_COLOR = "a_color";
-const char* RE::PipeLine::ATTRIBUTE_NAME_POSITION = "a_position";
-const char* RE::PipeLine::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
+const char* RE::Shader::ATTRIBUTE_NAME_COLOR = "a_color";
+const char* RE::Shader::ATTRIBUTE_NAME_POSITION = "a_position";
+const char* RE::Shader::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
 
-RE::PipeLine::PipeLine() {
+RE::Shader::Shader() {
 	Init("shaders/default.vert", "shaders/default.frag");
 }
 
-RE::PipeLine::~PipeLine() {
+RE::Shader::~Shader() {
 	reset();
 }
 
-bool RE::PipeLine::Init(const char* vert, const char* frag) {
+bool RE::Shader::Init(const char* vert, const char* frag) {
 	Data vertdata = FileUtils::getInstance()->getData(vert);
 	Data fragdata = FileUtils::getInstance()->getData(frag);
 
@@ -37,12 +37,12 @@ bool RE::PipeLine::Init(const char* vert, const char* frag) {
 	return link();
 }
 
-bool RE::PipeLine::Apply() {
+bool RE::Shader::Apply() {
 	glUseProgram(_program);
 	return true;
 }
 
-bool RE::PipeLine::Apply(float* matp) {
+bool RE::Shader::Apply(float* matp) {
 	if (CurProgram != _program) {
 		CurProgram = _program;
 		glUseProgram(_program);
@@ -51,19 +51,19 @@ bool RE::PipeLine::Apply(float* matp) {
 	return true;
 }
 
-GLuint RE::PipeLine::GetProgramHandle() {
+GLuint RE::Shader::GetProgramHandle() {
 	return _program;
 }
 
-GLuint RE::PipeLine::GetMatPHandle() {
+GLuint RE::Shader::GetMatPHandle() {
 	return _matPHandle;
 }
 
-GLuint RE::PipeLine::GetMatMHandle() {
+GLuint RE::Shader::GetMatMHandle() {
 	return _matMHandle;
 }
 
-bool RE::PipeLine::compile(GLuint& handle, GLenum type, const GLchar* code) {
+bool RE::Shader::compile(GLuint& handle, GLenum type, const GLchar* code) {
 	GLint status = 0;
 	handle = glCreateShader(type);
 	CHECK_GL_ERROR_DEBUG();
@@ -79,7 +79,7 @@ bool RE::PipeLine::compile(GLuint& handle, GLenum type, const GLchar* code) {
 	return status == GL_TRUE;
 }
 
-bool RE::PipeLine::link() {
+bool RE::Shader::link() {
 	GLint status = GL_TRUE;
 
 	glBindAttribLocation(_program, VERTEX_ATTRIB_POSITION, ATTRIBUTE_NAME_POSITION);
@@ -91,7 +91,7 @@ bool RE::PipeLine::link() {
 
 	if (status == GL_FALSE) {
 		clearProgram();
-		puts("PipeLine Link Error.");
+		puts("Shader Link Error.");
 	}
 	else {
 		clearShader();
@@ -103,7 +103,7 @@ bool RE::PipeLine::link() {
 	return (status == GL_TRUE);
 }
 
-std::string RE::PipeLine::getShaderLog(GLuint handle) {
+std::string RE::Shader::getShaderLog(GLuint handle) {
 	GLint len = 0;
 	glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &len);
 	if (len < 1) return "";
@@ -114,18 +114,18 @@ std::string RE::PipeLine::getShaderLog(GLuint handle) {
 	return ret;
 }
 
-void RE::PipeLine::reset() {
+void RE::Shader::reset() {
 	clearShader();
 	clearProgram();
 }
 
-void RE::PipeLine::clearShader() {
+void RE::Shader::clearShader() {
 	if (_vertHandle) glDeleteShader(_vertHandle); 
 	if (_fragHandle) glDeleteShader(_fragHandle);
 	_vertHandle = _fragHandle = 0;
 }
 
-void RE::PipeLine::clearProgram() {
+void RE::Shader::clearProgram() {
 	if (_program) glDeleteProgram(_program); 
 	_program = 0;
 }

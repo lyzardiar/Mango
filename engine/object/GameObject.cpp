@@ -21,6 +21,7 @@ RE::GameObject::GameObject(const char* name)
 
 RE::GameObject::~GameObject() {
 	for (auto& comp : _components) {
+		comp->OnDestroy();
 		SAFE_DELETE(comp);
 	}
 	_components.clear();
@@ -38,7 +39,15 @@ void RE::GameObject::AddChild(GameObject* child) {
 }
 
 void RE::GameObject::Update(float dt) {
-
+	for (auto& comp : _components) {
+		if (comp->isStart) {
+			comp->Update(dt);
+		}
+		else {
+			comp->Start();
+			comp->isStart = true;
+		}
+	}
 }
 
 void RE::GameObject::Render(const Affine& viewMat) {

@@ -7,9 +7,9 @@
 namespace RE {
 	struct Triangle {
 		struct Vertex {
-			float position[3];
-			float color[4];
-			float tex[2];
+			union { float position[3]; struct { float x, y, z; }; };
+			union { float color[4]; struct { float r, g, b, a; }; };
+			union { float tex[2]; struct { float u, v; }; };
 		};
 
 		Array<Vertex> verts = Array<Vertex>(4);

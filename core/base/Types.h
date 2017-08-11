@@ -22,6 +22,9 @@ typedef unsigned long long UI64;
 typedef float F32;
 typedef double F64;
 
+#define Min(a, b) (a) > (b) ? (b) : (a)
+#define Max(a, b) (a) > (b) ? (a) : (b)
+
 namespace RE {
 
 	class Vec2 {
@@ -116,7 +119,24 @@ namespace RE {
 		static Rect Zero;
 
 	};
-}
 
-#define Min(a, b) (a) > (b) ? (b) : (a)
-#define Max(a, b) (a) > (b) ? (a) : (b)
+	struct BlendFunc {
+		UI32 src;
+		UI32 dst;
+
+		BlendFunc() : src(0), dst(0) {}
+		BlendFunc(UI32 $src, UI32 $dst)
+			: src($src)
+			, dst($dst)
+		{ }
+
+		bool operator == (const BlendFunc& other) {
+			return src == other.src && dst == other.dst;
+		}
+
+		static const BlendFunc ALPHA_PREMULTIPLIED;
+		static const BlendFunc ALPHA_NON_PREMULTIPLIED;
+		static const BlendFunc ADDITIVE;
+		static const BlendFunc DISABLE;
+	};
+}

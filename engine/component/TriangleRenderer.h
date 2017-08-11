@@ -9,9 +9,9 @@ namespace RE {
 
 		TriangleRenderer();
 
-		void draw() override;
 		void draw(const Affine& viewMat) override;
-
+		
+		virtual void OnGUI() override;
 	public:
 		Triangle triangles = Triangle::Default;
 	};

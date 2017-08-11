@@ -14,27 +14,10 @@ RE::Texture2D* testTexture() {
 }
 
 RE::TriangleRenderer::TriangleRenderer() {
-	static PipeLine *pl = new PipeLine();
+	static Shader *pl = new Shader();
 
-	material.texture = testTexture();
-	material.pipeLine = pl;
-}
-
-void RE::TriangleRenderer::draw() {
-	IRenderer::draw();
-	
-	long offset = (long)(triangles.verts.data);
-	// vertex
-	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_POSITION);
-	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));
-	// color
-	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_COLOR);
-	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, color) + offset));
-	// texcood
-	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_TEX_COORD);
-	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, tex) + offset));
-
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	material.texture = 0;// testTexture();
+	material.shader = pl;
 }
 
 void RE::TriangleRenderer::draw(const Affine& viewMat) {
@@ -42,14 +25,14 @@ void RE::TriangleRenderer::draw(const Affine& viewMat) {
 
 	long offset = (long)(triangles.verts.data);
 	// vertex
-	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_POSITION);
-	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));
+	glEnableVertexAttribArray(Shader::VERTEX_ATTRIB_POSITION);
+	glVertexAttribPointer(Shader::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));
 	// color
-	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_COLOR);
-	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, color) + offset));
+	glEnableVertexAttribArray(Shader::VERTEX_ATTRIB_COLOR);
+	glVertexAttribPointer(Shader::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, color) + offset));
 	// texcood
-	glEnableVertexAttribArray(PipeLine::VERTEX_ATTRIB_TEX_COORD);
-	glVertexAttribPointer(PipeLine::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, tex) + offset));
+	glEnableVertexAttribArray(Shader::VERTEX_ATTRIB_TEX_COORD);
+	glVertexAttribPointer(Shader::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, tex) + offset));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

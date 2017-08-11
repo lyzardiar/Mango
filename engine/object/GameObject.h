@@ -35,6 +35,20 @@ namespace RE {
 		}
 
 		template<typename T>
+		void RemoveComponent(T* unused = nullptr) {
+			static_assert(std::is_convertible<T*, IComponent*>::value, "Invalid Type for GameObject::AddComponent!");
+
+			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
+				auto comp = *iter;
+				if (typeid(T) == typeid(*comp)) {
+					comp->OnDestroy();
+					_components.erase(iter);
+					break;
+				}
+			}
+		}
+
+		template<typename T>
 		T* GetComponent() {
 			for (auto& comp : _components) {
 				if (typeid(T) == typeid(*comp)) {
@@ -62,13 +76,23 @@ namespace RE {
 					}
 				}
 
-				ScriptComponent* scomp = new ScriptComponent(path);
-				scomp->gameObject = this;
+				ScriptComponent* scomp = new ScriptComponent(path, this);
 				scomp->Awake();
 				_components.push_back(scomp);
 				return scomp;
 			}
 			return nullptr;
+		}
+
+		void RemoveComponent(const char* path) {
+			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
+				auto comp = *iter;
+				if (strcmp(comp->TypeName(), path) == 0) {
+					comp->OnDestroy();
+					_components.erase(iter);
+					break;
+				}
+			}
 		}
 
 		virtual void AddChild(GameObject* child);

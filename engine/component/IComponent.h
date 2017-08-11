@@ -17,7 +17,7 @@ namespace RE {
 	public:
 		virtual void Awake() {}
 		virtual void Start() {}
-		virtual void Update() {}
+		virtual void Update(float dt) {}
 		virtual void OnDestroy() {}
 		virtual void OnEnable() {}
 		virtual void OnDisable() {}
@@ -26,12 +26,14 @@ namespace RE {
 			return "IComponent";
 		}
 
+		virtual void OnGUI() {}
+
 	public:
 		GameObject* gameObject = nullptr;
 		bool canRemove = true;
+		bool isStart = false;
 
 	protected:
-		bool _isStart = false;
 		
 	};
 }

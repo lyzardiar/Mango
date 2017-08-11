@@ -52,19 +52,32 @@ namespace RE {
 				Engine::instance.input.OnMouseMove(rel_mp.x, rel_mp.y, io.MouseDelta.x, io.MouseDelta.y);
 			}
 		}
-
+		
+		Engine::instance.input.curMouseWheel = ImGui::GetIO().MouseWheel;
 	}
 
 	void SceneView::drawGizmo() {
 		auto& input = Engine::instance.input;
 		if (ImGui::IsMouseClicked(0) && ImGui::IsItemHovered()) {
-			auto obj = input.PickUp(Engine::instance.root, input.curMousePos.x, input.curMousePos.y);
+			if (Engine::instance.selectedObjs.size > 0) {
+				auto& trans = Engine::instance.selectedObjs[0]->transform;
 
-			if (obj) {
-				Engine::instance.SelectObjects(&obj, 1);
+				Vec2 localPos = trans.WorldToLocal(Vec2(input.curMousePos.x, input.curMousePos.y));
+				if (Rect(0, 0, trans.w, trans.h).Contains(localPos)) {
+					_startDragObject = true;
+				}
 			}
-			else {
-				Engine::instance.SelectObjects(nullptr, 0);
+
+			if (!_startDragObject) {
+				auto obj = input.PickUp(Engine::instance.root, input.curMousePos.x, input.curMousePos.y);
+
+				if (obj) {
+					Engine::instance.SelectObjects(&obj, 1);
+					_startDragObject = true;
+				}
+				else {
+					Engine::instance.SelectObjects(nullptr, 0);
+				}
 			}
 		}
 
@@ -97,23 +110,15 @@ namespace RE {
 		ImVec2 canvas_d = toImVec2(d);
 
 		draw_list->AddQuad(canvas_a, canvas_b, canvas_c, canvas_d, ImColor(0xFF, 0x33, 0x33));
-	
-		if (ImGui::IsMouseClicked(0)) {
-			Vec2 localPos = trans.WorldToLocal(Vec2(input.curMousePos.x, input.curMousePos.y));
-			if (Rect(0, 0, trans.w, trans.h).Contains(localPos)) {
-				_startDragObject = true;
-			}
-		}
 
 		if (ImGui::IsMouseReleased(0)) {
 			_startDragObject = false;
 		}
 
 		if (_startDragObject) {
-			trans.x += ImGui::GetMouseDragDelta(0).x;
-			trans.y -= ImGui::GetMouseDragDelta(0).y;
-
-			ImGui::ResetMouseDragDelta(0);
+			auto& io = ImGui::GetIO();
+			trans.x += io.MouseDelta.x;
+			trans.y -= io.MouseDelta.y;
 		}
 	}
 

@@ -292,9 +292,6 @@
     <ClInclude Include="..\..\renderer\Texture2D.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\PipeLine.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\renderer\Triangle.h">
       <Filter>renderer</Filter>
     </ClInclude>
@@ -378,6 +375,9 @@
     </ClInclude>
     <ClInclude Include="..\..\core\base\Path.h">
       <Filter>core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\renderer\Shader.h">
+      <Filter>renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -558,9 +558,6 @@
     <ClCompile Include="..\..\game\editor\view\IGUIView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\renderer\PipeLine.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\renderer\Triangle.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
@@ -623,6 +620,21 @@
     </ClCompile>
     <ClCompile Include="..\..\core\base\Path.cpp">
       <Filter>core\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\EditorTriangleRenderer.cpp">
+      <Filter>engine\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\EditorTransform.cpp">
+      <Filter>engine\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\renderer\Shader.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\EditorMaterial.cpp">
+      <Filter>engine\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\editor\EditorScriptComponent.cpp">
+      <Filter>engine\editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

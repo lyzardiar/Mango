@@ -8,25 +8,25 @@
 namespace RE {
 
 
-	void InputSystem::OnMouseDown(float x, float y) {
+	void InputSystem::OnMouseDown(float x, float y, int idx/* = 0*/) {
 		Log("Mouse Begin: %.2f  %.2f", x, y);
 
-		curMousePos.x = x;
-		curMousePos.y = y;
+		curMousePos.Set(x, y);
+		mouseState[idx] = true;
 	}
 
-	void InputSystem::OnMouseUp(float x, float y) {
+	void InputSystem::OnMouseUp(float x, float y, int idx/* = 0*/) {
 		Log("Mouse End: %.2f  %.2f", x, y);
 
-		curMousePos.x = x;
-		curMousePos.y = y;
+		curMousePos.Set(x, y);
+		mouseState[idx] = false;
 	}
 
-	void InputSystem::OnMouseMove(float x, float y, float dx, float dy) {
+	void InputSystem::OnMouseMove(float x, float y, float dx, float dy, int idx/* = 0*/) {
 		Log("Mouse Move: %.2f  %.2f %.2f  %.2f", x, y, dx, dy);
 
-		curMousePos.x = x;
-		curMousePos.y = y;
+		curMousePos.Set(x, y);
+		curMouseDelta.Set(dx, dy);
 	}
 
 	GameObject* InputSystem::PickUp(GameObject* root, float x, float y) {

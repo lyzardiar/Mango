@@ -76,8 +76,8 @@ void RE::Engine::Render() {
 	Vec2::HalfSceneSize = Vec2::SceneSize / 2.0f;
 
 
-	Texture2D::CurHandle = 0;
-	PipeLine::CurProgram = 0;
+	Texture2D::CurHandle = -1;
+	Shader::CurProgram = 0;
 
 	_fbo->Begin({ 0, camera.size.width, camera.size.height, 0 });
 
