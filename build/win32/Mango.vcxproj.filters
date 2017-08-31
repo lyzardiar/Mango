@@ -91,557 +91,557 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.h">
+    <ClInclude Include="..\..\src\core\platform\win32\imgui_impl_glfw_gl3.h">
       <Filter>core\platform\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imgui_internal.h">
+    <ClInclude Include="..\..\src\libs\imgui\imgui_internal.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\stb_rect_pack.h">
+    <ClInclude Include="..\..\src\libs\imgui\stb_rect_pack.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\stb_textedit.h">
+    <ClInclude Include="..\..\src\libs\imgui\stb_textedit.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\stb_truetype.h">
+    <ClInclude Include="..\..\src\libs\imgui\stb_truetype.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imconfig.h">
+    <ClInclude Include="..\..\src\libs\imgui\imconfig.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imgui.h">
+    <ClInclude Include="..\..\src\libs\imgui\imgui.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3.h">
+    <ClInclude Include="..\..\src\libs\win32\glfw\include\GLFW\glfw3.h">
       <Filter>libs\win32\glfw</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\win32\glfw\include\GLFW\glfw3native.h">
+    <ClInclude Include="..\..\src\libs\win32\glfw\include\GLFW\glfw3native.h">
       <Filter>libs\win32\glfw</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\platform\FileUtils.h">
+    <ClInclude Include="..\..\src\core\platform\FileUtils.h">
       <Filter>core\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\platform\win32\FileHelperWin32.h">
+    <ClInclude Include="..\..\src\core\platform\win32\FileHelperWin32.h">
       <Filter>core\platform\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\App.h">
+    <ClInclude Include="..\..\src\core\base\App.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\File.h">
+    <ClInclude Include="..\..\src\core\base\File.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Types.h">
+    <ClInclude Include="..\..\src\core\base\Types.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\String.h">
+    <ClInclude Include="..\..\src\core\base\String.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\platform\Window.h">
+    <ClInclude Include="..\..\src\core\platform\Window.h">
       <Filter>core\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imgui_tabs.h">
+    <ClInclude Include="..\..\src\libs\imgui\imgui_tabs.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imgui_tab_demo.h">
+    <ClInclude Include="..\..\src\libs\imgui\imgui_tab_demo.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imgui_dock.h">
+    <ClInclude Include="..\..\src\libs\imgui\imgui_dock.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\imgui\imgui_user.h">
+    <ClInclude Include="..\..\src\libs\imgui\imgui_user.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Data.h">
+    <ClInclude Include="..\..\src\core\base\Data.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\image\PngDecoder.h">
+    <ClInclude Include="..\..\src\core\image\PngDecoder.h">
       <Filter>core\image</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\image\ImageDecoder.h">
+    <ClInclude Include="..\..\src\core\image\ImageDecoder.h">
       <Filter>core\image</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\image\ImageInfo.h">
+    <ClInclude Include="..\..\src\core\image\ImageInfo.h">
       <Filter>core\image</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\GameEditor.h">
+    <ClInclude Include="..\..\src\game\editor\GameEditor.h">
       <Filter>game\editor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\GameStudio.h">
+    <ClInclude Include="..\..\src\game\editor\GameStudio.h">
       <Filter>game\editor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\test\test1.h">
+    <ClInclude Include="..\..\src\game\test\test1.h">
       <Filter>game\test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\ldebug.h">
+    <ClInclude Include="..\..\src\libs\lua\ldebug.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\ldo.h">
+    <ClInclude Include="..\..\src\libs\lua\ldo.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lfunc.h">
+    <ClInclude Include="..\..\src\libs\lua\lfunc.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lgc.h">
+    <ClInclude Include="..\..\src\libs\lua\lgc.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\llex.h">
+    <ClInclude Include="..\..\src\libs\lua\llex.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\llimits.h">
+    <ClInclude Include="..\..\src\libs\lua\llimits.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lmem.h">
+    <ClInclude Include="..\..\src\libs\lua\lmem.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lobject.h">
+    <ClInclude Include="..\..\src\libs\lua\lobject.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lopcodes.h">
+    <ClInclude Include="..\..\src\libs\lua\lopcodes.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lparser.h">
+    <ClInclude Include="..\..\src\libs\lua\lparser.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lprefix.h">
+    <ClInclude Include="..\..\src\libs\lua\lprefix.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lstate.h">
+    <ClInclude Include="..\..\src\libs\lua\lstate.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lstring.h">
+    <ClInclude Include="..\..\src\libs\lua\lstring.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\ltable.h">
+    <ClInclude Include="..\..\src\libs\lua\ltable.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\ltests.h">
+    <ClInclude Include="..\..\src\libs\lua\ltests.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\ltm.h">
+    <ClInclude Include="..\..\src\libs\lua\ltm.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lua.h">
+    <ClInclude Include="..\..\src\libs\lua\lua.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\luaconf.h">
+    <ClInclude Include="..\..\src\libs\lua\luaconf.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lualib.h">
+    <ClInclude Include="..\..\src\libs\lua\lualib.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lundump.h">
+    <ClInclude Include="..\..\src\libs\lua\lundump.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lvm.h">
+    <ClInclude Include="..\..\src\libs\lua\lvm.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lzio.h">
+    <ClInclude Include="..\..\src\libs\lua\lzio.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lapi.h">
+    <ClInclude Include="..\..\src\libs\lua\lapi.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lauxlib.h">
+    <ClInclude Include="..\..\src\libs\lua\lauxlib.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lcode.h">
+    <ClInclude Include="..\..\src\libs\lua\lcode.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\lua\lctype.h">
+    <ClInclude Include="..\..\src\libs\lua\lctype.h">
       <Filter>libs\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\Engine.h">
+    <ClInclude Include="..\..\src\engine\Engine.h">
       <Filter>engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\script\lua\LuaWrapper.h">
+    <ClInclude Include="..\..\src\script\lua\LuaWrapper.h">
       <Filter>script\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\script\lua\kaguya.hpp">
+    <ClInclude Include="..\..\src\script\lua\kaguya.hpp">
       <Filter>script\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\SceneView.h">
+    <ClInclude Include="..\..\src\game\editor\view\SceneView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\IGUIView.h">
+    <ClInclude Include="..\..\src\game\editor\view\IGUIView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\WelcomeView.h">
+    <ClInclude Include="..\..\src\game\editor\view\WelcomeView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\PropertyView.h">
+    <ClInclude Include="..\..\src\game\editor\view\PropertyView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\ResourceView.h">
+    <ClInclude Include="..\..\src\game\editor\view\ResourceView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\StatusView.h">
+    <ClInclude Include="..\..\src\game\editor\view\StatusView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\GameView.h">
+    <ClInclude Include="..\..\src\game\editor\view\GameView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\HierarchyView.h">
+    <ClInclude Include="..\..\src\game\editor\view\HierarchyView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\game\editor\view\MainMenuView.h">
+    <ClInclude Include="..\..\src\game\editor\view\MainMenuView.h">
       <Filter>game\editor\view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\Material.h">
+    <ClInclude Include="..\..\src\renderer\Material.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\Texture2D.h">
+    <ClInclude Include="..\..\src\renderer\Texture2D.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\Triangle.h">
+    <ClInclude Include="..\..\src\renderer\Triangle.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\FrameBuffer.h">
+    <ClInclude Include="..\..\src\renderer\FrameBuffer.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\GL\REGL.h">
+    <ClInclude Include="..\..\src\renderer\GL\REGL.h">
       <Filter>renderer\GL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\platform\Platform.h">
+    <ClInclude Include="..\..\src\core\platform\Platform.h">
       <Filter>core\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Macros.h">
+    <ClInclude Include="..\..\src\core\base\Macros.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Utils.h">
+    <ClInclude Include="..\..\src\core\base\Utils.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\ByteSwap.h">
+    <ClInclude Include="..\..\src\core\base\ByteSwap.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\object\GameObject.h">
+    <ClInclude Include="..\..\src\engine\object\GameObject.h">
       <Filter>engine\object</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Object.h">
+    <ClInclude Include="..\..\src\core\base\Object.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\stream\TCPStream.h">
+    <ClInclude Include="..\..\src\core\stream\TCPStream.h">
       <Filter>core\stream</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\stream\UDPStream.h">
+    <ClInclude Include="..\..\src\core\stream\UDPStream.h">
       <Filter>core\stream</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\stream\FileStream.h">
+    <ClInclude Include="..\..\src\core\stream\FileStream.h">
       <Filter>core\stream</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\stream\MemoryStream.h">
+    <ClInclude Include="..\..\src\core\stream\MemoryStream.h">
       <Filter>core\stream</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\win32\gl3w\GL\gl3w.h">
+    <ClInclude Include="..\..\src\libs\win32\gl3w\GL\gl3w.h">
       <Filter>libs\win32\gl3w</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\win32\gl3w\GL\glcorearb.h">
+    <ClInclude Include="..\..\src\libs\win32\gl3w\GL\glcorearb.h">
       <Filter>libs\win32\gl3w</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\Transform.h">
+    <ClInclude Include="..\..\src\engine\component\Transform.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\IComponent.h">
+    <ClInclude Include="..\..\src\engine\component\IComponent.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Time.h">
+    <ClInclude Include="..\..\src\core\base\Time.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\math\Affine.h">
+    <ClInclude Include="..\..\src\core\math\Affine.h">
       <Filter>core\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\Camera.h">
+    <ClInclude Include="..\..\src\engine\component\Camera.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\TriangleRenderer.h">
+    <ClInclude Include="..\..\src\engine\component\TriangleRenderer.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\IRenderer.h">
+    <ClInclude Include="..\..\src\engine\component\IRenderer.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\editor\IEditor.h">
+    <ClInclude Include="..\..\src\engine\editor\IEditor.h">
       <Filter>engine\editor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\component\ScriptComponent.h">
+    <ClInclude Include="..\..\src\engine\component\ScriptComponent.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\object\Image.h">
+    <ClInclude Include="..\..\src\engine\object\Image.h">
       <Filter>engine\object</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\system\InputSystem.h">
+    <ClInclude Include="..\..\src\engine\system\InputSystem.h">
       <Filter>engine\system</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Array.h">
+    <ClInclude Include="..\..\src\core\base\Array.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\core\base\Path.h">
+    <ClInclude Include="..\..\src\core\base\Path.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\renderer\Shader.h">
+    <ClInclude Include="..\..\src\renderer\Shader.h">
       <Filter>renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\core\platform\win32\main.cpp">
+    <ClCompile Include="..\..\src\core\platform\win32\main.cpp">
       <Filter>core\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\platform\win32\imgui_impl_glfw_gl3.cpp">
+    <ClCompile Include="..\..\src\core\platform\win32\imgui_impl_glfw_gl3.cpp">
       <Filter>core\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp">
+    <ClCompile Include="..\..\src\libs\imgui\imgui_draw.cpp">
       <Filter>libs\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\imgui\imgui.cpp">
+    <ClCompile Include="..\..\src\libs\imgui\imgui.cpp">
       <Filter>libs\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\imgui\imgui_demo.cpp">
+    <ClCompile Include="..\..\src\libs\imgui\imgui_demo.cpp">
       <Filter>libs\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\platform\FileUtils.cpp">
+    <ClCompile Include="..\..\src\core\platform\FileUtils.cpp">
       <Filter>core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\App.cpp">
+    <ClCompile Include="..\..\src\core\base\App.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\platform\win32\Window-win32.cpp">
+    <ClCompile Include="..\..\src\core\platform\win32\Window-win32.cpp">
       <Filter>core\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\imgui\imgui_tabs.cpp">
+    <ClCompile Include="..\..\src\libs\imgui\imgui_tabs.cpp">
       <Filter>libs\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\Data.cpp">
+    <ClCompile Include="..\..\src\core\base\Data.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\image\PngDecoder.cpp">
+    <ClCompile Include="..\..\src\core\image\PngDecoder.cpp">
       <Filter>core\image</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\image\ImageDecoder.cpp">
+    <ClCompile Include="..\..\src\core\image\ImageDecoder.cpp">
       <Filter>core\image</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\image\ImageInfo.cpp">
+    <ClCompile Include="..\..\src\core\image\ImageInfo.cpp">
       <Filter>core\image</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\GameStudio.cpp">
+    <ClCompile Include="..\..\src\game\editor\GameStudio.cpp">
       <Filter>game\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\File.cpp">
+    <ClCompile Include="..\..\src\core\base\File.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ldo.c">
+    <ClCompile Include="..\..\src\libs\lua\ldo.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ldump.c">
+    <ClCompile Include="..\..\src\libs\lua\ldump.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lfunc.c">
+    <ClCompile Include="..\..\src\libs\lua\lfunc.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lgc.c">
+    <ClCompile Include="..\..\src\libs\lua\lgc.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\linit.c">
+    <ClCompile Include="..\..\src\libs\lua\linit.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\liolib.c">
+    <ClCompile Include="..\..\src\libs\lua\liolib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\llex.c">
+    <ClCompile Include="..\..\src\libs\lua\llex.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lmathlib.c">
+    <ClCompile Include="..\..\src\libs\lua\lmathlib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lmem.c">
+    <ClCompile Include="..\..\src\libs\lua\lmem.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\loadlib.c">
+    <ClCompile Include="..\..\src\libs\lua\loadlib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lobject.c">
+    <ClCompile Include="..\..\src\libs\lua\lobject.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lopcodes.c">
+    <ClCompile Include="..\..\src\libs\lua\lopcodes.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\loslib.c">
+    <ClCompile Include="..\..\src\libs\lua\loslib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lparser.c">
+    <ClCompile Include="..\..\src\libs\lua\lparser.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lstate.c">
+    <ClCompile Include="..\..\src\libs\lua\lstate.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lstring.c">
+    <ClCompile Include="..\..\src\libs\lua\lstring.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lstrlib.c">
+    <ClCompile Include="..\..\src\libs\lua\lstrlib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ltable.c">
+    <ClCompile Include="..\..\src\libs\lua\ltable.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ltablib.c">
+    <ClCompile Include="..\..\src\libs\lua\ltablib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ltests.c">
+    <ClCompile Include="..\..\src\libs\lua\ltests.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ltm.c">
+    <ClCompile Include="..\..\src\libs\lua\ltm.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lundump.c">
+    <ClCompile Include="..\..\src\libs\lua\lundump.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lutf8lib.c">
+    <ClCompile Include="..\..\src\libs\lua\lutf8lib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lvm.c">
+    <ClCompile Include="..\..\src\libs\lua\lvm.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lzio.c">
+    <ClCompile Include="..\..\src\libs\lua\lzio.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lapi.c">
+    <ClCompile Include="..\..\src\libs\lua\lapi.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lauxlib.c">
+    <ClCompile Include="..\..\src\libs\lua\lauxlib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lbaselib.c">
+    <ClCompile Include="..\..\src\libs\lua\lbaselib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lbitlib.c">
+    <ClCompile Include="..\..\src\libs\lua\lbitlib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lcode.c">
+    <ClCompile Include="..\..\src\libs\lua\lcode.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lcorolib.c">
+    <ClCompile Include="..\..\src\libs\lua\lcorolib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\lctype.c">
+    <ClCompile Include="..\..\src\libs\lua\lctype.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ldblib.c">
+    <ClCompile Include="..\..\src\libs\lua\ldblib.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\lua\ldebug.c">
+    <ClCompile Include="..\..\src\libs\lua\ldebug.c">
       <Filter>libs\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\Engine.cpp">
+    <ClCompile Include="..\..\src\engine\Engine.cpp">
       <Filter>engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\SceneView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\SceneView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\WelcomeView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\WelcomeView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\ResourceView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\ResourceView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\StatusView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\StatusView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\GameView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\GameView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\PropertyView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\PropertyView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\HierarchyView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\HierarchyView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\MainMenuView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\MainMenuView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\game\editor\view\IGUIView.cpp">
+    <ClCompile Include="..\..\src\game\editor\view\IGUIView.cpp">
       <Filter>game\editor\view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\renderer\Triangle.cpp">
+    <ClCompile Include="..\..\src\renderer\Triangle.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\renderer\FrameBuffer.cpp">
+    <ClCompile Include="..\..\src\renderer\FrameBuffer.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\renderer\Texture2D.cpp">
+    <ClCompile Include="..\..\src\renderer\Texture2D.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\ByteSwap.cpp">
+    <ClCompile Include="..\..\src\core\base\ByteSwap.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\win32\gl3w\GL\gl3w.c">
+    <ClCompile Include="..\..\src\libs\win32\gl3w\GL\gl3w.c">
       <Filter>libs\win32\gl3w</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\object\GameObject.cpp">
+    <ClCompile Include="..\..\src\engine\object\GameObject.cpp">
       <Filter>engine\object</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\Time.cpp">
+    <ClCompile Include="..\..\src\core\base\Time.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\platform\PlatformWin32.cpp">
+    <ClCompile Include="..\..\src\core\platform\PlatformWin32.cpp">
       <Filter>core\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\math\Affine.cpp">
+    <ClCompile Include="..\..\src\core\math\Affine.cpp">
       <Filter>core\math</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\Types.cpp">
+    <ClCompile Include="..\..\src\core\base\Types.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\component\TriangleRenderer.cpp">
+    <ClCompile Include="..\..\src\engine\component\TriangleRenderer.cpp">
       <Filter>engine\component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\component\IRenderer.cpp">
+    <ClCompile Include="..\..\src\engine\component\IRenderer.cpp">
       <Filter>engine\component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\script\lua\LuaWrapper.cpp">
+    <ClCompile Include="..\..\src\script\lua\LuaWrapper.cpp">
       <Filter>script\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\component\ScriptComponent.cpp">
+    <ClCompile Include="..\..\src\engine\component\ScriptComponent.cpp">
       <Filter>engine\component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\object\Image.cpp">
+    <ClCompile Include="..\..\src\engine\object\Image.cpp">
       <Filter>engine\object</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\IEditor.cpp">
+    <ClCompile Include="..\..\src\engine\editor\IEditor.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\EditorGameObject.cpp">
+    <ClCompile Include="..\..\src\engine\editor\EditorGameObject.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\EditorImage.cpp">
+    <ClCompile Include="..\..\src\engine\editor\EditorImage.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\system\InputSystem.cpp">
+    <ClCompile Include="..\..\src\engine\system\InputSystem.cpp">
       <Filter>engine\system</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\renderer\Material.cpp">
+    <ClCompile Include="..\..\src\renderer\Material.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\core\base\Path.cpp">
+    <ClCompile Include="..\..\src\core\base\Path.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\EditorTriangleRenderer.cpp">
+    <ClCompile Include="..\..\src\engine\editor\EditorTriangleRenderer.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\EditorTransform.cpp">
+    <ClCompile Include="..\..\src\engine\editor\EditorTransform.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\renderer\Shader.cpp">
+    <ClCompile Include="..\..\src\renderer\Shader.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\EditorMaterial.cpp">
+    <ClCompile Include="..\..\src\engine\editor\EditorMaterial.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\editor\EditorScriptComponent.cpp">
+    <ClCompile Include="..\..\src\engine\editor\EditorScriptComponent.cpp">
       <Filter>engine\editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\libs\imgui\imgui_dock.inl">
+    <None Include="..\..\src\libs\imgui\imgui_dock.inl">
       <Filter>libs\imgui</Filter>
     </None>
-    <None Include="..\..\libs\imgui\imgui_user.inl">
+    <None Include="..\..\src\libs\imgui\imgui_user.inl">
       <Filter>libs\imgui</Filter>
     </None>
   </ItemGroup>
