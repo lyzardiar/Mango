@@ -68,7 +68,7 @@ namespace RE {
 			return nullptr;
 		}
 
-		IComponent* AddComponent(const char* path) {
+		IComponent* AddScriptComponent(const char* path) {
 			if (FileUtils::getInstance()->isFileExists(path)) {
 				for (auto& comp : _components) {
 					if (strcmp(comp->TypeName(), path) == 0) {
@@ -84,7 +84,7 @@ namespace RE {
 			return nullptr;
 		}
 
-		void RemoveComponent(const char* path) {
+		void RemoveScriptComponent(const char* path) {
 			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
 				auto comp = *iter;
 				if (strcmp(comp->TypeName(), path) == 0) {

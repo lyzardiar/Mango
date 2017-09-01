@@ -5,7 +5,7 @@
 #include "renderer/FrameBuffer.h"
 #include "engine/Engine.h"
 #include "engine/component/Camera.h"
-#include "engine/editor/IEditor.h"
+#include "game/editor/object/IEditor.h"
 #include "engine/system/InputSystem.h"
 #include "engine/object/GameObject.h"
 

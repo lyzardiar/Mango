@@ -1,6 +1,7 @@
 #pragma once
 #include "IComponent.h"
 #include "script/lua/LuaWrapper.h"
+#include "base/String.h"
 
 namespace RE {
 	class ScriptComponent : public IComponent {
@@ -20,6 +21,7 @@ namespace RE {
 
 		void Reload();
 		virtual void OnGUI() override;
+		
 	public:
 		enum FuncType {
 			AWAKE = 0,
@@ -33,6 +35,7 @@ namespace RE {
 		};
 
 		std::string path;
+		StaticString<64> baseName;
 
 		kaguya::LuaTable Class;
 		kaguya::LuaFunction luaFuncs[FuncType::MAX_FUNCS];

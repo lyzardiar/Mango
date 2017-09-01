@@ -5,6 +5,7 @@
 #include "engine/Engine.h"
 
 #include "game/test/test1.h"
+#include "manager/AssetsManager.h"
 
 RE::GameStudio::GameStudio()
 	: _engine (Engine::instance)
@@ -12,6 +13,8 @@ RE::GameStudio::GameStudio()
 	_engine.Lua.dofile("studioGUIConfigs.lua");
 
 	ImGui::LoadDock(_engine.L);
+
+	RE::AssetsManager::instance.ScanFold(".");
 }
 
 RE::GameStudio::~GameStudio() {

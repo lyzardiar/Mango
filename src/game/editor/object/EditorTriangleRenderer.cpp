@@ -40,5 +40,6 @@ void RE::TriangleRenderer::OnGUI() {
 				ImGui::CloseCurrentPopup();
 			ImGui::EndPopup();
 		}
+		ImGui::Unindent();
 	}
 }

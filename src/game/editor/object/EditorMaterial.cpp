@@ -2,6 +2,7 @@
 #include "core/platform/Platform.h"
 #include "renderer/Material.h"
 #include "libs/imgui/imgui.h"
+#include "game/editor/dialog/SelectImageDlg.h"
 
 
 void RE::Shader::OnGUI() {
@@ -21,13 +22,19 @@ void RE::Texture2D::OnGUI() {
 	ImGui::PushItemWidth(canvas_size.x*0.68f);
 	if (ImGui::InputText("", lastPath.data, len,
 		ImGuiInputTextFlags_CharsNoBlank | ImGuiInputTextFlags_EnterReturnsTrue)) {
-		Log("==> %s", path);
+		Log("==> %s", lastPath.data);
 	}
 	ImGui::PopItemWidth();
 
 	ImGui::SameLine(0.0f, 10.0f);
+	SelectImageDlg dlg;
 	if (ImGui::Button("...")) {
+		dlg.Open();
+	}
+	dlg.OnGUI();
 
+	if (!dlg.selectPath.Empty()) {
+		lastPath = dlg.selectPath.data;
 	}
 
 	if (lastPath != path) {

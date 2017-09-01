@@ -5,8 +5,9 @@
 #include "imgui/imgui_internal.h"
 #include "engine/Engine.h"
 #include "engine/object/GameObject.h"
-#include "engine/editor/IEditor.h"
 #include "engine/component/TriangleRenderer.h"
+#include "game/editor/object/IEditor.h"
+#include "../dialog/SelectScriptDlg.h"
 
 namespace RE {
 
@@ -84,7 +85,18 @@ namespace RE {
 			if (ImGui::Button("Add TriangleRender")) {
 				auto renderer = obj->AddComponent<TriangleRenderer>();
 				ImGui::CloseCurrentPopup();
-			}			
+			}
+
+			SelectScriptDlg dlg;
+			if (ImGui::Button("Add Script Component")) {
+				dlg.Open();
+
+			}
+			dlg.OnGUI();
+			if (!dlg.selectPath.Empty()) {
+				obj->AddScriptComponent(dlg.selectPath.data);
+				ImGui::CloseCurrentPopup();
+			}
 
 			ImGui::EndPopup();
 		}

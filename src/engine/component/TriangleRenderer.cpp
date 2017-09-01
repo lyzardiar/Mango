@@ -5,18 +5,10 @@
 #include "engine/component/Camera.h"
 #include "IRenderer.h"
 
-
-
-RE::Texture2D* testTexture() {
-	static RE::Texture2D* tex = nullptr;
-	tex = tex ? tex : new RE::Texture2D("images/1.png");
-	return tex;
-}
-
 RE::TriangleRenderer::TriangleRenderer() {
 	static Shader *pl = new Shader();
 
-	material.texture = 0;// testTexture();
+	material.texture = 0;
 	material.shader = pl;
 }
 

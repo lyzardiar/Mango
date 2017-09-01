@@ -86,8 +86,8 @@ void RE::LuaWrapper::registerLua() {
 		.setConstructors<GameObject(), GameObject(const char*)>()
 		.addProperty("name", &GameObject::name)
 		.addProperty("transform", &GameObject::$transform)
-		.addFunction("AddComponent", &GameObject::AddComponent)
-		.addFunction("RemoveComponent", &GameObject::RemoveComponent)
+		.addFunction("AddComponent", &GameObject::AddScriptComponent)
+		.addFunction("RemoveComponent", &GameObject::RemoveScriptComponent)
 	);
 
 	Engine::instance.Lua["Engine"].setClass(kaguya::UserdataMetatable<Engine>()

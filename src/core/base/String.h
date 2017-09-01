@@ -105,6 +105,10 @@ namespace RE {
 			size = rhs.size();
 			memcpy(data, rhs.c_str(), size);
 		}
+		StaticString(const StaticString& rhs) {
+			size = rhs.size;
+			memcpy(data, rhs.data, size);
+		}
 
 		template<typename... Args>
 		StaticString(Args... args) {
@@ -114,6 +118,13 @@ namespace RE {
 
 		StaticString& Cat(char ch) {
 			data[size++] = ch;
+			return *this;
+		}
+
+		StaticString& Cat(int num) {
+			char buff[50];
+			sprintf(buff, "%d", num);
+			Cat(buff);
 			return *this;
 		}
 
@@ -157,6 +168,11 @@ namespace RE {
 			data[size] = 0;
 		}
 
+		StaticString& Title() {
+			data[0] = toupper(data[0]);
+			return *this;
+		}
+
 		bool Empty() {
 			return size == 0;
 		}
@@ -185,6 +201,12 @@ namespace RE {
 			}
 		}
 
+		bool EndWith(const char* tail) {
+			auto len = strlen(tail);
+			if (len > size) return false;
+			return strcmp(tail, data + (size - len)) == 0;
+		}
+
 		StaticString& Clear() {
 			data[0] = 0;
 			size = 0;
@@ -203,19 +225,38 @@ namespace RE {
 			return *this;
 		}
 
-		StaticString& operator = (StaticString& rhs) {
+		StaticString& operator = (const std::string& rhs) {
+			size = rhs.size();
+			memcpy(data, rhs.c_str(), size);
+			data[size] = 0;
+			return *this;
+		}
+
+		StaticString& operator = (const StaticString& rhs) {
 			size = rhs.size;
 			memcpy(data, rhs.data, size);
 			data[size] = 0;
 			return *this;
 		}
 
-		StaticString operator + (StaticString& rhs) {
+		StaticString operator + (const StaticString& rhs) {
 			StaticString ret = *this;
 			return ret += rhs;
 		}
 
-		StaticString& operator += (StaticString& rhs) {
+		StaticString& operator += (const StaticString& rhs) {
+			return Cat(rhs);
+		}
+
+		StaticString& operator += (char rhs) {
+			return Cat(rhs);
+		}
+
+		StaticString& operator += (const char* rhs) {
+			return Cat(rhs);
+		}
+
+		StaticString& operator += (const std::string& rhs) {
 			return Cat(rhs);
 		}
 
@@ -231,13 +272,13 @@ namespace RE {
 			return strcmp(data, rhs.data) < 0;
 		}
 
-		bool operator == (const StaticString& rhs) {
+		bool operator == (const StaticString& rhs) const {
 			return strcmp(data, rhs.data) == 0;
 		}
-		bool operator == (const char* buff) {
+		bool operator == (const char* buff) const {
 			return strcmp(data, buff) == 0;
 		}
-		bool operator == (const std::string& rhs) {
+		bool operator == (const std::string& rhs) const {
 			return strcmp(data, rhs.c_str()) == 0;
 		}
 

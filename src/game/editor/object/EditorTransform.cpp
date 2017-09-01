@@ -1,5 +1,5 @@
 #include "engine/component/Transform.h"
-#include "engine/editor/IEditor.h"
+#include "IEditor.h"
 #include "libs/imgui/imgui.h"
 
 void RE::Transform::OnGUI() {

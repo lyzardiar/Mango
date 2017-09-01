@@ -83,11 +83,17 @@
     <Filter Include="engine\component">
       <UniqueIdentifier>{edec3790-9acf-4317-b801-865ab0f04580}</UniqueIdentifier>
     </Filter>
-    <Filter Include="engine\editor">
-      <UniqueIdentifier>{da73edf9-ab40-41e7-9f79-63b5d01ac3bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="engine\system">
       <UniqueIdentifier>{4126cb6b-565e-4943-b3f6-68c250ba2ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\editor\manager">
+      <UniqueIdentifier>{3045b64a-4667-45c2-9fc4-fd7a08728b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\editor\dialog">
+      <UniqueIdentifier>{70e8fafe-3aa8-4fcc-809a-aed784b2f38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\editor\object">
+      <UniqueIdentifier>{da73edf9-ab40-41e7-9f79-63b5d01ac3bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -358,9 +364,6 @@
     <ClInclude Include="..\..\src\engine\component\IRenderer.h">
       <Filter>engine\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\engine\editor\IEditor.h">
-      <Filter>engine\editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\engine\component\ScriptComponent.h">
       <Filter>engine\component</Filter>
     </ClInclude>
@@ -378,6 +381,24 @@
     </ClInclude>
     <ClInclude Include="..\..\src\renderer\Shader.h">
       <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\manager\AssetsManager.h">
+      <Filter>game\editor\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\dialog\SelectImageDlg.h">
+      <Filter>game\editor\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\dialog\IDialog.h">
+      <Filter>game\editor\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\object\IEditor.h">
+      <Filter>game\editor\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\system\Texture2DSystem.h">
+      <Filter>engine\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\dialog\SelectScriptDlg.h">
+      <Filter>game\editor\dialog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -603,15 +624,6 @@
     <ClCompile Include="..\..\src\engine\object\Image.cpp">
       <Filter>engine\object</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\IEditor.cpp">
-      <Filter>engine\editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\EditorGameObject.cpp">
-      <Filter>engine\editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\EditorImage.cpp">
-      <Filter>engine\editor</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\engine\system\InputSystem.cpp">
       <Filter>engine\system</Filter>
     </ClCompile>
@@ -621,20 +633,35 @@
     <ClCompile Include="..\..\src\core\base\Path.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\EditorTriangleRenderer.cpp">
-      <Filter>engine\editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\EditorTransform.cpp">
-      <Filter>engine\editor</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\renderer\Shader.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\EditorMaterial.cpp">
-      <Filter>engine\editor</Filter>
+    <ClCompile Include="..\..\src\game\editor\manager\AssetsManager.cpp">
+      <Filter>game\editor\manager</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\engine\editor\EditorScriptComponent.cpp">
-      <Filter>engine\editor</Filter>
+    <ClCompile Include="..\..\src\game\editor\object\EditorGameObject.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\object\EditorImage.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\object\EditorMaterial.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\object\EditorScriptComponent.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\object\EditorTransform.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\object\EditorTriangleRenderer.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\object\IEditor.cpp">
+      <Filter>game\editor\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\system\Texture2DSystem.cpp">
+      <Filter>engine\system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

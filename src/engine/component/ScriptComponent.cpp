@@ -8,6 +8,15 @@ RE::ScriptComponent::ScriptComponent(const char* path, class GameObject* go) {
 	this->path = path;
 	this->gameObject = go;
 
+	auto bn = strrchr(path, '/');	
+	if (bn != nullptr) {
+		this->baseName = bn+1;
+	}
+	else {
+		this->baseName = path;
+	}
+	
+
 	Data data = FileUtils::getInstance()->getData(path);
 
 	auto& state = Engine::instance.Lua;

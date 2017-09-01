@@ -4,7 +4,7 @@
 #include "renderer/Shader.h"
 #include "engine/Engine.h"
 #include "engine/object/GameObject.h"
-#include "engine/editor/IEditor.h"
+#include "game/editor/object/IEditor.h"
 
 namespace RE {
 
