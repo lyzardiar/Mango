@@ -17,6 +17,7 @@ void RE::GameObject::OnGUI() {
 	}
 
 	for (int idx = 0; idx < _components.size(); ++idx) {
-		_components[idx]->OnGUI();
+		auto comp = _components[idx];
+		comp->OnGUI();
 	}
 }

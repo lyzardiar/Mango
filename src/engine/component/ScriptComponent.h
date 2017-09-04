@@ -22,6 +22,10 @@ namespace RE {
 		void Reload();
 		virtual void OnGUI() override;
 		
+		kaguya::LuaTable Load(const char* path);
+		void Clear();
+	protected:
+		void setupFuncs();
 	public:
 		enum FuncType {
 			AWAKE = 0,
@@ -34,6 +38,7 @@ namespace RE {
 			MAX_FUNCS,
 		};
 
+		bool isValid = true;
 		std::string path;
 		StaticString<64> baseName;
 

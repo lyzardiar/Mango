@@ -3,17 +3,20 @@
 #include "core/platform/Platform.h"
 #include "engine/component/IComponent.h"
 #include "engine/object/GameObject.h"
+#include "engine/system/Texture2DSystem.h"
 
 void RE::TriangleRenderer::OnGUI() {
 	if (ImGui::CollapsingHeader("TriangleRenderer", ImGuiTreeNodeFlags_DefaultOpen)) {
-		ImGui::Indent(10);
+		ImGui::Indent();
 
 		StaticString<128> lastPath = material.texture ? material.texture->path : "";
 
 		material.OnGUI();
 
 		if (lastPath != material.texture->path) {
+			material.texture = Texture2DSystem::instance.Add(material.texture->path);
 			gameObject->transform.size = material.texture->size;
+
 		}
 
 		if (gameObject->transform.w != 0 && gameObject->transform.h != 0) {

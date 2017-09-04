@@ -1,14 +1,43 @@
 #pragma once
 #include "core/base/Array.h"
 #include "core/base/String.h"
+#include <functional>
+#include <memory>
+#include <mutex>
 
 
 namespace RE {
+	class FileSystemWatcherTask {
+	public:
+		virtual int task() { return 0; }
+
+		std::shared_ptr<bool> quit;
+	};
+	
+	class FileSystemWatcher {
+	public:
+		FileSystemWatcher() : quit ( new bool(false)) {  }
+		FileSystemWatcher(std::shared_ptr<bool> sq) : quit(sq){}
+		~FileSystemWatcher() {
+			if (task != nullptr) {
+				delete task; 
+				task = nullptr;
+			}
+		}
+		bool start(const char* path);
+
+		std::shared_ptr<bool> quit;
+		FileSystemWatcherTask* task = nullptr;
+		std::function<void(const char*, int)> callback = nullptr;
+	};
+
 	class AssetsManager {
 	public:
 		static AssetsManager instance;
 
 	public:
+		~AssetsManager();
+
 		typedef StaticString<128> PathType;
 		enum class ResType {
 			ALL,
@@ -17,18 +46,84 @@ namespace RE {
 			SCRIPT
 		};
 
+		enum class FileChangeType {
+			NONE,
+			MODIFY,
+			ADDED,
+			REMOVED,
+			RENAME_NEW,
+			RENAME_OLD,
+		};
+
+		struct ChangedFile {
+			ChangedFile(StaticString<128>& f, FileChangeType t) : file(f), type(t) {}
+			StaticString<128> file;
+			FileChangeType type;
+		};
+
+		class ThreadQueue : public std::list<ChangedFile> {
+		public:
+			void Push(ChangedFile& file) {
+				std::lock_guard<std::recursive_mutex> ulock(_mutex);
+
+				insert(end(), file);
+			}
+
+			ChangedFile& Get() {
+				std::lock_guard<std::recursive_mutex> ulock(_mutex);
+
+				return back();
+			}
+
+			bool Empty() {
+				std::lock_guard<std::recursive_mutex> ulock(_mutex);
+
+				return empty();
+			}
+
+			int Size() {
+				std::lock_guard<std::recursive_mutex> ulock(_mutex);
+
+				return size();
+			}
+
+			ChangedFile Pop() {
+				std::lock_guard<std::recursive_mutex> ulock(_mutex);
+
+				ChangedFile file = front();
+				erase(begin());
+				return file;
+			}
+
+
+		protected:
+			std::recursive_mutex _mutex;
+		};
+
 	public:
 		void ScanFold(const char* fold);
 
 		void AddFile(PathType& file);
+		void RemoveFile(PathType& file);
 
+		void StartFileSystemWatcher(const char* path, std::function<void (const char*, int)> callback);
+		void StopFileSystemWatcher();
+
+		void Update(float dt);
+
+		void FileChanged(const char* path, FileChangeType type);
 	protected:
 		bool addCatagrayFile(Array<PathType>& container, const PathType& file);
+		bool removeCatagrayFile(Array<PathType>& container, const PathType& file);
 	public:
 		PathType curDir;
 		Array<PathType> files;
 		Array<PathType> imageFiles;
 		Array<PathType> shaderFiles;
 		Array<PathType> scriptFiles;
+
+		FileSystemWatcher* fileSystemWatcher = nullptr;
+		std::shared_ptr<bool> quitFileSystemWatcher;
+		ThreadQueue changedFiles;
 	};
 }

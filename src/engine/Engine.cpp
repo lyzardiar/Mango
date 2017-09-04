@@ -7,6 +7,8 @@
 #include "system/InputSystem.h"
 #include "renderer/Texture2D.h"
 #include "base/Array.h"
+#include "system/GLProgramSystem.h"
+#include "renderer/PipeLine.h"
 
 RE::Engine RE::Engine::instance;
 
@@ -44,6 +46,8 @@ bool RE::Engine::Init() {
 
 	_fbo = new FrameBuffer();
 
+	GLProgramSystem::instance.InitDefault();
+
 	Lua.openlibs();
 	initLuaEnginie();
 
@@ -53,8 +57,11 @@ bool RE::Engine::Init() {
 	for (int i = 0; i < count; ++i) {
 		auto img = new Image("image");
 		root->AddChild(img);
-		auto img2 = new Image("image");
-		img->AddChild(img2);
+
+		for (int j = 0; j < 5000; ++j) {
+			auto img2 = new Image("image");
+			img->AddChild(img2);
+		}
 	}
 
 	_isInited = true;
@@ -82,11 +89,13 @@ void RE::Engine::Render() {
 
 
 	Texture2D::CurHandle = -1;
-	Shader::CurProgram = 0;
+	GLProgram::CurProgram = 0;
 
 	_fbo->Begin({ 0, camera.size.width, camera.size.height, 0 });
 
 	root->Render(Affine::Identity);
+
+	PipeLine::instance.Commit();
 
 	_fbo->End();
 }

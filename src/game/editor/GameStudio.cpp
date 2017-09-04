@@ -6,6 +6,7 @@
 
 #include "game/test/test1.h"
 #include "manager/AssetsManager.h"
+#include "manager/ScriptManager.h"
 
 RE::GameStudio::GameStudio()
 	: _engine (Engine::instance)
@@ -15,6 +16,10 @@ RE::GameStudio::GameStudio()
 	ImGui::LoadDock(_engine.L);
 
 	RE::AssetsManager::instance.ScanFold(".");
+
+	RE::AssetsManager::instance.StartFileSystemWatcher(".", [](const char* path, int tp) {
+		RE::AssetsManager::instance.FileChanged(path, (RE::AssetsManager::FileChangeType)tp);
+	});
 }
 
 RE::GameStudio::~GameStudio() {
@@ -23,6 +28,8 @@ RE::GameStudio::~GameStudio() {
 }
 
 bool RE::GameStudio::Update(float dt) {
+	RE::AssetsManager::instance.Update(dt);
+
 	bool isUpdate = _engine.Loop(dt);
 
 	auto& imIO = ImGui::GetIO();

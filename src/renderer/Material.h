@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Texture2D.h"
-#include "Shader.h"
+#include "GLProgram.h"
 #include "core/math/Affine.h"
 
 namespace RE {
@@ -9,8 +9,12 @@ namespace RE {
 	public:
 		void Apply(const Affine& viewMat);
 		void OnGUI();
+		UI32 GetID();
+
+		bool operator == (const Material&);
+		bool operator != (const Material&);
 	public:
-		Shader*  shader = nullptr;
+		GLProgram*  program = nullptr;
 		Texture2D* texture = nullptr;
 		BlendFunc blend = BlendFunc::ALPHA_PREMULTIPLIED;
 	};

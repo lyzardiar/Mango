@@ -4,29 +4,20 @@
 #include "engine/Engine.h"
 #include "engine/component/Camera.h"
 #include "IRenderer.h"
+#include "../system/GLProgramSystem.h"
+#include "../system/Texture2DSystem.h"
 
 RE::TriangleRenderer::TriangleRenderer() {
-	static Shader *pl = new Shader();
-
-	material.texture = 0;
-	material.shader = pl;
+	material.texture = Texture2DSystem::instance.Add("images/2.png");
+	material.program = GLProgramSystem::instance["Default"];
 }
 
 void RE::TriangleRenderer::draw(const Affine& viewMat) {
-	IRenderer::draw(viewMat);
+	renderCMD.mat = viewMat;
+	renderCMD.material = &material;
+	renderCMD.triangles = &triangles;
 
-	long offset = (long)(triangles.verts.data);
-	// vertex
-	glEnableVertexAttribArray(Shader::VERTEX_ATTRIB_POSITION);
-	glVertexAttribPointer(Shader::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, position) + offset));
-	// color
-	glEnableVertexAttribArray(Shader::VERTEX_ATTRIB_COLOR);
-	glVertexAttribPointer(Shader::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, color) + offset));
-	// texcood
-	glEnableVertexAttribArray(Shader::VERTEX_ATTRIB_TEX_COORD);
-	glVertexAttribPointer(Shader::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(Triangle::Vertex), (GLvoid *)(offsetof(Triangle::Vertex, tex) + offset));
-
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	renderCMD.Commit();
 }
 
 void RE::TriangleRenderer::setColor(Color col) {

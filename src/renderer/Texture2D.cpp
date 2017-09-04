@@ -1,5 +1,6 @@
 #include "Texture2D.h"
 #include "image/PngDecoder.h"
+#include "engine/system/Texture2DSystem.h"
 
 GLuint RE::Texture2D::CurHandle = 0;
 
@@ -42,17 +43,25 @@ bool RE::Texture2D::InitWithData(UI32 width, UI32 height, UI8* data, UI32 len) {
 }
 
 bool RE::Texture2D::InitWithFile(const char* filepath) {
-	clear();
+	auto tex = Texture2DSystem::instance[filepath];
+	if (tex != nullptr) {
+		path = filepath;
+		size = tex->size;
+		_handle = tex->_handle;
+	}
+	else {
+		clear();
 
-	path = filepath;
-	auto imgInfo = RE::Png::Decode(filepath);
-	if (imgInfo.valid)
-		return InitWithData(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
+		path = filepath;
+		auto imgInfo = RE::Png::Decode(filepath);
+		if (imgInfo.valid)
+			return InitWithData(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
 
-	_handle = 0;
-	size.width = 1;
-	size.height = 1;
-	return false;
+		_handle = 0;
+		size.width = 1;
+		size.height = 1;
+		return false;
+	}
 }
 
 GLuint RE::Texture2D::GetHandle() {

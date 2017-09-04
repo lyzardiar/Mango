@@ -84,6 +84,17 @@ namespace RE {
 			return nullptr;
 		}
 
+		void RemoveComponentImt(IComponent* rmComp) {
+			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
+				auto comp = *iter;
+				if (comp == rmComp) {
+					comp->OnDestroy();
+					_components.erase(iter);
+					break;
+				}
+			}
+		}
+
 		void RemoveScriptComponent(const char* path) {
 			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
 				auto comp = *iter;

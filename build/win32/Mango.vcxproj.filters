@@ -379,9 +379,6 @@
     <ClInclude Include="..\..\src\core\base\Path.h">
       <Filter>core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\renderer\Shader.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\game\editor\manager\AssetsManager.h">
       <Filter>game\editor\manager</Filter>
     </ClInclude>
@@ -399,6 +396,24 @@
     </ClInclude>
     <ClInclude Include="..\..\src\game\editor\dialog\SelectScriptDlg.h">
       <Filter>game\editor\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\manager\ScriptManager.h">
+      <Filter>game\editor\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer\IRenderCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer\PipeLine.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer\TriangleCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\system\GLProgramSystem.h">
+      <Filter>engine\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer\GLProgram.h">
+      <Filter>renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -633,9 +648,6 @@
     <ClCompile Include="..\..\src\core\base\Path.cpp">
       <Filter>core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\renderer\Shader.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\game\editor\manager\AssetsManager.cpp">
       <Filter>game\editor\manager</Filter>
     </ClCompile>
@@ -662,6 +674,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\engine\system\Texture2DSystem.cpp">
       <Filter>engine\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\manager\ScriptManager.cpp">
+      <Filter>game\editor\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\renderer\GLProgram.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\system\GLProgramSystem.cpp">
+      <Filter>engine\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\renderer\PipeLine.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\renderer\TriangleCommand.cpp">
+      <Filter>renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

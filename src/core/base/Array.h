@@ -72,11 +72,20 @@ namespace RE {
 		}
 
 		const T& Push(const T& val) {
-			if (size == capacity) {
+			if (size >= capacity) {
 				Resize(capacity * 2);
 			}
 			data[size++] = val;
-			return val;
+			return data[size-1];
+		}
+
+		void Push(const Array& vals) {
+			while (size + (vals.size-1) >= capacity) {
+				Resize(capacity * 2);
+			}
+			for (int i = 0; i < vals.size; ++i) {
+				data[size++] = vals[i];
+			}
 		}
 
 		void Remove(int idx) {

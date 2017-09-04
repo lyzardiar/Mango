@@ -189,6 +189,7 @@
     <ClInclude Include="..\..\src\engine\Engine.h" />
     <ClInclude Include="..\..\src\engine\object\GameObject.h" />
     <ClInclude Include="..\..\src\engine\object\Image.h" />
+    <ClInclude Include="..\..\src\engine\system\GLProgramSystem.h" />
     <ClInclude Include="..\..\src\engine\system\InputSystem.h" />
     <ClInclude Include="..\..\src\engine\system\Texture2DSystem.h" />
     <ClInclude Include="..\..\src\game\editor\dialog\IDialog.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="..\..\src\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\src\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\src\game\editor\manager\AssetsManager.h" />
+    <ClInclude Include="..\..\src\game\editor\manager\ScriptManager.h" />
     <ClInclude Include="..\..\src\game\editor\object\IEditor.h" />
     <ClInclude Include="..\..\src\game\editor\view\GameView.h" />
     <ClInclude Include="..\..\src\game\editor\view\HierarchyView.h" />
@@ -250,10 +252,13 @@
     <ClInclude Include="..\..\src\libs\win32\glfw\include\GLFW\glfw3native.h" />
     <ClInclude Include="..\..\src\renderer\FrameBuffer.h" />
     <ClInclude Include="..\..\src\renderer\GL\REGL.h" />
+    <ClInclude Include="..\..\src\renderer\IRenderCommand.h" />
     <ClInclude Include="..\..\src\renderer\Material.h" />
-    <ClInclude Include="..\..\src\renderer\Shader.h" />
+    <ClInclude Include="..\..\src\renderer\PipeLine.h" />
+    <ClInclude Include="..\..\src\renderer\GLProgram.h" />
     <ClInclude Include="..\..\src\renderer\Texture2D.h" />
     <ClInclude Include="..\..\src\renderer\Triangle.h" />
+    <ClInclude Include="..\..\src\renderer\TriangleCommand.h" />
     <ClInclude Include="..\..\src\script\lua\kaguya.hpp" />
     <ClInclude Include="..\..\src\script\lua\LuaWrapper.h" />
   </ItemGroup>
@@ -280,10 +285,12 @@
     <ClCompile Include="..\..\src\engine\Engine.cpp" />
     <ClCompile Include="..\..\src\engine\object\GameObject.cpp" />
     <ClCompile Include="..\..\src\engine\object\Image.cpp" />
+    <ClCompile Include="..\..\src\engine\system\GLProgramSystem.cpp" />
     <ClCompile Include="..\..\src\engine\system\InputSystem.cpp" />
     <ClCompile Include="..\..\src\engine\system\Texture2DSystem.cpp" />
     <ClCompile Include="..\..\src\game\editor\GameStudio.cpp" />
     <ClCompile Include="..\..\src\game\editor\manager\AssetsManager.cpp" />
+    <ClCompile Include="..\..\src\game\editor\manager\ScriptManager.cpp" />
     <ClCompile Include="..\..\src\game\editor\object\EditorGameObject.cpp" />
     <ClCompile Include="..\..\src\game\editor\object\EditorImage.cpp" />
     <ClCompile Include="..\..\src\game\editor\object\EditorMaterial.cpp" />
@@ -341,9 +348,11 @@
     <ClCompile Include="..\..\src\libs\win32\gl3w\GL\gl3w.c" />
     <ClCompile Include="..\..\src\renderer\FrameBuffer.cpp" />
     <ClCompile Include="..\..\src\renderer\Material.cpp" />
-    <ClCompile Include="..\..\src\renderer\Shader.cpp" />
+    <ClCompile Include="..\..\src\renderer\GLProgram.cpp" />
+    <ClCompile Include="..\..\src\renderer\PipeLine.cpp" />
     <ClCompile Include="..\..\src\renderer\Texture2D.cpp" />
     <ClCompile Include="..\..\src\renderer\Triangle.cpp" />
+    <ClCompile Include="..\..\src\renderer\TriangleCommand.cpp" />
     <ClCompile Include="..\..\src\script\lua\LuaWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ local BaseComponent = Class("BaseComponent")
 
 function BaseComponent:_define()
     self._elapse = 0
-    self._duration = 1
+    self._duration = 2
     self._bool = true
     self._string = "string"
 end
@@ -31,7 +31,7 @@ function BaseComponent:Update(dt)
     self:tick(dt)
     local ep = self:triggle()
     if ep then 
-        print("Tick!!!", ep, self._bool, self._string)
+        print("Tick Update!!!", ep, self._bool, self._string)
     end
 
     -- TimerOut:new(0, function()

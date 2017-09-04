@@ -20,3 +20,21 @@ void RE::IEditor::DrawWindowBorad(float xpad, float ypad) {
 	draw_list->AddRectFilledMultiColor(canvas_pos, ImVec2(canvas_pos.x + canvas_size.x, canvas_pos.y + canvas_size.y), bg, bg, bg, bg);
 	draw_list->AddRect(canvas_pos, ImVec2(canvas_pos.x + canvas_size.x, canvas_pos.y + canvas_size.y), ImColor(0xF3, 0x33, 0xA3));
 }
+
+bool RE::IEditor::RightClickComponent(IComponent* comp) {
+	bool isRemoved = false;
+	if (ImGui::IsItemClicked(1)) {
+		ImGui::OpenPopup("RightClickComponent");
+	}
+	if (ImGui::BeginPopup("RightClickComponent")) {
+		if (comp->canRemove && ImGui::Button("Remove Component")) {
+			isRemoved = true;
+			comp->gameObject->RemoveComponentImt(comp);
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::EndPopup();
+	}
+
+	return isRemoved;
+}

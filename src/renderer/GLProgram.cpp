@@ -1,48 +1,52 @@
 
 
-#include "Shader.h"
+#include "GLProgram.h"
 #include <malloc.h>
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
 #include "FrameBuffer.h"
 
-GLuint RE::Shader::CurProgram = 0;
+GLuint RE::GLProgram::CurProgram = 0;
 
-const char* RE::Shader::ATTRIBUTE_NAME_COLOR = "a_color";
-const char* RE::Shader::ATTRIBUTE_NAME_POSITION = "a_position";
-const char* RE::Shader::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
+const char* RE::GLProgram::ATTRIBUTE_NAME_COLOR = "a_color";
+const char* RE::GLProgram::ATTRIBUTE_NAME_POSITION = "a_position";
+const char* RE::GLProgram::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
 
-RE::Shader::Shader() {
-	Init("shaders/default.vert", "shaders/default.frag");
+RE::GLProgram::GLProgram() {
+	//Init("shaders/default.vert", "shaders/default.frag");
 }
 
-RE::Shader::~Shader() {
+RE::GLProgram::~GLProgram() {
 	reset();
 }
 
-bool RE::Shader::Init(const char* vert, const char* frag) {
+bool RE::GLProgram::Init(const char* vert, const char* frag) {
+	reset();
+
 	Data vertdata = FileUtils::getInstance()->getData(vert);
 	Data fragdata = FileUtils::getInstance()->getData(frag);
 
-	reset();
+	return InitWithBuff((char*)vertdata.getBytes(), (char*)fragdata.getBytes());
+}
 
-	if (!compile(_vertHandle, GL_VERTEX_SHADER, (const GLchar*)vertdata.getBytes()) ||
-		!compile(_fragHandle, GL_FRAGMENT_SHADER, (const GLchar*)fragdata.getBytes())) {
+bool RE::GLProgram::InitWithBuff(const char* vert, const char* frag) {
+	if (!compile(_vertHandle, GL_VERTEX_SHADER, (const GLchar*)vert) ||
+		!compile(_fragHandle, GL_FRAGMENT_SHADER, (const GLchar*)frag)) {
 		return false;
 	}
 	_program = glCreateProgram();
 	glAttachShader(_program, _vertHandle);
 	glAttachShader(_program, _fragHandle);
-	
+
 	return link();
 }
 
-bool RE::Shader::Apply() {
+bool RE::GLProgram::Apply() {
 	glUseProgram(_program);
 	return true;
 }
 
-bool RE::Shader::Apply(float* matp) {
+bool RE::GLProgram::Apply(float* matp) {
 	if (CurProgram != _program) {
 		CurProgram = _program;
 		glUseProgram(_program);
@@ -51,19 +55,19 @@ bool RE::Shader::Apply(float* matp) {
 	return true;
 }
 
-GLuint RE::Shader::GetProgramHandle() {
+GLuint RE::GLProgram::GetProgramHandle() {
 	return _program;
 }
 
-GLuint RE::Shader::GetMatPHandle() {
+GLuint RE::GLProgram::GetMatPHandle() {
 	return _matPHandle;
 }
 
-GLuint RE::Shader::GetMatMHandle() {
+GLuint RE::GLProgram::GetMatMHandle() {
 	return _matMHandle;
 }
 
-bool RE::Shader::compile(GLuint& handle, GLenum type, const GLchar* code) {
+bool RE::GLProgram::compile(GLuint& handle, GLenum type, const GLchar* code) {
 	GLint status = 0;
 	handle = glCreateShader(type);
 	CHECK_GL_ERROR_DEBUG();
@@ -79,7 +83,7 @@ bool RE::Shader::compile(GLuint& handle, GLenum type, const GLchar* code) {
 	return status == GL_TRUE;
 }
 
-bool RE::Shader::link() {
+bool RE::GLProgram::link() {
 	GLint status = GL_TRUE;
 
 	glBindAttribLocation(_program, VERTEX_ATTRIB_POSITION, ATTRIBUTE_NAME_POSITION);
@@ -91,7 +95,7 @@ bool RE::Shader::link() {
 
 	if (status == GL_FALSE) {
 		clearProgram();
-		puts("Shader Link Error.");
+		puts("GLProgram Link Error.");
 	}
 	else {
 		clearShader();
@@ -103,7 +107,7 @@ bool RE::Shader::link() {
 	return (status == GL_TRUE);
 }
 
-std::string RE::Shader::getShaderLog(GLuint handle) {
+std::string RE::GLProgram::getShaderLog(GLuint handle) {
 	GLint len = 0;
 	glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &len);
 	if (len < 1) return "";
@@ -114,18 +118,18 @@ std::string RE::Shader::getShaderLog(GLuint handle) {
 	return ret;
 }
 
-void RE::Shader::reset() {
+void RE::GLProgram::reset() {
 	clearShader();
 	clearProgram();
 }
 
-void RE::Shader::clearShader() {
+void RE::GLProgram::clearShader() {
 	if (_vertHandle) glDeleteShader(_vertHandle); 
 	if (_fragHandle) glDeleteShader(_fragHandle);
 	_vertHandle = _fragHandle = 0;
 }
 
-void RE::Shader::clearProgram() {
+void RE::GLProgram::clearProgram() {
 	if (_program) glDeleteProgram(_program); 
 	_program = 0;
 }

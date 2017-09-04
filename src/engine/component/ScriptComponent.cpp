@@ -3,6 +3,10 @@
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
 
+#ifdef _WIN32
+#include "game/editor/manager/ScriptManager.h"
+#endif
+
 
 RE::ScriptComponent::ScriptComponent(const char* path, class GameObject* go) {
 	this->path = path;
@@ -16,28 +20,27 @@ RE::ScriptComponent::ScriptComponent(const char* path, class GameObject* go) {
 		this->baseName = path;
 	}
 	
+	Class = Load(path);
 
-	Data data = FileUtils::getInstance()->getData(path);
-
-	auto& state = Engine::instance.Lua;
-	auto func = state.loadstring((char*)data.getBytes());
-	
-	Class = func.call<kaguya::LuaTable>();
-	func = Class.getField<kaguya::LuaFunction>("new");
+	auto func = Class.getField<kaguya::LuaFunction>("new");
 	if (!func.isNilref()) {
-		Class = func(Class, go);
-
-		luaFuncs[FuncType::AWAKE]		= Class.getField<kaguya::LuaFunction>("Awake");
-		luaFuncs[FuncType::START]		= Class.getField<kaguya::LuaFunction>("Start");
-		luaFuncs[FuncType::UPDATE]		= Class.getField<kaguya::LuaFunction>("Update");
-		luaFuncs[FuncType::ONDESTROY]	= Class.getField<kaguya::LuaFunction>("OnDestroy");
-		luaFuncs[FuncType::ONENABLE]	= Class.getField<kaguya::LuaFunction>("OnEnable");
-		luaFuncs[FuncType::ONDISABLE]	= Class.getField<kaguya::LuaFunction>("OnDisable");
+		Class = func(Class, gameObject);
 	}
+	else {
+		Class = kaguya::LuaTable();
+	}
+
+	setupFuncs();
+
+#ifdef _WIN32
+	ScriptManager::instance.Add(this);
+#endif
 }
 
 RE::ScriptComponent::~ScriptComponent() {
-	
+#ifdef _WIN32
+	ScriptManager::instance.Remove(this);
+#endif
 }
 
 void RE::ScriptComponent::Awake() {
@@ -66,9 +69,13 @@ void RE::ScriptComponent::OnDestroy() {
 	if (!func.isNilref()) {
 		func(Class);
 	}
+
+	Class = kaguya::LuaTable();
+	setupFuncs();
 }
 
 void RE::ScriptComponent::OnEnable() {
+	isEnabled = true;
 	auto& func = luaFuncs[FuncType::ONENABLE];
 	if (!func.isNilref()) {
 		func(Class);
@@ -76,6 +83,7 @@ void RE::ScriptComponent::OnEnable() {
 }
 
 void RE::ScriptComponent::OnDisable() {
+	isEnabled = false;
 	auto& func = luaFuncs[FuncType::ONDISABLE];
 	if (!func.isNilref()) {
 		func(Class);
@@ -87,5 +95,62 @@ const char* RE::ScriptComponent::TypeName() {
 }
 
 void RE::ScriptComponent::Reload() {
+	Clear();
+	kaguya::LuaTable cls = Load(path.c_str());
 
+	auto& keys = cls.keys<std::string>();
+
+	for (auto& key : keys) {
+		if (Class[key].isNilref()) {
+			Class[key] = cls[key];
+		}
+		else {
+			switch (cls[key].type())
+			{
+			case LUA_TSTRING: {
+				break;
+			}
+			case LUA_TBOOLEAN: {
+				break;
+			}
+			case LUA_TNUMBER: {
+				break;
+			}
+			case LUA_TFUNCTION: {
+				Class[key] = cls[key];
+				break;
+			}
+			case LUA_TNIL: {
+				break;
+			}
+			default:
+				break;
+			}
+		}
+	}
+
+	setupFuncs();
+}
+
+kaguya::LuaTable RE::ScriptComponent::Load(const char* path) {
+	Data data = FileUtils::getInstance()->getData(path);
+
+	auto& state = Engine::instance.Lua;
+	auto func = state.loadstring((char*)data.getBytes());
+
+	kaguya::LuaTable cls = func.call<kaguya::LuaTable>();
+	return cls;
+}
+
+void RE::ScriptComponent::Clear() {
+
+}
+
+void RE::ScriptComponent::setupFuncs() {
+	luaFuncs[FuncType::AWAKE] = Class.getField<kaguya::LuaFunction>("Awake");
+	luaFuncs[FuncType::START] = Class.getField<kaguya::LuaFunction>("Start");
+	luaFuncs[FuncType::UPDATE] = Class.getField<kaguya::LuaFunction>("Update");
+	luaFuncs[FuncType::ONDESTROY] = Class.getField<kaguya::LuaFunction>("OnDestroy");
+	luaFuncs[FuncType::ONENABLE] = Class.getField<kaguya::LuaFunction>("OnEnable");
+	luaFuncs[FuncType::ONDISABLE] = Class.getField<kaguya::LuaFunction>("OnDisable");
 }

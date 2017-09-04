@@ -15,6 +15,9 @@ namespace RE {
 		class Texture2D* Add(const char* path);
 		class Texture2D* Add(const StaticString<128>& path);
 
+		class Texture2D* operator[](const char* path);
+		class Texture2D* operator[](const StaticString<128>& path);
+
 	public:
 		std::unordered_map<std::string, class Texture2D*> textures;
 	};

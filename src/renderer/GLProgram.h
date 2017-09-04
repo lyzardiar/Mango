@@ -3,7 +3,7 @@
 #include <string>
 
 namespace RE {
-	class Shader {
+	class GLProgram {
 	public:
 		static GLuint CurProgram;
 	public:
@@ -16,10 +16,11 @@ namespace RE {
 		static const char* ATTRIBUTE_NAME_POSITION;
 		static const char* ATTRIBUTE_NAME_TEX_COORD;
 	public:
-		Shader();
-		~Shader();
+		GLProgram();
+		~GLProgram();
 
 		bool Init(const char* vert, const char* frag);
+		bool InitWithBuff(const char* vert, const char* frag);
 
 		void OnGUI();
 

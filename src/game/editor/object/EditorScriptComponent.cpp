@@ -2,18 +2,27 @@
 #include "imgui/imgui.h"
 #include "core/base/String.h"
 #include "script/lua/kaguya.hpp"
+#include "IEditor.h"
 
 namespace RE {
 
 	void ScriptComponent::OnGUI() {
 
 		if (ImGui::CollapsingHeader(StaticString<128>("Script: ", baseName.data).data, ImGuiTreeNodeFlags_DefaultOpen)) {
+			if (IEditor::RightClickComponent(this)) {
+				return;
+			}
+			if (!isValid) {
+				ImGui::Text("Invalid Component!");
+				return;
+			}
+
 			ImGui::Indent(10);
 			auto& keys = Class.keys<std::string>();
+			std::sort(keys.begin(), keys.end());
 			for (auto& k : keys) {
 				if (k[0] != '_') continue;
-
-
+				
 				switch (Class[k].type())
 				{
 				case LUA_TSTRING: {
@@ -25,10 +34,13 @@ namespace RE {
 					break;
 				}
 				case LUA_TBOOLEAN: {
+					ImVec2 canvas_size = ImGui::GetContentRegionAvail();
+					ImGui::PushItemWidth(canvas_size.x * 0.68);
 					bool val = Class[k];
 					if (ImGui::Checkbox(StaticString<128>(k.c_str() + 1, "##", baseName.data).Title().data, &val)) {
 						Class[k] = val;
 					}
+					ImGui::PopItemWidth();
 					break;
 				}
 				case LUA_TNUMBER: {

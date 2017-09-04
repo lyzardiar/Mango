@@ -7,7 +7,7 @@
 #include "imgui_impl_glfw_gl3.h"
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
-#include "renderer/Shader.h"
+#include "renderer/GLProgram.h"
 #include "renderer/Texture2D.h"
 #include "image/PngDecoder.h"
 #include "base/Time.h"

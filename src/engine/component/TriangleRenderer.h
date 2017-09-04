@@ -1,6 +1,7 @@
 #pragma once
 #include "IRenderer.h"
 #include "renderer/Triangle.h"
+#include "renderer/TriangleCommand.h"
 
 namespace RE {
 	class TriangleRenderer : public IRenderer {
@@ -15,5 +16,7 @@ namespace RE {
 		virtual void OnGUI() override;
 	public:
 		Triangle triangles = Triangle::Default;
+
+		TriangleCommand renderCMD;
 	};
 }

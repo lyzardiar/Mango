@@ -32,7 +32,7 @@ namespace RE {
 		GameObject* gameObject = nullptr;
 		bool canRemove = true;
 		bool isStart = false;
-
+		bool isEnabled = true;
 	protected:
 		
 	};
