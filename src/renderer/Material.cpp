@@ -21,14 +21,3 @@ void RE::Material::Apply(const Affine& viewMat) {
 UI32 RE::Material::GetID() {
 	return 0;
 }
-
-bool RE::Material::operator!=(const Material& rhs) {
-	return !(*this == rhs);
-}
-
-bool RE::Material::operator==(const Material& rhs) {
-	if (program == rhs.program && blend == rhs.blend && texture == rhs.texture) {
-		return true;
-	}
-	return false;
-}

@@ -6,11 +6,12 @@
 RE::Texture2DSystem RE::Texture2DSystem::instance;
 
 RE::Texture2D* RE::Texture2DSystem::Add(const char* path) {
-	if (textures.count(path) > 0) {
-		return textures[path];
+	auto tex = textures[path];
+	if (tex != nullptr) {
+		return tex;
 	}
 
-	auto tex = new Texture2D(path);
+	tex = new Texture2D(path);
 	textures[path] = tex;
 	return tex;
 }

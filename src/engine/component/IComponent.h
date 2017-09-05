@@ -28,6 +28,7 @@ namespace RE {
 
 		virtual void OnGUI() {}
 
+		virtual void draw(const class Affine& viewMat) {}
 	public:
 		GameObject* gameObject = nullptr;
 		bool canRemove = true;

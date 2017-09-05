@@ -58,6 +58,12 @@ void RE::ScriptComponent::Start() {
 }
 
 void RE::ScriptComponent::Update(float dt) {
+	if (!isStart) {
+		Start();
+		isStart = true;
+		return;
+	}
+
 	auto& func = luaFuncs[FuncType::UPDATE];
 	if (!func.isNilref()) {
 		func(Class, dt);
@@ -95,10 +101,13 @@ const char* RE::ScriptComponent::TypeName() {
 }
 
 void RE::ScriptComponent::Reload() {
-	Clear();
 	kaguya::LuaTable cls = Load(path.c_str());
 
+	if (cls.isNilref()) return;
+	
 	auto& keys = cls.keys<std::string>();
+
+	Clear();
 
 	for (auto& key : keys) {
 		if (Class[key].isNilref()) {
@@ -137,6 +146,8 @@ kaguya::LuaTable RE::ScriptComponent::Load(const char* path) {
 
 	auto& state = Engine::instance.Lua;
 	auto func = state.loadstring((char*)data.getBytes());
+
+	if (func.isNilref()) return kaguya::LuaTable();
 
 	kaguya::LuaTable cls = func.call<kaguya::LuaTable>();
 	return cls;

@@ -1,5 +1,5 @@
 docks = {
-dock16736496 = {
+dock14211112 = {
 index = 0,
 label = "Hierarchy",
 x = 0,
@@ -16,7 +16,7 @@ child0 = -1,
 child1 = -1,
 parent = 4
 },
-dock16733176 = {
+dock14210472 = {
 index = 1,
 label = "Scene",
 x = 221,
@@ -33,7 +33,7 @@ child0 = -1,
 child1 = -1,
 parent = 4
 },
-dock16736928 = {
+dock14207784 = {
 index = 2,
 label = "Property",
 x = 1050,
@@ -50,7 +50,7 @@ child0 = -1,
 child1 = -1,
 parent = 3
 },
-dock16765192 = {
+dock14210088 = {
 index = 3,
 label = "",
 x = 0,
@@ -67,7 +67,7 @@ child0 = 4,
 child1 = 2,
 parent = -1
 },
-dock16738816 = {
+dock14207912 = {
 index = 4,
 label = "",
 x = 0,

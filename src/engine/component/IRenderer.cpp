@@ -5,7 +5,7 @@
 #include "engine/object/GameObject.h"
 
 void RE::IRenderer::draw(const Affine& viewMat) {
-	material.Apply(viewMat);
+	//material.Apply(viewMat);
 }
 
 void RE::IRenderer::setColor(Color col) {

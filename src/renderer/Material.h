@@ -11,8 +11,15 @@ namespace RE {
 		void OnGUI();
 		UI32 GetID();
 
-		bool operator == (const Material&);
-		bool operator != (const Material&);
+		inline bool operator != (const Material& rhs) {
+			return !(*this == rhs);
+		}
+		inline bool operator == (const Material& rhs) {
+			if (program == rhs.program && blend == rhs.blend && texture == rhs.texture) {
+				return true;
+			}
+			return false;
+		}
 	public:
 		GLProgram*  program = nullptr;
 		Texture2D* texture = nullptr;

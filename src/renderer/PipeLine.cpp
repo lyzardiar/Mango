@@ -31,22 +31,34 @@ void RE::PipeLine::AddCommand(class IRenderCommand* cmd) {
 		commitMaterial = *cmd->material;
 	}
 
-	auto countVert = triangles.verts.size;
+	auto& tarVerts = triangles.verts;
+	auto& tarInds = triangles.indices;
+	auto& cmdVerts = cmdTriangles.verts;
+	auto& cmdInds = cmdTriangles.indices;
+
+	auto countVert = tarVerts.size;
 	auto& cmdMat = cmd->mat;
 
-	for (int i = 0; i < cmdTriangles.verts.size; ++i) {
-		auto& vert = cmdTriangles.verts[i];
-
-		auto& cur = triangles.verts.Push(cmdTriangles.verts[i]);
-
-		Vec2& pos = *(Vec2*)&cur.position;
-		pos = cmdMat.Apply(pos);
+	while (tarVerts.size + cmdVerts.size >= tarVerts.capacity) {
+		tarVerts.Resize(tarVerts.capacity * 2);
+	}
+	while (tarInds.size + cmdInds.size >= tarInds.capacity) {
+		tarInds.Resize(tarInds.capacity * 2);
 	}
 
-	//triangles.verts.Push(cmdTriangles.verts);
+	for (int i = 0; i < cmdVerts.size; ++i) {
+		Triangle::Vertex& vert = cmdVerts.data[i];
 
-	for (int i = 0; i < cmdTriangles.indices.size; ++i) {
-		triangles.indices.Push(cmdTriangles.indices[i] + countVert);
+		auto& cur = (tarVerts.data[tarVerts.size++] = vert);
+
+		float x = cmdMat.a * cur.x + cmdMat.c * cur.y + cmdMat.x;
+		float y = cmdMat.b * cur.x + cmdMat.d * cur.y + cmdMat.y;
+		cur.x = x, cur.y = y;
+	}
+
+	auto cmdIndsData = cmdInds.data;
+	for (int i = 0; i < cmdInds.size; ++i) {
+		tarInds.data[tarInds.size++] = (*cmdIndsData++) + countVert;
 	}
 }
 

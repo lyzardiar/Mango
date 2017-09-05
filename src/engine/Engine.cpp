@@ -51,18 +51,18 @@ bool RE::Engine::Init() {
 	Lua.openlibs();
 	initLuaEnginie();
 
-	int count = 1;
+	//int count = 1;
 
-	root->children.Resize(count);
-	for (int i = 0; i < count; ++i) {
-		auto img = new Image("image");
-		root->AddChild(img);
+	//root->children.Resize(count);
+	//for (int i = 0; i < count; ++i) {
+	//	auto img = new Image("image");
+	//	root->AddChild(img);
 
-		for (int j = 0; j < 5000; ++j) {
-			auto img2 = new Image("image");
-			img->AddChild(img2);
-		}
-	}
+	//	for (int j = 0; j < 10000; ++j) {
+	//		auto img2 = new Image("image");
+	//		img->AddChild(img2);
+	//	}
+	//}
 
 	_isInited = true;
 	return true;
@@ -72,7 +72,33 @@ void RE::Engine::Update(float dt) {
 	if (!Lua["Engine"]["Update"].isNilref()) {
 		Lua["Engine"]["Update"](dt);
 	}
-	root->TransferUpdate(dt);
+
+	static Array<GameObject*> objs;
+	static Array<GameObject*> stk;
+
+	objs.Clear();
+	stk.Clear();
+
+	stk.Push(root);
+	GameObject* cur = nullptr;
+	GameObject* ch = nullptr;
+	while (stk.size > 0) {
+		cur = stk.data[--stk.size];
+		objs.Push(cur);
+
+		int chsize = cur->children.size;
+		while (chsize > 0) {
+			stk.Push(cur->children[--chsize]);
+		}
+	}
+
+	int size = objs.size;
+	auto pobj = objs.data;
+	while (size-- > 0) {
+		(*pobj++)->Update(dt);
+	}
+
+	//root->TransferUpdate(dt);
 }
 
 void RE::Engine::Render() {
@@ -105,16 +131,10 @@ bool RE::Engine::Loop(float dt)
 	Init();
 	time.Update();
 
-	static int speed = 2;
-	if (root->transform.x > 500) speed = -2;
-	if (root->transform.x < 0) speed = 2;
-
-	//root->transform.x += speed;
-
 	Update(dt);
 	Render();
-	time.ResetElapse();
 
+	time.ResetElapse();
 	return true;
 }
 

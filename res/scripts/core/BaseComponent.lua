@@ -28,6 +28,18 @@ end
 function BaseComponent:Update(dt)
     --print("Update in BaseComponent:", dt)
 
+    self.totcnt = 30
+    self.tottime = self.tottime or 0
+    self.tottick = self.tottick or 0
+
+    self.tottime = self.tottime + dt
+    self.tottick = self.tottick + 1
+    if self.tottick >= self.totcnt then 
+        print("Frame DT:", self.tottime / self.totcnt)
+        self.tottime = 0
+        self.tottick = 0
+    end
+
     self:tick(dt)
     local ep = self:triggle()
     if ep then 

@@ -20,16 +20,18 @@ RE::GameObject::GameObject(const char* name)
 }
 
 RE::GameObject::~GameObject() {
-	for (auto& comp : _components) {
+	auto size = _components.size;
+	for (int idx = 0; idx < size; ++idx) {
+		auto comp = _components[idx];
 		comp->OnDestroy();
 		SAFE_DELETE(comp);
 	}
-	_components.clear();
+	_components.Clear();
 }
 
 bool RE::GameObject::init() {
 	$transform = &transform;
-	_components.push_back(&transform);
+	_components.Push(&transform);
 	return true;
 }
 
@@ -45,14 +47,10 @@ void RE::GameObject::RemoveChild(GameObject* child) {
 }
 
 void RE::GameObject::Update(float dt) {
-	for (auto& comp : _components) {
-		if (comp->isStart) {
-			comp->Update(dt);
-		}
-		else {
-			comp->Start();
-			comp->isStart = true;
-		}
+	int size = _components.size;
+	auto comp = _components.data + 1;
+	while (size-- > 1) {
+		(*comp++)->Update(dt);
 	}
 }
 
@@ -69,11 +67,10 @@ void RE::GameObject::Render(const Affine& viewMat) {
 }
 
 void RE::GameObject::OnDraw(const Affine& viewMat) {
-	for (auto& comp : _components) {
-		auto renderer = dynamic_cast<IRenderer*>(comp);
-		if (renderer != nullptr) {
-			renderer->draw(viewMat);
-		}
+	int size = _components.size;
+	auto comp = _components.data;
+	while (size-- > 0) {
+		(*comp++)->draw(viewMat);
 	}
 }
 

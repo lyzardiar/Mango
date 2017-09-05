@@ -130,7 +130,7 @@ namespace RE {
 			, dst($dst)
 		{ }
 
-		bool operator == (const BlendFunc& other) {
+		inline bool operator == (const BlendFunc& other) {
 			return src == other.src && dst == other.dst;
 		}
 

@@ -71,7 +71,21 @@ namespace RE {
 			return -1;
 		}
 
-		const T& Push(const T& val) {
+		T& Front() {
+			return data[0];
+		}
+
+		T& Last() {
+			return data[size - 1];
+		}
+
+		T& Pop() {
+			auto& ret = data[size - 1];
+			--size;
+			return ret;
+		}
+
+		T& Push(const T& val) {
 			if (size >= capacity) {
 				Resize(capacity * 2);
 			}

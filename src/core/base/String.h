@@ -109,6 +109,10 @@ namespace RE {
 			size = rhs.size;
 			memcpy(data, rhs.data, size);
 		}
+		StaticString(const StaticString&& rhs) {
+			size = rhs.size;
+			memcpy(data, rhs.data, size);
+		}
 
 		template<typename... Args>
 		StaticString(Args... args) {

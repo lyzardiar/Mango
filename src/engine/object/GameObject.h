@@ -19,7 +19,9 @@ namespace RE {
 		T* AddComponent(T* unused = nullptr) {
 			static_assert(std::is_convertible<T*, IComponent*>::value, "Invalid Type for GameObject::AddComponent!");
 
-			for (auto& comp : _components) {
+			auto size = _components.size;
+			for (int idx = 0; idx < size; ++idx) {
+				auto comp = _components[idx];
 				if (typeid(T) == typeid(*comp)) {
 					return (T*)comp;
 				}
@@ -29,7 +31,7 @@ namespace RE {
 			ret->gameObject = this;
 			ret->Awake();
 
-			_components.push_back(ret);
+			_components.Push(ret);
 
 			return ret;
 		}
@@ -38,11 +40,12 @@ namespace RE {
 		void RemoveComponent(T* unused = nullptr) {
 			static_assert(std::is_convertible<T*, IComponent*>::value, "Invalid Type for GameObject::AddComponent!");
 
-			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
-				auto comp = *iter;
+			auto size = _components.size;
+			for (int idx = 0; idx < size; ++idx) {
+				auto comp = _components[idx];
 				if (typeid(T) == typeid(*comp)) {
 					comp->OnDestroy();
-					_components.erase(iter);
+					_components.Remove(comp);
 					break;
 				}
 			}
@@ -50,7 +53,9 @@ namespace RE {
 
 		template<typename T>
 		T* GetComponent() {
-			for (auto& comp : _components) {
+			auto size = _components.size;
+			for (int idx = 0; idx < size; ++idx) {
+				auto comp = _components[idx];
 				if (typeid(T) == typeid(*comp)) {
 					return (T*)comp;
 				}
@@ -60,7 +65,9 @@ namespace RE {
 
 		IComponent* GetComponent(const char* name) {
 			if (name == nullptr) return nullptr;
-			for (auto& comp : _components) {
+			auto size = _components.size;
+			for (int idx = 0; idx < size; ++idx) {
+				auto comp = _components[idx];
 				if (strcmp(comp->TypeName(), name) == 0) {
 					return comp;
 				}
@@ -70,7 +77,9 @@ namespace RE {
 
 		IComponent* AddScriptComponent(const char* path) {
 			if (FileUtils::getInstance()->isFileExists(path)) {
-				for (auto& comp : _components) {
+				auto size = _components.size;
+				for (int idx = 0; idx < size; ++idx) {
+					auto comp = _components[idx];
 					if (strcmp(comp->TypeName(), path) == 0) {
 						return comp;
 					}
@@ -78,29 +87,31 @@ namespace RE {
 
 				ScriptComponent* scomp = new ScriptComponent(path, this);
 				scomp->Awake();
-				_components.push_back(scomp);
+				_components.Push(scomp);
 				return scomp;
 			}
 			return nullptr;
 		}
 
 		void RemoveComponentImt(IComponent* rmComp) {
-			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
-				auto comp = *iter;
+			auto size = _components.size;
+			for (int idx = 0; idx < size; ++idx) {
+				auto comp = _components[idx];
 				if (comp == rmComp) {
 					comp->OnDestroy();
-					_components.erase(iter);
+					_components.Remove(comp);
 					break;
 				}
 			}
 		}
 
 		void RemoveScriptComponent(const char* path) {
-			for (auto iter = _components.begin(); iter != _components.end(); ++iter) {
-				auto comp = *iter;
+			auto size = _components.size;
+			for (int idx = 0; idx < size; ++idx) {
+				auto comp = _components[idx];
 				if (strcmp(comp->TypeName(), path) == 0) {
 					comp->OnDestroy();
-					_components.erase(iter);
+					_components.Remove(comp);
 					break;
 				}
 			}
@@ -130,6 +141,6 @@ namespace RE {
 		virtual bool init();
 
 	protected:
-		std::vector<IComponent*> _components;
+		Array<IComponent*> _components;
 	};
 }

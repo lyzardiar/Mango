@@ -16,7 +16,7 @@ void RE::GameObject::OnGUI() {
 		ImGui::Spacing(); ImGui::SameLine(); ImGui::InputText("UUID", uuid.data, 65, ImGuiInputTextFlags_ReadOnly);
 	}
 
-	for (int idx = 0; idx < _components.size(); ++idx) {
+	for (int idx = 0; idx < _components.size; ++idx) {
 		auto comp = _components[idx];
 		comp->OnGUI();
 	}

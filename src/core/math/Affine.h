@@ -45,6 +45,13 @@ namespace RE {
 						b * pos.x + d * pos.y + y);
 		}
 
+		void ApplySelf(Vec2& pos) {
+			float x = a * pos.x + c * pos.y + x;
+			float y =	b * pos.x + d * pos.y + y;
+			pos.x = x;
+			pos.y = y;
+		}
+
 		Affine Invert() {
 			float det = 1 / (a * d - b * c);
 			return Affine(
