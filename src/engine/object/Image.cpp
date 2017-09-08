@@ -7,6 +7,7 @@ RE::Image::Image(const char* name/* = "" */)
 }
 
 void RE::Image::OnDraw(const Affine& viewMat) {
+	transform.rotation += rand() % 10;
 	GameObject::OnDraw(viewMat);
 }
 

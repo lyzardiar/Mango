@@ -9,6 +9,8 @@
 #include "base/Array.h"
 #include "system/GLProgramSystem.h"
 #include "renderer/PipeLine.h"
+#include "math/Math.h"
+#include <algorithm>
 
 RE::Engine RE::Engine::instance;
 
@@ -51,18 +53,17 @@ bool RE::Engine::Init() {
 	Lua.openlibs();
 	initLuaEnginie();
 
-	//int count = 1;
+	int count = 28888;
 
-	//root->children.Resize(count);
-	//for (int i = 0; i < count; ++i) {
-	//	auto img = new Image("image");
-	//	root->AddChild(img);
-
-	//	for (int j = 0; j < 10000; ++j) {
-	//		auto img2 = new Image("image");
-	//		img->AddChild(img2);
-	//	}
-	//}
+	root->children.Resize(count);
+	for (int i = 0; i < count; ++i) {
+		auto img = new Image("image");
+		img->transform.x = rand() % 500;
+		img->transform.y = rand() % 500;
+		img->transform.w = 107;
+		img->transform.h = 107;
+		root->AddChild(img);
+	}
 
 	_isInited = true;
 	return true;
@@ -73,32 +74,7 @@ void RE::Engine::Update(float dt) {
 		Lua["Engine"]["Update"](dt);
 	}
 
-	static Array<GameObject*> objs;
-	static Array<GameObject*> stk;
-
-	objs.Clear();
-	stk.Clear();
-
-	stk.Push(root);
-	GameObject* cur = nullptr;
-	GameObject* ch = nullptr;
-	while (stk.size > 0) {
-		cur = stk.data[--stk.size];
-		objs.Push(cur);
-
-		int chsize = cur->children.size;
-		while (chsize > 0) {
-			stk.Push(cur->children[--chsize]);
-		}
-	}
-
-	int size = objs.size;
-	auto pobj = objs.data;
-	while (size-- > 0) {
-		(*pobj++)->Update(dt);
-	}
-
-	//root->TransferUpdate(dt);
+	root->TransferUpdate(dt);
 }
 
 void RE::Engine::Render() {
@@ -113,6 +89,8 @@ void RE::Engine::Render() {
 	Vec2::SceneSize.height = camera.size.height;
 	Vec2::HalfSceneSize = Vec2::SceneSize / 2.0f;
 
+	drawCalls = 0;
+	verticeCount = 0;
 
 	Texture2D::CurHandle = -1;
 	GLProgram::CurProgram = 0;
@@ -131,8 +109,26 @@ bool RE::Engine::Loop(float dt)
 	Init();
 	time.Update();
 
+	static double elapseUpdate = 0;
+	static double elapseRender = 0;
+	static int frame = 0;
+
+	Time up;
 	Update(dt);
+	elapseUpdate += up.Elapse();
+
+	up.ResetElapse();
 	Render();
+	elapseRender += up.Elapse();
+
+	frame++;
+
+	if (frame % 10 == 0) {
+		Log("Update: %.6f   Render: %.6f", elapseUpdate / frame, elapseRender / frame);
+
+		fps = 1.0f / (elapseUpdate / frame + elapseRender / frame);
+		if (fps > 60) fps = 60;
+	}
 
 	time.ResetElapse();
 	return true;

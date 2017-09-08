@@ -171,6 +171,7 @@
     <ClInclude Include="..\..\src\core\image\ImageInfo.h" />
     <ClInclude Include="..\..\src\core\image\PngDecoder.h" />
     <ClInclude Include="..\..\src\core\math\Affine.h" />
+    <ClInclude Include="..\..\src\core\math\Math.h" />
     <ClInclude Include="..\..\src\core\platform\FileUtils.h" />
     <ClInclude Include="..\..\src\core\platform\Platform.h" />
     <ClInclude Include="..\..\src\core\platform\win32\FileHelperWin32.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="..\..\src\engine\component\Camera.h" />
     <ClInclude Include="..\..\src\engine\component\IComponent.h" />
     <ClInclude Include="..\..\src\engine\component\IRenderer.h" />
+    <ClInclude Include="..\..\src\engine\component\ParticleRender.h" />
     <ClInclude Include="..\..\src\engine\component\ScriptComponent.h" />
     <ClInclude Include="..\..\src\engine\component\Transform.h" />
     <ClInclude Include="..\..\src\engine\component\TriangleRenderer.h" />
@@ -280,6 +282,7 @@
     <ClCompile Include="..\..\src\core\platform\win32\main.cpp" />
     <ClCompile Include="..\..\src\core\platform\win32\Window-win32.cpp" />
     <ClCompile Include="..\..\src\engine\component\IRenderer.cpp" />
+    <ClCompile Include="..\..\src\engine\component\ParticleRender.cpp" />
     <ClCompile Include="..\..\src\engine\component\ScriptComponent.cpp" />
     <ClCompile Include="..\..\src\engine\component\TriangleRenderer.cpp" />
     <ClCompile Include="..\..\src\engine\Engine.cpp" />

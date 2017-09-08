@@ -31,6 +31,13 @@ namespace RE {
 		lua_State* L = nullptr;
 		class GameObject* root = nullptr;
 
+		UI32 drawCalls = 0;
+		UI32 verticeCount = 0;
+		float fps = 60;
+		double elapseUpdate = 0;
+		double elapseRender = 0;
+		UI32 frame = 0;
+
 		kaguya::State Lua;
 		Time time;
 		class Camera& camera;

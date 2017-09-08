@@ -8,7 +8,8 @@
 #include "../system/Texture2DSystem.h"
 
 RE::TriangleRenderer::TriangleRenderer() {
-	material.texture = 0;// Texture2DSystem::instance.Add("images/2.png");
+	material.texture = 0;// 
+	material.texture = Texture2DSystem::instance.Add("images/2.png");
 	material.program = GLProgramSystem::instance["Default"];
 }
 

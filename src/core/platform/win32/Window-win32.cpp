@@ -14,6 +14,8 @@
 
 using namespace RE;
 
+
+RE::Window* RE::Window::instance = nullptr;
 GLFWwindow* window = nullptr;
 
 static void error_callback(int error, const char* description) {
@@ -85,9 +87,11 @@ bool Window::loop() {
 }
 
 Window::Window() {
+	instance = this;
 	initGL();
 }
 
 Window::~Window() {
 	close();
+	instance = nullptr;
 }

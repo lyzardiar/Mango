@@ -415,6 +415,12 @@
     <ClInclude Include="..\..\src\renderer\GLProgram.h">
       <Filter>renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\engine\component\ParticleRender.h">
+      <Filter>engine\component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\math\Math.h">
+      <Filter>core\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\core\platform\win32\main.cpp">
@@ -689,6 +695,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\renderer\TriangleCommand.cpp">
       <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\component\ParticleRender.cpp">
+      <Filter>engine\component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

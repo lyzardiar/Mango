@@ -3,6 +3,7 @@
 
 #include "MainMenuView.h"
 #include "imgui/imgui.h"
+#include "engine/Engine.h"
 
 
 namespace RE {
@@ -14,7 +15,7 @@ namespace RE {
 			onFileMenu();
 			
 			char status[200];
-			sprintf(status, "FPS: %.1f", ImGui::GetIO().Framerate);
+			sprintf(status, "FPS: %.1f  DC: %d  DP: %d", Engine::instance.fps, Engine::instance.drawCalls, Engine::instance.verticeCount);
 
 			auto stats_size = ImGui::CalcTextSize(status);
 			ImGui::SameLine(ImGui::GetContentRegionMax().x - stats_size.x);

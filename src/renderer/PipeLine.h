@@ -9,6 +9,7 @@ namespace RE {
 		static PipeLine instance;
 	public:
 		void AddCommand(class IRenderCommand* cmd);
+		void AddCommandImt(class IRenderCommand* cmd);
 
 		void Commit();
 	public:

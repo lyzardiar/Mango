@@ -10,7 +10,7 @@ namespace RE {
 		enum {
 			VERTEX_ATTRIB_POSITION,
 			VERTEX_ATTRIB_COLOR,
-			VERTEX_ATTRIB_TEX_COORD
+			VERTEX_ATTRIB_TEX_COORD,
 		};
 		static const char* ATTRIBUTE_NAME_COLOR;
 		static const char* ATTRIBUTE_NAME_POSITION;

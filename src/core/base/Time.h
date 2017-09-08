@@ -11,7 +11,8 @@ namespace RE {
 	public:
 		void Update();
 		void ResetElapse();
-
+		double Elapse();
+		void Print(const char* msg = "");
 	public:
 		static double Clock();
 

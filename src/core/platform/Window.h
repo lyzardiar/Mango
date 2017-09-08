@@ -6,6 +6,8 @@
 namespace RE {
 	class Window {
 	public:
+		static Window* instance;
+	public:
 		Window();
 		~Window();
 

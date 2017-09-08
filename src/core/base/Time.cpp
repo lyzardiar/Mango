@@ -23,6 +23,14 @@ void RE::Time::ResetElapse() {
 	_lastTime = Clock();
 }
 
+double RE::Time::Elapse() {
+	return Clock() - _lastTime;
+}
+
+void RE::Time::Print(const char* msg /*= ""*/) {
+	Log("%s%.6f", msg, Clock() - _lastTime);
+}
+
 double RE::Time::Clock() {
 	timeval tmval;
 	gettimeofday(&tmval, NULL);
