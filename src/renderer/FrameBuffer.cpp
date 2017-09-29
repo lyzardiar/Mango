@@ -27,6 +27,10 @@ namespace RE {
 		return true;
 	}
 
+	RE::Texture2D* FrameBuffer::GetTexture() {
+		return _texture;
+	}
+
 	bool FrameBuffer::Begin(Viewport vp) {
 		if (memcmp(&vp, &_viewPort, sizeof(Viewport)) != 0) {
 			_viewPort = vp;

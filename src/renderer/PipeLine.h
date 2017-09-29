@@ -15,5 +15,6 @@ namespace RE {
 	public:
 		Triangle triangles;
 		Material commitMaterial;
+		UI32 triangleCount = 0;
 	};
 }

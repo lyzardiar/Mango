@@ -22,6 +22,8 @@ namespace RE {
 	public:
 		bool BindToDefault();
 		GLuint GetTextureHandle();
+		Texture2D* GetTexture();
+
 		bool Begin(Viewport vp);
 		bool End();
 
