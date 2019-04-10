@@ -21,23 +21,23 @@ namespace RE {
 			auto& keys = Class.keys<std::string>();
 			std::sort(keys.begin(), keys.end());
 			for (auto& k : keys) {
-				if (k[0] != '_') continue;
+				if (!isupper(k[0])) continue;
 				
 				switch (Class[k].type())
 				{
 				case LUA_TSTRING: {
 					const char* val = Class[k];
 					StaticString<128> buff = val;
-					if (ImGui::InputText(StaticString<128>(k.c_str()+1, "##", baseName.data).Title().data, buff.data, 128)) {
+					if (ImGui::InputText(StaticString<128>(k.c_str(), "##", baseName.data).Title().data, buff.data, 128)) {
 						Class[k] = (const char*)(buff.data);
 					}
 					break;
 				}
 				case LUA_TBOOLEAN: {
 					ImVec2 canvas_size = ImGui::GetContentRegionAvail();
-					ImGui::PushItemWidth(canvas_size.x * 0.68);
+					ImGui::PushItemWidth(canvas_size.x * 0.68f);
 					bool val = Class[k];
-					if (ImGui::Checkbox(StaticString<128>(k.c_str() + 1, "##", baseName.data).Title().data, &val)) {
+					if (ImGui::Checkbox(StaticString<128>(k.c_str(), "##", baseName.data).Title().data, &val)) {
 						Class[k] = val;
 					}
 					ImGui::PopItemWidth();
@@ -45,7 +45,7 @@ namespace RE {
 				}
 				case LUA_TNUMBER: {
 					float val = Class[k];
-					if (ImGui::DragFloat(StaticString<128>(k.c_str() + 1, "##", baseName.data).Title().data, &val)) {
+					if (ImGui::DragFloat(StaticString<128>(k.c_str(), "##", baseName.data).Title().data, &val)) {
 						Class[k] = val;
 					}
 					break;
@@ -57,7 +57,7 @@ namespace RE {
 					break;
 				}
 			}
-			ImGui::Unindent();
+			ImGui::Unindent(10);
 		}	
 	}
 

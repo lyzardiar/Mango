@@ -12,16 +12,16 @@ FileUtils* FileUtils::getInstance() {
 
 		App::instance.init();
 
-		instance->addSearchDir(App::AppPath + "../../../../game/res");
-		instance->addSearchDir(App::AppPath);
+		instance->AddSearchDir(App::AppPath + "../../../../game/res");
+		instance->AddSearchDir(App::AppPath);
 	}
 
 	return instance;
 }
 
 
-std::string FileUtils::realPath(std::string& path) {
-	if (isRealPath(path)) return path;
+Path FileUtils::RealPath(Path& path) {
+	if (IsRealPath(path)) return path;
 
 	for (auto& dir : _searchDirs) {
 		auto rpath = dir + path;
@@ -32,50 +32,36 @@ std::string FileUtils::realPath(std::string& path) {
 	return path;
 }
 
-void FileUtils::addSearchDir(std::string& path) {
-	if (path.empty()) return;
-
-	char ch = path[path.size() - 1];
-	if (ch != '/' || ch != '\\') path += "/";
+void FileUtils::AddSearchDir(Path path) {
+	if (path.Empty()) return;
 	_searchDirs.push_back(path);
 }
 
-bool RE::FileUtils::isFileExists(std::string& path) {
-	return FileState(path).size > 0;
+bool RE::FileUtils::IsFileExists(Path& path) {
+	return FileState(RealPath(path)).size > 0;
 }
 
-bool RE::FileUtils::isFileExists(const char* path) {
-	std::string filename = path;
-	return isFileExists(filename);
-}
-
-bool RE::FileUtils::isRealPath(std::string& path)
+bool RE::FileUtils::IsRealPath(Path& path)
 {
 #ifdef _WIN32 
-	if (path.size() < 2) return false;
+	if (path.Size() < 2) return false;
 	return isalpha(path[0]) && path[1] == ':';
 #else 
-	if (path.empty()) return false;
+	if (path.Empty()) return false;
 	return path[0] == '/';
 #endif
 }
 
-void RE::FileUtils::clearSearchDirs() {
+void RE::FileUtils::ClearSearchDirs() {
 	_searchDirs.clear();
 }
 
-RE::Data RE::FileUtils::getData(std::string& path) {
-	std::string fullpath = realPath(path);
-	File file(fullpath);
+RE::Data RE::FileUtils::GetData(Path& path) {
+	File file(RealPath(path));
 
 	Data data;
 	data.fastSet(file.Buff(), file.Size());
 
 	file.DropBuff();
 	return data;
-}
-
-RE::Data RE::FileUtils::getData(const char* path) {
-	std::string filepath(path);
-	return getData(filepath);
 }

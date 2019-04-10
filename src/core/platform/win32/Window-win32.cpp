@@ -80,7 +80,7 @@ bool Window::loop() {
 			lastTime = curTime;
 		}
 		else {
-			Sleep((interval - (curTime - lastTime)) * 1000);
+			Sleep(DWORD((interval - (curTime - lastTime)) * 1000));
 		}
 	}
 	return true;

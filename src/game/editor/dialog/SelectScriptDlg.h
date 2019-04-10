@@ -21,9 +21,9 @@ namespace RE {
 			auto& files = AssetsManager::instance.scriptFiles;
 
 			if (ImGui::BeginPopup(PopupName)) {
-				int size = files.size;
+				int size = files.size();
 				for (int i = 0; i < size; ++i) {
-					if (ImGui::Selectable((StaticString<128>(i, ": ", files[i])).data)) {
+					if (ImGui::Selectable((StaticString<128>(i, ": ", files[i].data)).data)) {
 						selectPath = files[i];
 					}
 				}

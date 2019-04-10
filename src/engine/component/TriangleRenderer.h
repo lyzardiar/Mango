@@ -10,9 +10,9 @@ namespace RE {
 
 		TriangleRenderer();
 
+		void update();
 		void draw(const Affine& viewMat) override;
 		virtual void setColor(Color col) override;
-		
 		virtual void OnGUI() override;
 	public:
 		Triangle triangles = Triangle::Default;

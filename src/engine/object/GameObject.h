@@ -76,7 +76,7 @@ namespace RE {
 		}
 
 		IComponent* AddScriptComponent(const char* path) {
-			if (FileUtils::getInstance()->isFileExists(path)) {
+			if (FileUtils::getInstance()->IsFileExists(Path(path))) {
 				auto size = _components.size;
 				for (int idx = 0; idx < size; ++idx) {
 					auto comp = _components[idx];
@@ -133,7 +133,7 @@ namespace RE {
 		Transform* $transform;
 		GameObject* parent = nullptr;
 		
-		std::string name;
+		String name;
 		StaticString<65> uuid;
 		Array<GameObject*> children;
 

@@ -18,12 +18,12 @@ namespace RE {
 			auto& files = AssetsManager::instance.imageFiles;
 
 			if (ImGui::BeginPopup(PopupName)) {
-				int size = files.size;
+				int size = files.size();
 				for (int i = 0; i < size; ++i) {
 					ImGui::Image((GLuint*)Texture2DSystem::instance.Add(files[i])->GetHandle(), ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0));
 
 					ImGui::SameLine();
-					if (ImGui::Selectable((StaticString<128>(i, ": ", files[i])).data)) {
+					if (ImGui::Selectable((StaticString<128>(i, ": ", files[i].data)).data)) {
 						selectPath = files[i];
 					}
 

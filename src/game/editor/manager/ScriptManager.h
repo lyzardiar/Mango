@@ -12,10 +12,10 @@ namespace RE {
 		void Add(ScriptComponent* comp);
 		void Remove(ScriptComponent* comp);
 
-		void AddScript(StaticString<128>& path);
-		void RemoveScript(StaticString<128>& path);
-		void UpdateScript(StaticString<128>& path);
-		void RenameScript(StaticString<128>& lastpath, StaticString<128>& curpath);
+		void AddScript(Path& path);
+		void RemoveScript(Path& path);
+		void UpdateScript(Path& path);
+		void RenameScript(Path& lastpath, Path& curpath);
 	public:
 				
 		Array<ScriptComponent*> scriptList;

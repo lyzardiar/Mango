@@ -42,6 +42,7 @@ namespace RE {
 		Time time;
 		class Camera& camera;
 		class InputSystem& input;
+		class Renderer& renderer;
 
 		Array<class GameObject*> selectedObjs;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "core/base/Array.h"
 #include "core/base/String.h"
+#include "core/base/Path.h"
 
 #include <string>
 #include <unordered_map>
@@ -11,14 +12,17 @@ namespace RE {
 		static Texture2DSystem instance;
 
 	public:
+		Texture2DSystem();
+
+		void InitDefault();
 
 		class Texture2D* Add(const char* path);
-		class Texture2D* Add(const StaticString<128>& path);
+		class Texture2D* Add(const Path& path);
 
 		class Texture2D* operator[](const char* path);
-		class Texture2D* operator[](const StaticString<128>& path);
+		class Texture2D* operator[](const Path& path);
 
 	public:
-		std::unordered_map<std::string, class Texture2D*> textures;
+		std::unordered_map<Path, class Texture2D*, Path::HashFunc, Path::EqualFunc> textures;
 	};
 }

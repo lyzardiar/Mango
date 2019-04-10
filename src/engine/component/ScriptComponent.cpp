@@ -1,5 +1,6 @@
 #include "ScriptComponent.h"
 #include "engine/Engine.h"
+#include "engine/object/GameObject.h"
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
 
@@ -8,16 +9,16 @@
 #endif
 
 
-RE::ScriptComponent::ScriptComponent(const char* path, class GameObject* go) {
+RE::ScriptComponent::ScriptComponent(Path path, class GameObject* go) {
 	this->path = path;
 	this->gameObject = go;
 
-	auto bn = strrchr(path, '/');	
+	auto bn = strrchr(path.data.c_str(), '/');	
 	if (bn != nullptr) {
 		this->baseName = bn+1;
 	}
 	else {
-		this->baseName = path;
+		this->baseName = path.data;
 	}
 	
 	Class = Load(path);
@@ -97,15 +98,15 @@ void RE::ScriptComponent::OnDisable() {
 }
 
 const char* RE::ScriptComponent::TypeName() {
-	return path.c_str();
+	return path.data.c_str();
 }
 
 void RE::ScriptComponent::Reload() {
-	kaguya::LuaTable cls = Load(path.c_str());
+	kaguya::LuaTable cls = Load(path);
 
 	if (cls.isNilref()) return;
 	
-	auto& keys = cls.keys<std::string>();
+	auto keys = cls.keys<std::string>();
 
 	Clear();
 
@@ -141,8 +142,8 @@ void RE::ScriptComponent::Reload() {
 	setupFuncs();
 }
 
-kaguya::LuaTable RE::ScriptComponent::Load(const char* path) {
-	Data data = FileUtils::getInstance()->getData(path);
+kaguya::LuaTable RE::ScriptComponent::Load(Path& path) {
+	Data data = FileUtils::getInstance()->GetData(path);
 
 	auto& state = Engine::instance.Lua;
 	auto func = state.loadstring((char*)data.getBytes());

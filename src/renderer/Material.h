@@ -7,6 +7,8 @@
 namespace RE {
 	class Material {
 	public:
+		Material();
+
 		void Apply(const Affine& viewMat);
 		void OnGUI();
 		UI32 GetID();
@@ -20,6 +22,10 @@ namespace RE {
 			}
 			return false;
 		}
+
+		void SetGLProgram(const char* name);
+		void SetTexturePath(const char* name);
+
 	public:
 		GLProgram*  program = nullptr;
 		Texture2D* texture = nullptr;

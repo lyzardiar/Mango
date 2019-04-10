@@ -14,15 +14,15 @@ void RE::Texture2D::OnGUI() {
 	ImGui::Image((GLuint*)_handle, ImVec2(60.0f, 60.0f), ImVec2(0, 1), ImVec2(1, 0));
 
 	int len = 128;
-	StaticString<128> lastPath = path;
+	Path lastPath = path;
 
 	ImVec2 canvas_size = ImGui::GetContentRegionAvail();
 	ImVec2 canvas_pos = ImGui::GetCursorScreenPos();
 
 	ImGui::PushItemWidth(canvas_size.x*0.68f);
-	if (ImGui::InputText("", lastPath.data, len,
+	if (ImGui::InputText("", lastPath.data.Buff(), len,
 		ImGuiInputTextFlags_CharsNoBlank | ImGuiInputTextFlags_EnterReturnsTrue)) {
-		Log("==> %s", lastPath.data);
+		Log("==> %s", lastPath.data.c_str());
 	}
 	ImGui::PopItemWidth();
 
@@ -34,11 +34,11 @@ void RE::Texture2D::OnGUI() {
 	dlg.OnGUI();
 
 	if (!dlg.selectPath.Empty()) {
-		lastPath = dlg.selectPath.data;
+		lastPath = dlg.selectPath;
 	}
 
 	if (lastPath != path) {
-		InitWithFile(lastPath.data);
+		path = lastPath;
 	}		
 }
 

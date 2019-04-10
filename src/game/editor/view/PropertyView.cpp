@@ -5,6 +5,7 @@
 #include "engine/Engine.h"
 #include "engine/object/GameObject.h"
 #include "game/editor/object/IEditor.h"
+#include "game/editor//Editor.h"
 
 namespace RE {
 
@@ -16,9 +17,9 @@ namespace RE {
 
 			if (Engine::instance.selectedObjs.size > 0) {
 				Engine::instance.selectedObjs[0]->OnGUI();
+				Editor::instance.hierarchyView.showAddComponentPopup(Engine::instance.selectedObjs[0]);
 			}
-			//Engine::instance.root->children[0]->OnGUI();
-
+			
 			//static float values[90] = { 0 };
 			//static int values_offset = 0;
 			//values[values_offset] = 1000.0f / ImGui::GetIO().Framerate;// cosf(phase);

@@ -1,9 +1,11 @@
 #pragma once
 #include "core/base/Array.h"
 #include "core/base/String.h"
+#include "core/base/Path.h"
 #include <functional>
 #include <memory>
 #include <mutex>
+#include <vector>
 
 
 namespace RE {
@@ -38,7 +40,7 @@ namespace RE {
 	public:
 		~AssetsManager();
 
-		typedef StaticString<128> PathType;
+		typedef Path PathType;
 		enum class ResType {
 			ALL,
 			IMAGE,
@@ -56,8 +58,8 @@ namespace RE {
 		};
 
 		struct ChangedFile {
-			ChangedFile(StaticString<128>& f, FileChangeType t) : file(f), type(t) {}
-			StaticString<128> file;
+			ChangedFile(Path& f, FileChangeType t) : file(f), type(t) {}
+			Path file;
 			FileChangeType type;
 		};
 
@@ -113,14 +115,14 @@ namespace RE {
 
 		void FileChanged(const char* path, FileChangeType type);
 	protected:
-		bool addCatagrayFile(Array<PathType>& container, const PathType& file);
-		bool removeCatagrayFile(Array<PathType>& container, const PathType& file);
+		bool addCatagrayFile(std::vector<PathType>& container, const PathType& file);
+		bool removeCatagrayFile(std::vector<PathType>& container, const PathType& file);
 	public:
 		PathType curDir;
-		Array<PathType> files;
-		Array<PathType> imageFiles;
-		Array<PathType> shaderFiles;
-		Array<PathType> scriptFiles;
+		std::vector<PathType> files;
+		std::vector<PathType> imageFiles;
+		std::vector<PathType> shaderFiles;
+		std::vector<PathType> scriptFiles;
 
 		FileSystemWatcher* fileSystemWatcher = nullptr;
 		std::shared_ptr<bool> quitFileSystemWatcher;

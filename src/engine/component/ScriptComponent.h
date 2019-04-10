@@ -2,12 +2,13 @@
 #include "IComponent.h"
 #include "script/lua/LuaWrapper.h"
 #include "base/String.h"
+#include "base/Path.h"
 
 namespace RE {
 	class ScriptComponent : public IComponent {
 	public:
 		ScriptComponent() {}
-		ScriptComponent(const char* path, class GameObject* go);
+		ScriptComponent(Path path, class GameObject* go);
 		~ScriptComponent();
 
 		virtual void Awake() override;
@@ -22,7 +23,7 @@ namespace RE {
 		void Reload();
 		virtual void OnGUI() override;
 		
-		kaguya::LuaTable Load(const char* path);
+		kaguya::LuaTable Load(Path& path);
 		void Clear();
 	protected:
 		void setupFuncs();
@@ -39,7 +40,7 @@ namespace RE {
 		};
 
 		bool isValid = true;
-		std::string path;
+		Path path;
 		StaticString<64> baseName;
 
 		kaguya::LuaTable Class;

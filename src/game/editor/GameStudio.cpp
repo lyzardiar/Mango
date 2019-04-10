@@ -4,9 +4,10 @@
 #include "core/base/File.h"
 #include "engine/Engine.h"
 
-#include "game/test/test1.h"
 #include "manager/AssetsManager.h"
 #include "manager/ScriptManager.h"
+
+#include "Editor.h"
 
 RE::GameStudio::GameStudio()
 	: _engine (Engine::instance)
@@ -35,7 +36,7 @@ bool RE::GameStudio::Update(float dt) {
 	auto& imIO = ImGui::GetIO();
 	ImGui::RootDock(ImVec2(0, 0), ImVec2(imIO.DisplaySize.x, imIO.DisplaySize.y));
 
-	Test1::Update(dt);
+	Editor::instance.Update(dt);
 
 	return isUpdate;
 }

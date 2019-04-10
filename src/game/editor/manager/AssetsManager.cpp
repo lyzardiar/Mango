@@ -3,7 +3,9 @@
 #include "platform/win32/FileHelperWin32.h"
 #include <assert.h>
 #include <thread>
+#include <algorithm>
 #include "ScriptManager.h"
+#include "base/Path.h"
 
 RE::AssetsManager RE::AssetsManager::instance;
 
@@ -17,42 +19,39 @@ RE::AssetsManager::~AssetsManager() {
 
 void RE::AssetsManager::ScanFold(const char* fold) {
 	FileDirWin fdir(".");
-	curDir = fdir.GetDirName();
+	curDir = Path(fdir.GetDirName());
 
 	fdir.BeginBrowse("*.*");
 
 	auto& vfiles = fdir.Files();
 
-	PathType spath;
 	for (auto& path : vfiles) {
-		path = String::Replace(path, curDir.data, ""); 		
-		spath = String::Replace(path, "\\", "/");
-		AddFile(spath);
+		path.Replace(curDir.data + "\\", "").Replace("\\", "/");
+		AddFile(PathType(path));
 	}
-	
 }
 
 void RE::AssetsManager::AddFile(PathType& file) {
-	if (file.EndWith(".png") || file.EndWith(".jpg")) {
+	if (file.data.EndWith(".png") || file.data.EndWith(".jpg")) {
 		addCatagrayFile(imageFiles, file);
 	}
-	else if (file.EndWith(".lua")) {
+	else if (file.data.EndWith(".lua")) {
 		addCatagrayFile(scriptFiles, file);
 	}
-	else if (file.EndWith(".frag") || file.EndWith(".vert")) {
+	else if (file.data.EndWith(".frag") || file.data.EndWith(".vert")) {
 		addCatagrayFile(shaderFiles, file);
 	}
 	addCatagrayFile(files, file);
 }
 
 void RE::AssetsManager::RemoveFile(PathType& file) {
-	if (file.EndWith(".png") || file.EndWith(".jpg")) {
+	if (file.data.EndWith(".png") || file.data.EndWith(".jpg")) {
 		removeCatagrayFile(imageFiles, file);
 	}
-	else if (file.EndWith(".lua")) {
+	else if (file.data.EndWith(".lua")) {
 		removeCatagrayFile(scriptFiles, file);
 	}
-	else if (file.EndWith(".frag") || file.EndWith(".vert")) {
+	else if (file.data.EndWith(".frag") || file.data.EndWith(".vert")) {
 		removeCatagrayFile(shaderFiles, file);
 	}
 	removeCatagrayFile(files, file);
@@ -73,7 +72,7 @@ void RE::AssetsManager::StopFileSystemWatcher() {
 void RE::AssetsManager::Update(float dt) {
 	if (changedFiles.Empty()) return;
 
-	static StaticString<128> lastFile;
+	static Path lastFile;
 
 	auto item = changedFiles.Pop();
 	lastFile = item.file;
@@ -81,7 +80,7 @@ void RE::AssetsManager::Update(float dt) {
 		return;
 	}
 
-	bool isScript = item.file.EndWith(".lua");
+	bool isScript = item.file.data.EndWith(".lua");
 
 	switch (item.type)
 	{
@@ -113,19 +112,21 @@ void RE::AssetsManager::FileChanged(const char* path, FileChangeType type) {
 	changedFiles.Push(ChangedFile(PathType(sp), type));
 }
 
-bool RE::AssetsManager::addCatagrayFile(Array<PathType>& container, const PathType& file) {
+bool RE::AssetsManager::addCatagrayFile(std::vector<PathType>& container, const PathType& file) {
 	bool ret = false;
-	if (container.Find(file) == -1) {
-		container.Push(file);
+	auto&& iter = std::find(container.begin(), container.end(), file);
+	if (iter == container.end()) {
+		container.push_back(file);
 		ret = true;
 	}
 	return ret;
 }
 
-bool RE::AssetsManager::removeCatagrayFile(Array<PathType>& container, const PathType& file) {
+bool RE::AssetsManager::removeCatagrayFile(std::vector<PathType>& container, const PathType& file) {
 	bool ret = false;
-	if (container.Find(file) != -1) {
-		container.Remove(file);
+	auto iter = std::find(container.begin(), container.end(), file);
+	if (iter != container.end()) {
+		container.erase(iter);
 		ret = true;
 	}
 	return ret;

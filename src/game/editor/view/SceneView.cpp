@@ -8,6 +8,8 @@
 #include "game/editor/object/IEditor.h"
 #include "engine/system/InputSystem.h"
 #include "engine/object/GameObject.h"
+#include "platform/Platform.h"
+#include "base/String.h"
 
 
 namespace RE {
@@ -60,19 +62,30 @@ namespace RE {
 		auto& input = Engine::instance.input;
 		if (ImGui::IsMouseClicked(0) && ImGui::IsItemHovered()) {
 			if (Engine::instance.selectedObjs.size > 0) {
-				auto& trans = Engine::instance.selectedObjs[0]->transform;
-
-				Vec2 localPos = trans.WorldToLocal(Vec2(input.curMousePos.x, input.curMousePos.y));
-				if (Rect(0, 0, trans.w, trans.h).Contains(localPos)) {
-					_startDragObject = true;
+				if (Engine::instance.selectedObjs[0] == Engine::instance.root) {
+					Engine::instance.selectedObjs.Remove(0);
 				}
 			}
+			if (Engine::instance.selectedObjs.size > 0) {
+				for (int i = 0; i < Engine::instance.selectedObjs.size; ++i) {
+					auto& trans = Engine::instance.selectedObjs[i]->transform;
 
+					Vec2 localPos = trans.WorldToLocal(Vec2(input.curMousePos.x, input.curMousePos.y));
+					if (Rect(0, 0, trans.w, trans.h).Contains(localPos)) {
+						_startDragObject = true;
+					}
+				}
+			}
 			if (!_startDragObject) {
 				auto obj = input.PickUp(Engine::instance.root, input.curMousePos.x, input.curMousePos.y);
-
+				
 				if (obj) {
-					Engine::instance.SelectObjects(&obj, 1);
+					if (ImGui::GetIO().KeyCtrl) {
+						Engine::instance.selectedObjs.Push(obj);
+					}
+					else {
+						Engine::instance.SelectObjects(&obj, 1);
+					}
 					_startDragObject = true;
 				}
 				else {
@@ -84,41 +97,42 @@ namespace RE {
 		if (Engine::instance.selectedObjs.size <= 0) return;
 		ImDrawList* draw_list = ImGui::GetWindowDrawList();
 
-		auto go = Engine::instance.selectedObjs[0];
-		auto& trans = go->transform;
+		for (int i = 0; i < Engine::instance.selectedObjs.size; ++i) {
+			auto go = Engine::instance.selectedObjs[i];
+			auto& trans = go->transform;
 
-		Vec2 a;
-		Vec2 b = a + Vec2(trans.w, 0);
-		Vec2 c = a + trans.size;
-		Vec2 d = a + Vec2(0, trans.h);
+			Vec2 a;
+			Vec2 b = a + Vec2(trans.w, 0);
+			Vec2 c = a + trans.size;
+			Vec2 d = a + Vec2(0, trans.h);
 
-		a = trans.LocalToWorld(a);
-		b = trans.LocalToWorld(b);
-		c = trans.LocalToWorld(c);;
-		d = trans.LocalToWorld(d);
+			a = trans.LocalToWorld(a);
+			b = trans.LocalToWorld(b);
+			c = trans.LocalToWorld(c);;
+			d = trans.LocalToWorld(d);
 
-		auto toImVec2 = [this](Vec2& pos) -> ImVec2 {
-			ImVec2 ret = scenePos;
-			ret.x += pos.x;
-			ret.y += sceneSize.y - pos.y;
-			return ret;
-		};
+			auto toImVec2 = [this](Vec2& pos) -> ImVec2 {
+				ImVec2 ret = scenePos;
+				ret.x += pos.x;
+				ret.y += sceneSize.y - pos.y;
+				return ret;
+			};
 
-		ImVec2 canvas_a = toImVec2(a);
-		ImVec2 canvas_b = toImVec2(b);
-		ImVec2 canvas_c = toImVec2(c);
-		ImVec2 canvas_d = toImVec2(d);
+			ImVec2 canvas_a = toImVec2(a);
+			ImVec2 canvas_b = toImVec2(b);
+			ImVec2 canvas_c = toImVec2(c);
+			ImVec2 canvas_d = toImVec2(d);
 
-		draw_list->AddQuad(canvas_a, canvas_b, canvas_c, canvas_d, ImColor(0xFF, 0x33, 0x33));
+			draw_list->AddQuad(canvas_a, canvas_b, canvas_c, canvas_d, ImColor(0xFF, 0x33, 0x33));
 
+			if (_startDragObject) {
+				auto& io = ImGui::GetIO();
+				trans.x += io.MouseDelta.x;
+				trans.y -= io.MouseDelta.y;
+			}
+		}
 		if (ImGui::IsMouseReleased(0)) {
 			_startDragObject = false;
-		}
-
-		if (_startDragObject) {
-			auto& io = ImGui::GetIO();
-			trans.x += io.MouseDelta.x;
-			trans.y -= io.MouseDelta.y;
 		}
 	}
 

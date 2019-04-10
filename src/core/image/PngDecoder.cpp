@@ -23,12 +23,11 @@ static inline void pngReadCallback(png_structp png_ptr, png_bytep data, png_size
 }
 
 RE::ImageInfo RE::Png::Decode(const char* path) {
-	std::string pathname = path;
-	return Decode(pathname);
+	return Decode(Path(path));
 }
 
-ImageInfo Png::Decode(std::string& path) {
-	Data data = FileUtils::getInstance()->getData(path);
+ImageInfo Png::Decode(Path& path) {
+	Data data = FileUtils::getInstance()->GetData(path);
 	return Decode(data.getBytes(), data.getSize());
 }
 

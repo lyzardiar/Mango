@@ -4,12 +4,13 @@
 #include "engine/component/IComponent.h"
 #include "engine/object/GameObject.h"
 #include "engine/system/Texture2DSystem.h"
+#include "core/base/Path.h"
 
 void RE::TriangleRenderer::OnGUI() {
 	if (ImGui::CollapsingHeader("TriangleRenderer", ImGuiTreeNodeFlags_DefaultOpen)) {
 		ImGui::Indent();
 
-		StaticString<128> lastPath = material.texture ? material.texture->path : "";
+		Path lastPath = material.texture ? material.texture->path : "";
 
 		material.OnGUI();
 

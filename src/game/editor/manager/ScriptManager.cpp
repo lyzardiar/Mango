@@ -12,7 +12,7 @@ void RE::ScriptManager::Remove(ScriptComponent* comp) {
 	scriptList.Remove(comp);
 }
 
-void RE::ScriptManager::AddScript(StaticString<128>& path) {
+void RE::ScriptManager::AddScript(Path& path) {
 	int size = scriptList.size;
 	for (int idx = 0; idx < size; ++idx) {
 		auto comp = scriptList[idx];
@@ -22,7 +22,7 @@ void RE::ScriptManager::AddScript(StaticString<128>& path) {
 	}
 }
 
-void RE::ScriptManager::RemoveScript(StaticString<128>& path) {
+void RE::ScriptManager::RemoveScript(Path& path) {
 	int size = scriptList.size;
 	for (int idx = 0; idx < size; ++idx) {
 		auto comp = scriptList[idx];
@@ -32,7 +32,7 @@ void RE::ScriptManager::RemoveScript(StaticString<128>& path) {
 	}
 }
 
-void RE::ScriptManager::UpdateScript(StaticString<128>& path) {
+void RE::ScriptManager::UpdateScript(Path& path) {
 	int size = scriptList.size;
 	for (int idx = 0; idx < size; ++idx) {
 		auto comp = scriptList[idx];
@@ -42,12 +42,12 @@ void RE::ScriptManager::UpdateScript(StaticString<128>& path) {
 	}
 }
 
-void RE::ScriptManager::RenameScript(StaticString<128>& lastpath, StaticString<128>& curpath) {
+void RE::ScriptManager::RenameScript(Path& lastpath, Path& curpath) {
 	int size = scriptList.size;
 	for (int idx = 0; idx < size; ++idx) {
 		auto comp = scriptList[idx];
 		if (lastpath == comp->path) {
-			comp->path = curpath.data;
+			comp->path = curpath;
 		}
 	}
 }

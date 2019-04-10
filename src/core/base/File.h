@@ -2,10 +2,11 @@
 
 #include <sys/stat.h>
 #include <string>
+#include <vector>
 
 #include "Types.h"
 #include "String.h"
-#include <vector>
+#include "Path.h"
 
 namespace RE {
 #if defined(_MSC_VER)
@@ -24,6 +25,9 @@ namespace RE {
 	public:
 		FileState(const std::string& filepath = "") {
 			init(filepath);
+		}
+		FileState(Path& filepath) {
+			init(filepath.data);
 		}
 
 		bool init(const std::string& filepath = "") {
@@ -52,7 +56,7 @@ namespace RE {
 
 	class File {
 	public:
-		static void Copy(std::string& from, std::string& to) {
+		static void Copy(Path from, Path to) {
 			File f(from), t(to);
 			t.Write(f.Buff(), f.Size());
 		}
@@ -70,8 +74,8 @@ namespace RE {
 		File() {
 		}
 
-		File(const std::string& $filepath) {
-			Init($filepath);
+		File(Path $filepath) {
+			Init($filepath.data);
 		}
 
 		void Init(const std::string& $filepath = "") {

@@ -94,7 +94,7 @@ namespace RE {
 			}
 			dlg.OnGUI();
 			if (!dlg.selectPath.Empty()) {
-				obj->AddScriptComponent(dlg.selectPath.data);
+				obj->AddScriptComponent(dlg.selectPath.data.c_str());
 				ImGui::CloseCurrentPopup();
 			}
 

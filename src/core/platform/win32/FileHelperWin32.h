@@ -26,7 +26,7 @@ using namespace std;
 namespace RE {
 	class FileDirWin {
 	public:
-		static bool CreatDir(std::string dirPath) {
+		static bool CreatDir(String dirPath) {
 			int i = 0;
 			int iRet;
 			int iLen = dirPath.size();
@@ -94,11 +94,11 @@ namespace RE {
 			}
 		}
 
-		static std::string Normalized(std::string path) {
+		static std::string Normalized(String path) {
 			path = RE::String::Replace(path, "/", "\\");
 			if (path[path.size() - 1] != '\\' && path[path.size() - 1] != '/') path.append("\\");
 
-			std::vector<std::string> paths;
+			std::vector<String> paths;
 			std::string subpath;
 			int pos = 0;
 			int size = path.size();
@@ -129,12 +129,12 @@ namespace RE {
 			return subpath;
 		}
 
-		static void Del(std::string& path) {
+		static void Del(String& path) {
 			SHDeleteFolder(path.c_str());
 		}
 	public:
 		FileDirWin();
-		FileDirWin(string dir) {
+		FileDirWin(String dir) {
 			init(dir);
 		}
 
@@ -142,7 +142,7 @@ namespace RE {
 			return _dir;
 		}
 
-		bool init(string dir) {
+		bool init(String dir) {
 			if (_fullpath(_dir, dir.c_str(), _MAX_PATH) == NULL)
 				return false;
 
@@ -294,13 +294,13 @@ namespace RE {
 			_dirs.clear();
 		}
 
-		vector<string>& Files() { return _files; }
-		vector<string>& Dirs() { return _dirs; }
+		vector<String>& Files() { return _files; }
+		vector<String>& Dirs() { return _dirs; }
 
 	protected:
 
-		vector<string> _files;
-		vector<string> _dirs;
+		vector<String> _files;
+		vector<String> _dirs;
 
 		char _dir[1024];
 	};

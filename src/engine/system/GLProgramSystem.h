@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include "renderer/GLProgram.h"
 #include <string>
+#include "base/Path.h"
 
 namespace RE {
 	class GLProgramSystem {
@@ -10,6 +11,7 @@ namespace RE {
 		static GLProgramSystem instance;
 	public:
 		GLProgram* Add(const char* name, const char* vertFile, const char* fragFile);
+		GLProgram* Add(const char* name, Path vertFile, Path fragFile);
 		GLProgram* AddWithBuff(const char* name, const char* vert, const char* frag);
 
 		GLProgram* Get(const char* name);

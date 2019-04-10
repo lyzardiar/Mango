@@ -13,6 +13,7 @@ namespace RE {
 
 		virtual void OnGUI() override;
 
+		void setTexture(const char* path);
 	protected:
 		virtual  bool init() override;
 

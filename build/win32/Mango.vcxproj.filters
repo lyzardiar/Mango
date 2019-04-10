@@ -44,9 +44,6 @@
     <Filter Include="game\editor">
       <UniqueIdentifier>{1294439a-aac8-4299-a50e-5488ca163867}</UniqueIdentifier>
     </Filter>
-    <Filter Include="game\test">
-      <UniqueIdentifier>{34087e9e-ff56-4571-8cfb-c91f77cc860a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="libs\lua">
       <UniqueIdentifier>{65a001f3-347d-4682-8a2e-dd5bde8204ba}</UniqueIdentifier>
     </Filter>
@@ -174,9 +171,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\game\editor\GameStudio.h">
       <Filter>game\editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\game\test\test1.h">
-      <Filter>game\test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\libs\lua\ldebug.h">
       <Filter>libs\lua</Filter>
@@ -420,6 +414,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\core\math\Math.h">
       <Filter>core\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer\RenderState.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\editor\Editor.h">
+      <Filter>game\editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer\Renderer.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\system\AutoReleaseManager.h">
+      <Filter>core\stream</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -698,6 +704,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\engine\component\ParticleRender.cpp">
       <Filter>engine\component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\renderer\RenderState.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\editor\Editor.cpp">
+      <Filter>game\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\renderer\Renderer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\base\Object.cpp">
+      <Filter>core\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\system\AutoReleaseManager.cpp">
+      <Filter>core\stream</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

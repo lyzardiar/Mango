@@ -1,11 +1,11 @@
 #pragma once
 #include "GL/REGL.h"
 #include <string>
+#include "base/Path.h"
+#include "base/Object.h"
 
 namespace RE {
-	class GLProgram {
-	public:
-		static GLuint CurProgram;
+	class GLProgram : public Object {
 	public:
 		enum {
 			VERTEX_ATTRIB_POSITION,
@@ -20,6 +20,7 @@ namespace RE {
 		~GLProgram();
 
 		bool Init(const char* vert, const char* frag);
+		bool Init(Path vert, Path frag);
 		bool InitWithBuff(const char* vert, const char* frag);
 
 		void OnGUI();

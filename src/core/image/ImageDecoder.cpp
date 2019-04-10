@@ -20,7 +20,7 @@ bool isJpg(const unsigned char * data, I32 dataLen) {
 	return memcmp(data, JPG_SOI, 2) == 0;
 }
 
-ImageInfo ImageDecoder::decode(std::string& path) {
+ImageInfo ImageDecoder::decode(Path& path) {
 	ImageInfo info = Png::Decode(path);
 
 	return info;

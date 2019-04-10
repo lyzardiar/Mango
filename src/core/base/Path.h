@@ -5,7 +5,21 @@
 
 namespace RE {
 	class Path {
-		typedef StaticString<256> DataType;
+		typedef String Type;
+	public:
+		struct HashFunc {
+			std::size_t operator()(const Path &key) const {
+				using std::size_t;
+				using std::hash;
+				return hash<const char*>()(key.data.c_str());
+			}
+		};
+		struct EqualFunc {
+			bool operator () (const Path &lhs, const Path &rhs) const {
+				return lhs.data == rhs.data;
+			}
+		};
+
 	public:
 		template<typename... Args>
 		Path(Args... args) {
@@ -17,51 +31,51 @@ namespace RE {
 			Cat(path);
 		}
 
-		Path& Cat(const char* path) {
-			return Cat(DataType(path));
+		Path(String path) {
+			Cat(path);
 		}
 
-		Path& Cat(std::string& path) {
-			return Cat(DataType(path));
+		Path& Cat(const char* path) {
+			return Cat(Type(path));
 		}
 
 		Path& Cat(Path& path) {
 			return Cat(path.data);
 		}
 
-		Path& Cat(DataType& path) {
-			if (data.size == 0) {
+		Path& Cat(Type path) {
+			if (data.Empty()) {
 				data = path;
 			}
 			else {
 				while (path.First() == '/' || path.First() == '\\') {
 					path.RemoveFirst();
 				}
-				data.Cat(path);
+				data.Cat("/").Cat(path);
 			}
-			if (data.Last() != '/' || data.Last() != '\\') {
-				data.Cat('/');
+			while (data.Last() == '/' || data.Last() == '\\') {
+				data.RemoveLast();
 			}
 			return *this;
 		}
 
 		bool Empty() {
-			return data.size == 0;
+			return data.Empty();
 		}
 
 		int Size() {
-			return data.size;
+			return data.Size();
 		}
 
 		const char* Bytes() {
-			return data.data;
+			return data.c_str();
 		}
 
 		Path operator + (const char* path) {
 			return Path(data, path);
 		}
 
-		Path operator + (DataType& path) {
+		Path operator + (Type& path) {
 			return Path(data, path);
 		}
 
@@ -69,20 +83,37 @@ namespace RE {
 			return Path(data, path);
 		}
 
-		Path& operator = (Path& path) {
-			data = path.data;
+		Path& operator += (const char* path) {
+			data.Cat(path);
 			return *this;
 		}
 
-		Path& operator = (std::string& path) {
-			data.Clear().Cat(path);
+		Path& operator += (Type& path) {
+			data.Cat(path);
 			return *this;
+		}
+
+		Path& operator += (Path& path) {
+			data.Cat(path.data);
+			return *this;
+		}
+
+		char operator [] (int index) {
+			return data[index];
+		}
+
+		bool operator == (const Path& path) {
+			return data == path.data;
+		}
+
+		bool operator != (const Path& path) {
+			return ! (*this == path);
 		}
 
 	protected:
 		void init();
 
 	public:
-		DataType data;
+		Type data;
 	};
 }

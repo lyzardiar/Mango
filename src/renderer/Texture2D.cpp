@@ -1,14 +1,13 @@
 #include "Texture2D.h"
 #include "image/PngDecoder.h"
 #include "engine/system/Texture2DSystem.h"
-
-GLuint RE::Texture2D::CurHandle = 0;
+#include "RenderState.h"
 
 RE::Texture2D::Texture2D() {
 
 }
 
-RE::Texture2D::Texture2D(const char* filepath) {
+RE::Texture2D::Texture2D(Path filepath) {
 	InitWithFile(filepath);
 }
 
@@ -24,12 +23,11 @@ bool RE::Texture2D::InitWithData(UI32 width, UI32 height, UI8* data, UI32 len) {
 	clear();
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	size.width = width;
-	size.height = height;
+	size.width = static_cast<float>(width);
+	size.height = static_cast<float>(height);
 
 	glGenTextures(1, &_handle);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _handle);
+	RenderState::CurrentRenderState->BindTexture(_handle);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
@@ -42,26 +40,18 @@ bool RE::Texture2D::InitWithData(UI32 width, UI32 height, UI8* data, UI32 len) {
 	return true;
 }
 
-bool RE::Texture2D::InitWithFile(const char* filepath) {
-	auto tex = Texture2DSystem::instance[filepath];
-	if (tex != nullptr) {
-		path = filepath;
-		size = tex->size;
-		_handle = tex->_handle;
-	}
-	else {
-		clear();
+bool RE::Texture2D::InitWithFile(Path filepath) {
+	clear();
 
-		path = filepath;
-		auto imgInfo = RE::Png::Decode(filepath);
-		if (imgInfo.valid)
-			return InitWithData(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
+	path = filepath;
+	auto imgInfo = RE::Png::Decode(filepath);
+	if (imgInfo.valid)
+		return InitWithData(imgInfo.width, imgInfo.height, imgInfo.data.getBytes(), imgInfo.data.getSize());
 
-		_handle = 0;
-		size.width = 1;
-		size.height = 1;
-		return false;
-	}
+	_handle = 0;
+	size.width = 1;
+	size.height = 1;
+	return false;
 }
 
 GLuint RE::Texture2D::GetHandle() {
@@ -69,16 +59,9 @@ GLuint RE::Texture2D::GetHandle() {
 }
 
 void RE::Texture2D::Bind() {
-	if (CurHandle != _handle) {
-		//glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _handle);
-		CurHandle = _handle;
-	}
+	RenderState::CurrentRenderState->BindTexture(_handle);
 }
 
 void RE::Texture2D::clear() {
-	if (_handle != 0) {
-		glDeleteTextures(1, &_handle);
-		_handle = 0;
-	}
+	RenderState::CurrentRenderState->DeleteTexture(_handle);
 }

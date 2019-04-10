@@ -191,12 +191,14 @@
     <ClInclude Include="..\..\src\engine\Engine.h" />
     <ClInclude Include="..\..\src\engine\object\GameObject.h" />
     <ClInclude Include="..\..\src\engine\object\Image.h" />
+    <ClInclude Include="..\..\src\engine\system\AutoReleaseManager.h" />
     <ClInclude Include="..\..\src\engine\system\GLProgramSystem.h" />
     <ClInclude Include="..\..\src\engine\system\InputSystem.h" />
     <ClInclude Include="..\..\src\engine\system\Texture2DSystem.h" />
     <ClInclude Include="..\..\src\game\editor\dialog\IDialog.h" />
     <ClInclude Include="..\..\src\game\editor\dialog\SelectImageDlg.h" />
     <ClInclude Include="..\..\src\game\editor\dialog\SelectScriptDlg.h" />
+    <ClInclude Include="..\..\src\game\editor\Editor.h" />
     <ClInclude Include="..\..\src\game\editor\GameEditor.h" />
     <ClInclude Include="..\..\src\game\editor\GameStudio.h" />
     <ClInclude Include="..\..\src\game\editor\manager\AssetsManager.h" />
@@ -211,7 +213,6 @@
     <ClInclude Include="..\..\src\game\editor\view\SceneView.h" />
     <ClInclude Include="..\..\src\game\editor\view\StatusView.h" />
     <ClInclude Include="..\..\src\game\editor\view\WelcomeView.h" />
-    <ClInclude Include="..\..\src\game\test\test1.h" />
     <ClInclude Include="..\..\src\libs\imgui\imconfig.h" />
     <ClInclude Include="..\..\src\libs\imgui\imgui.h" />
     <ClInclude Include="..\..\src\libs\imgui\imgui_dock.h" />
@@ -258,6 +259,8 @@
     <ClInclude Include="..\..\src\renderer\Material.h" />
     <ClInclude Include="..\..\src\renderer\PipeLine.h" />
     <ClInclude Include="..\..\src\renderer\GLProgram.h" />
+    <ClInclude Include="..\..\src\renderer\Renderer.h" />
+    <ClInclude Include="..\..\src\renderer\RenderState.h" />
     <ClInclude Include="..\..\src\renderer\Texture2D.h" />
     <ClInclude Include="..\..\src\renderer\Triangle.h" />
     <ClInclude Include="..\..\src\renderer\TriangleCommand.h" />
@@ -269,6 +272,7 @@
     <ClCompile Include="..\..\src\core\base\ByteSwap.cpp" />
     <ClCompile Include="..\..\src\core\base\Data.cpp" />
     <ClCompile Include="..\..\src\core\base\File.cpp" />
+    <ClCompile Include="..\..\src\core\base\Object.cpp" />
     <ClCompile Include="..\..\src\core\base\Path.cpp" />
     <ClCompile Include="..\..\src\core\base\Time.cpp" />
     <ClCompile Include="..\..\src\core\base\Types.cpp" />
@@ -288,9 +292,11 @@
     <ClCompile Include="..\..\src\engine\Engine.cpp" />
     <ClCompile Include="..\..\src\engine\object\GameObject.cpp" />
     <ClCompile Include="..\..\src\engine\object\Image.cpp" />
+    <ClCompile Include="..\..\src\engine\system\AutoReleaseManager.cpp" />
     <ClCompile Include="..\..\src\engine\system\GLProgramSystem.cpp" />
     <ClCompile Include="..\..\src\engine\system\InputSystem.cpp" />
     <ClCompile Include="..\..\src\engine\system\Texture2DSystem.cpp" />
+    <ClCompile Include="..\..\src\game\editor\Editor.cpp" />
     <ClCompile Include="..\..\src\game\editor\GameStudio.cpp" />
     <ClCompile Include="..\..\src\game\editor\manager\AssetsManager.cpp" />
     <ClCompile Include="..\..\src\game\editor\manager\ScriptManager.cpp" />
@@ -353,6 +359,8 @@
     <ClCompile Include="..\..\src\renderer\Material.cpp" />
     <ClCompile Include="..\..\src\renderer\GLProgram.cpp" />
     <ClCompile Include="..\..\src\renderer\PipeLine.cpp" />
+    <ClCompile Include="..\..\src\renderer\Renderer.cpp" />
+    <ClCompile Include="..\..\src\renderer\RenderState.cpp" />
     <ClCompile Include="..\..\src\renderer\Texture2D.cpp" />
     <ClCompile Include="..\..\src\renderer\Triangle.cpp" />
     <ClCompile Include="..\..\src\renderer\TriangleCommand.cpp" />

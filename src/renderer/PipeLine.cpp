@@ -38,7 +38,7 @@ void RE::PipeLine::AddCommand(class IRenderCommand* cmd) {
 		cur.x = x, cur.y = y;
 	}
 
-	while (triangleCount * 3 + cmdInds.size > tarInds.size) {
+	while ((int)triangleCount * 3 + cmdInds.size > tarInds.size) {
 		auto cmdIndsData = cmdInds.data;
 		for (int i = 0; i < cmdInds.size; ++i) {
 			tarInds.data[tarInds.size++] = (*cmdIndsData++) + countVert;

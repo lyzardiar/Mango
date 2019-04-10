@@ -5,15 +5,14 @@
 #include "core/base/Data.h"
 #include "core/platform/FileUtils.h"
 #include "FrameBuffer.h"
+#include "RenderState.h"
 
-GLuint RE::GLProgram::CurProgram = 0;
-
-const char* RE::GLProgram::ATTRIBUTE_NAME_COLOR = "a_color";
-const char* RE::GLProgram::ATTRIBUTE_NAME_POSITION = "a_position";
+const char* RE::GLProgram::ATTRIBUTE_NAME_COLOR		= "a_color";
+const char* RE::GLProgram::ATTRIBUTE_NAME_POSITION	= "a_position";
 const char* RE::GLProgram::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
 
 RE::GLProgram::GLProgram() {
-	//Init("shaders/default.vert", "shaders/default.frag");
+
 }
 
 RE::GLProgram::~GLProgram() {
@@ -21,17 +20,21 @@ RE::GLProgram::~GLProgram() {
 }
 
 bool RE::GLProgram::Init(const char* vert, const char* frag) {
+	return Init(Path(vert), Path(frag));
+}
+
+bool RE::GLProgram::Init(Path vert, Path frag) {
 	reset();
 
-	Data vertdata = FileUtils::getInstance()->getData(vert);
-	Data fragdata = FileUtils::getInstance()->getData(frag);
+	Data vertdata = FileUtils::getInstance()->GetData(vert);
+	Data fragdata = FileUtils::getInstance()->GetData(frag);
 
 	return InitWithBuff((char*)vertdata.getBytes(), (char*)fragdata.getBytes());
 }
 
-bool RE::GLProgram::InitWithBuff(const char* vert, const char* frag) {
-	if (!compile(_vertHandle, GL_VERTEX_SHADER, (const GLchar*)vert) ||
-		!compile(_fragHandle, GL_FRAGMENT_SHADER, (const GLchar*)frag)) {
+bool RE::GLProgram::InitWithBuff(const char* vertData, const char* fragData) {
+	if (!compile(_vertHandle, GL_VERTEX_SHADER, (const GLchar*)vertData) ||
+		!compile(_fragHandle, GL_FRAGMENT_SHADER, (const GLchar*)fragData)) {
 		return false;
 	}
 	_program = glCreateProgram();
@@ -47,11 +50,8 @@ bool RE::GLProgram::Apply() {
 }
 
 bool RE::GLProgram::Apply(float* matp) {
-	if (CurProgram != _program) {
-		CurProgram = _program;
-		glUseProgram(_program);
-		glUniformMatrix4fv(_matPHandle, (GLsizei)1, GL_FALSE, matp);
-	}
+	RenderState::CurrentRenderState->UseProgram(_program);
+	glUniformMatrix4fv(_matPHandle, (GLsizei)1, GL_FALSE, matp);
 	return true;
 }
 
@@ -86,8 +86,8 @@ bool RE::GLProgram::compile(GLuint& handle, GLenum type, const GLchar* code) {
 bool RE::GLProgram::link() {
 	GLint status = GL_TRUE;
 
-	glBindAttribLocation(_program, VERTEX_ATTRIB_POSITION, ATTRIBUTE_NAME_POSITION);
-	glBindAttribLocation(_program, VERTEX_ATTRIB_COLOR, ATTRIBUTE_NAME_COLOR);
+	glBindAttribLocation(_program, VERTEX_ATTRIB_POSITION,	ATTRIBUTE_NAME_POSITION);
+	glBindAttribLocation(_program, VERTEX_ATTRIB_COLOR,		ATTRIBUTE_NAME_COLOR);
 	glBindAttribLocation(_program, VERTEX_ATTRIB_TEX_COORD, ATTRIBUTE_NAME_TEX_COORD);
 
 	glLinkProgram(_program);

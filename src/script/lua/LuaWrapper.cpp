@@ -3,6 +3,7 @@
 #include "engine/component/Transform.h"
 #include "engine/object/GameObject.h"
 #include "base/String.h"
+#include "base/Path.h"
 #include "platform/FileUtils.h"
 #include "platform/Platform.h"
 
@@ -19,7 +20,7 @@ extern "C"
 		filename = RE::String::Replace(filename, ".", "/");
 
 		filename.append(".lua");
-		auto&& data = RE::FileUtils::getInstance()->getData(filename);
+		auto&& data = RE::FileUtils::getInstance()->GetData(RE::Path(filename));
 		if (!data.isNull()) {
 
 			auto bytes = (unsigned char*)data.getBytes();
@@ -36,7 +37,7 @@ extern "C"
 			}
 			return 1;
 		} else {
-			bool isFileExists = RE::FileUtils::getInstance()->isFileExists(filename);
+			bool isFileExists = RE::FileUtils::getInstance()->IsFileExists(RE::Path(filename));
 			Log("Lua File Not Found!!! [%s] [%s]", filename.c_str(), isFileExists ? "true" : "false");
 			luaL_error(L, "error loading module %s from file %s :\n\t%s",
 				lua_tostring(L, 1), filename.c_str(), lua_tostring(L, -1));

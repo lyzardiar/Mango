@@ -11,15 +11,19 @@ void RE::GLProgramSystem::InitDefault() {
 RE::GLProgramSystem RE::GLProgramSystem::instance;
 
 RE::GLProgram* RE::GLProgramSystem::Add(const char* name, const char* vertFile, const char* fragFile) {
-	Data vertdata = FileUtils::getInstance()->getData(vertFile);
-	Data fragdata = FileUtils::getInstance()->getData(fragFile);
+	return Add(name, Path(vertFile), Path(fragFile));
+}
+
+RE::GLProgram* RE::GLProgramSystem::Add(const char* name, Path vertFile, Path fragFile) {
+	Data vertdata = FileUtils::getInstance()->GetData(vertFile);
+	Data fragdata = FileUtils::getInstance()->GetData(fragFile);
 	return AddWithBuff(name, (char*)vertdata.getBytes(), (char*)fragdata.getBytes());
 }
 
 RE::GLProgram* RE::GLProgramSystem::AddWithBuff(const char* name, const char* vert, const char* frag) {
 	auto old = programs[name];
 	if (old != nullptr) {
-		delete old;
+		old->Release();
 	}
 	auto cur = new GLProgram();
 	if (cur->InitWithBuff(vert, frag)) {
